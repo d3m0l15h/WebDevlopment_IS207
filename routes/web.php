@@ -92,3 +92,7 @@ Route::get('/job/create', [
     JobController::class,
     'index'
 ])->name('job.create');
+Route::post('/job/create', [
+    JobController::class,
+    'store'
+])->name('job.store');

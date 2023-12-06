@@ -14,11 +14,16 @@ use Illuminate\Database\Eloquent\Model;
  * Class Job
  * 
  * @property int $id
- * @property int $name
+ * @property string $name
  * @property float $salary
+ * @property float|null $salary_min
+ * @property float|null $salary_max
+ * @property string $strength
  * @property string $reasons
  * @property string $descriptions
  * @property string $requirements
+ * @property string $location
+ * @property string $working_type
  * @property int $eid
  * @property Carbon $create_on
  * 
@@ -33,8 +38,9 @@ class Job extends Model
 	public $timestamps = false;
 
 	protected $casts = [
-		'name' => 'int',
 		'salary' => 'float',
+		'salary_min' => 'float',
+		'salary_max' => 'float',
 		'eid' => 'int',
 		'create_on' => 'datetime'
 	];
@@ -42,9 +48,14 @@ class Job extends Model
 	protected $fillable = [
 		'name',
 		'salary',
+		'salary_min',
+		'salary_max',
+		'strength',
 		'reasons',
 		'descriptions',
 		'requirements',
+		'location',
+		'working_type',
 		'eid',
 		'create_on'
 	];
