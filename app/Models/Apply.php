@@ -6,37 +6,37 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Apply
  * 
- * @property int $jid
- * @property int $uid
- * 
- * @property Job $job
- * @property User $user
+ * @property int|null $jid
+ * @property int|null $uid
+ * @property Carbon $time
+ * @property string|null $cv
+ * @property string|null $letter
  *
  * @package App\Models
  */
 class Apply extends Model
 {
-	protected $table = 'apply';
+	protected $table = 'applies';
 	public $incrementing = false;
 	public $timestamps = false;
 
 	protected $casts = [
 		'jid' => 'int',
-		'uid' => 'int'
+		'uid' => 'int',
+		'time' => 'datetime'
 	];
 
-	public function job()
-	{
-		return $this->belongsTo(Job::class, 'jid');
-	}
-
-	public function user()
-	{
-		return $this->belongsTo(User::class, 'uid');
-	}
+	protected $fillable = [
+		'jid',
+		'uid',
+		'time',
+		'cv',
+		'letter'
+	];
 }

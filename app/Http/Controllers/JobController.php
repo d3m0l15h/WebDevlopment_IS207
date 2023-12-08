@@ -10,8 +10,8 @@ class JobController extends Controller
 {
     public function index()
     {
-        if(!Auth::check()) return abort(404);
-        if(auth()->user()->role == 'user') return abort(404);
+        // if(!Auth::check()) return abort(404);
+        // if(auth()->user()->role == 'user') return abort(404);
         return view('create_job');
     }
     public function store(Request $request){

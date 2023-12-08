@@ -15,12 +15,16 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id
  * @property string|null $name
  * @property string|null $location
- * @property string|null $working_time
- * @property string|null $introduce
- * @property string|null $own_project
+ * @property string|null $workingtime
+ * @property string $quality
+ * @property string|null $ownproject
  * @property string|null $prize
+ * @property string $email
+ * @property string $phone
+ * @property string $introduce
+ * @property string $logo
+ * @property string $active
  * 
- * @property Collection|Account[] $accounts
  * @property Collection|Job[] $jobs
  *
  * @package App\Models
@@ -33,16 +37,16 @@ class Employer extends Model
 	protected $fillable = [
 		'name',
 		'location',
-		'working_time',
+		'workingtime',
+		'quality',
+		'ownproject',
+		'prize',
+		'email',
+		'phone',
 		'introduce',
-		'own_project',
-		'prize'
+		'logo',
+		'active'
 	];
-
-	public function accounts()
-	{
-		return $this->hasMany(Account::class, 'employerID');
-	}
 
 	public function jobs()
 	{

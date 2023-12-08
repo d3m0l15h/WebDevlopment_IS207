@@ -6,8 +6,6 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -15,20 +13,19 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @property int $id
  * @property string $name
- * @property float $salary
- * @property float|null $salary_min
- * @property float|null $salary_max
- * @property string $strength
+ * @property string|null $salary
+ * @property float|null $salarymin
+ * @property float|null $salarymax
  * @property string $reasons
  * @property string $descriptions
  * @property string $requirements
  * @property string $location
- * @property string $working_type
+ * @property string $worktype
  * @property int $eid
- * @property Carbon $create_on
+ * @property string $elogo
+ * @property string $ename
  * 
  * @property Employer $employer
- * @property Collection|Apply[] $applies
  *
  * @package App\Models
  */
@@ -38,35 +35,28 @@ class Job extends Model
 	public $timestamps = false;
 
 	protected $casts = [
-		'salary' => 'float',
-		'salary_min' => 'float',
-		'salary_max' => 'float',
-		'eid' => 'int',
-		'create_on' => 'datetime'
+		'salarymin' => 'float',
+		'salarymax' => 'float',
+		'eid' => 'int'
 	];
 
 	protected $fillable = [
 		'name',
 		'salary',
-		'salary_min',
-		'salary_max',
-		'strength',
+		'salarymin',
+		'salarymax',
 		'reasons',
 		'descriptions',
 		'requirements',
 		'location',
-		'working_type',
+		'worktype',
 		'eid',
-		'create_on'
+		'elogo',
+		'ename'
 	];
 
 	public function employer()
 	{
 		return $this->belongsTo(Employer::class, 'eid');
-	}
-
-	public function applies()
-	{
-		return $this->hasMany(Apply::class, 'jid');
 	}
 }

@@ -24,27 +24,21 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `account`
+-- Table structure for table `accounts`
 --
 
-CREATE TABLE `account` (
+CREATE TABLE `accounts` (
   `id` int(10) UNSIGNED NOT NULL,
   `username` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `password` text NOT NULL,
   `role` varchar(12) NOT NULL DEFAULT 'user',
-  `userID` int(10) UNSIGNED DEFAULT NULL,
-  `employerID` int(10) UNSIGNED DEFAULT NULL,
-  `adminID` int(10) UNSIGNED DEFAULT NULL
+  `userid` int(10) UNSIGNED DEFAULT NULL,
+  `employerid` int(10) UNSIGNED DEFAULT NULL,
+  `adminid` int(10) UNSIGNED DEFAULT NULL,
+  `uid` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `account`
---
-
-INSERT INTO `account` (`id`, `username`, `email`, `password`, `role`, `userID`, `employerID`, `adminID`) VALUES
-(1, 'user', 'user@gmail.com', '$2y$10$ELdxtgw4BD/KYvo1zYIRbONWKAIof5kAu1Y7Wb0zNjF/rFDWNVN0y', 'user', 1, NULL, NULL),
-(2, 'emp', 'employer@gmail.com', '$2y$10$WRm0yPFVtnWR.8bpVBlYxOrCCtZK4kY5mPGKfOYoVG7OInn9s/TiG', 'employer', NULL, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -52,9 +46,9 @@ INSERT INTO `account` (`id`, `username`, `email`, `password`, `role`, `userID`, 
 -- Table structure for table `admin`
 --
 
-CREATE TABLE `admin` (
+CREATE TABLE `admins` (
   `id` int(10) UNSIGNED NOT NULL,
-  `name` varchar(50) DEFAULT NULL
+  `username` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -63,9 +57,12 @@ CREATE TABLE `admin` (
 -- Table structure for table `apply`
 --
 
-CREATE TABLE `apply` (
-  `jid` int(10) UNSIGNED NOT NULL,
-  `uid` int(10) UNSIGNED NOT NULL
+CREATE TABLE `applies` (
+  `jid`     int(11) DEFAULT NULL,
+  `uid`     int(11) DEFAULT NULL,
+  `time`    timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `cv`      varchar(256) DEFAULT NULL,
+  `letter`  varchar(256) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -74,22 +71,20 @@ CREATE TABLE `apply` (
 -- Table structure for table `employer`
 --
 
-CREATE TABLE `employer` (
+CREATE TABLE `employers` (
   `id` int(10) UNSIGNED NOT NULL,
-  `name` varchar(50) DEFAULT NULL,
-  `location` text DEFAULT NULL,
-  `working_time` text DEFAULT NULL,
-  `introduce` text DEFAULT NULL,
-  `own_project` text DEFAULT NULL,
-  `prize` text DEFAULT NULL
+  `name` varchar(255) DEFAULT NULL,
+  `location` varchar(255) DEFAULT NULL,
+  `workingtime` varchar(255) DEFAULT NULL,
+  `quality` varchar(255) NOT NULL,
+  `ownproject` varchar(255) DEFAULT NULL,
+  `prize` varchar(255) DEFAULT NULL,
+  `email` varchar(255) NOT NULL,
+  `phone` varchar(255) NOT NULL,
+  `introduce` varchar(255) NOT NULL,
+  `logo` varchar(255) NOT NULL,
+  `active` varchar(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `employer`
---
-
-INSERT INTO `employer` (`id`, `name`, `location`, `working_time`, `introduce`, `own_project`, `prize`) VALUES
-(1, 'Dat Dao', 'UIT', '123', '123', '123', '123');
 
 -- --------------------------------------------------------
 
@@ -100,16 +95,18 @@ INSERT INTO `employer` (`id`, `name`, `location`, `working_time`, `introduce`, `
 CREATE TABLE `jobs` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(256) NOT NULL,
-  `salary` decimal(18,2) UNSIGNED NOT NULL,
-  `salary_min` decimal(18,2) DEFAULT NULL,
-  `salary_max` decimal(18,2) DEFAULT NULL,
+  `salary` varchar(255) DEFAULT NULL,
+  `salarymin` decimal(18,2) DEFAULT NULL,
+  `salarymax` decimal(18,2) DEFAULT NULL,
   `reasons` text NOT NULL,
   `descriptions` text NOT NULL,
   `requirements` text NOT NULL,
   `location` varchar(80) NOT NULL,
-  `working_type` varchar(80) NOT NULL,
+  `worktype` varchar(255) NOT NULL,
   `eid` int(10) UNSIGNED NOT NULL,
-  `create_on` datetime NOT NULL DEFAULT current_timestamp()
+  `elogo` varchar(255) NOT NULL,
+  `ename` varchar(255) NOT NULL,
+  `createon` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -118,24 +115,17 @@ CREATE TABLE `jobs` (
 -- Table structure for table `user`
 --
 
-CREATE TABLE `user` (
+CREATE TABLE `users` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(50) DEFAULT NULL,
-  `introduce` text DEFAULT NULL,
-  `education` text DEFAULT NULL,
-  `experience` text DEFAULT NULL,
-  `skill` text DEFAULT NULL,
-  `own_project` text DEFAULT NULL,
-  `certificate` text DEFAULT NULL,
-  `prize` text DEFAULT NULL
+  `introduce` varchar(255) DEFAULT NULL,
+  `education` varchar(255) DEFAULT NULL,
+  `experience` varchar(255) DEFAULT NULL,
+  `skill` varchar(255) DEFAULT NULL,
+  `ownproject` varchar(255) DEFAULT NULL,
+  `certificate` varchar(255) DEFAULT NULL,
+  `prize` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `user`
---
-
-INSERT INTO `user` (`id`, `name`, `introduce`, `education`, `experience`, `skill`, `own_project`, `certificate`, `prize`) VALUES
-(1, 'Nguyễn Văn A', 'ADF', 'ASE', 'ASE', 'ADF', 'QEF', 'AFS', 'ASW');
 
 --
 -- Indexes for dumped tables
@@ -144,31 +134,32 @@ INSERT INTO `user` (`id`, `name`, `introduce`, `education`, `experience`, `skill
 --
 -- Indexes for table `account`
 --
-ALTER TABLE `account`
+ALTER TABLE `accounts`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `username` (`username`),
   ADD UNIQUE KEY `email` (`email`),
-  ADD KEY `FK_account_user` (`userID`),
-  ADD KEY `FK_account_admin` (`adminID`),
-  ADD KEY `FK_account_employer` (`employerID`);
+  ADD KEY `FK_accounts_users` (`userid`),
+  ADD KEY `FK_accounts_admins` (`adminid`),
+  ADD KEY `FK_accounts_employers` (`employerid`);
 
 --
 -- Indexes for table `admin`
 --
-ALTER TABLE `admin`
+ALTER TABLE `admins`
   ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `apply`
 --
-ALTER TABLE `apply`
-  ADD PRIMARY KEY (`uid`,`jid`),
-  ADD KEY `FK_apply_job` (`jid`);
+ALTER TABLE `applies`
+  -- ADD PRIMARY KEY (`uid`,`jid`),
+  ADD KEY `FK_applies_jobs` (`jid`),
+  ADD KEY `FK_applies_users` (`uid`);
 
 --
 -- Indexes for table `employer`
 --
-ALTER TABLE `employer`
+ALTER TABLE `employers`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -176,12 +167,12 @@ ALTER TABLE `employer`
 --
 ALTER TABLE `jobs`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `FK_job_emp` (`eid`);
+  ADD KEY `FK_jobs_employers` (`eid`);
 
 --
 -- Indexes for table `user`
 --
-ALTER TABLE `user`
+ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -191,19 +182,19 @@ ALTER TABLE `user`
 --
 -- AUTO_INCREMENT for table `account`
 --
-ALTER TABLE `account`
+ALTER TABLE `accounts`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `admin`
 --
-ALTER TABLE `admin`
+ALTER TABLE `admins`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `employer`
 --
-ALTER TABLE `employer`
+ALTER TABLE `employers`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
@@ -215,7 +206,7 @@ ALTER TABLE `jobs`
 --
 -- AUTO_INCREMENT for table `user`
 --
-ALTER TABLE `user`
+ALTER TABLE `users`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
@@ -225,25 +216,56 @@ ALTER TABLE `user`
 --
 -- Constraints for table `account`
 --
-ALTER TABLE `account`
-  ADD CONSTRAINT `FK_account_admin` FOREIGN KEY (`adminID`) REFERENCES `admin` (`id`),
-  ADD CONSTRAINT `FK_account_employer` FOREIGN KEY (`employerID`) REFERENCES `employer` (`id`),
-  ADD CONSTRAINT `FK_account_user` FOREIGN KEY (`userID`) REFERENCES `user` (`id`);
+ALTER TABLE `accounts`
+  ADD CONSTRAINT `FK_accounts_admins` FOREIGN KEY (`adminid`) REFERENCES `admins` (`id`),
+  ADD CONSTRAINT `FK_accounts_employers` FOREIGN KEY (`employerid`) REFERENCES `employers` (`id`),
+  ADD CONSTRAINT `FK_accounts_users` FOREIGN KEY (`userid`) REFERENCES `users` (`id`);
 
 --
--- Constraints for table `apply`
+-- Constraints for table `applies`
 --
-ALTER TABLE `apply`
-  ADD CONSTRAINT `FK_apply_job` FOREIGN KEY (`jid`) REFERENCES `jobs` (`id`),
-  ADD CONSTRAINT `FK_apply_user` FOREIGN KEY (`uid`) REFERENCES `user` (`id`);
+ALTER TABLE `applies`
+  ADD CONSTRAINT `FK_applies_jobs` FOREIGN KEY (`jid`) REFERENCES `jobs` (`id`),
+  ADD CONSTRAINT `FK_applies_users` FOREIGN KEY (`uid`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `jobs`
 --
 ALTER TABLE `jobs`
-  ADD CONSTRAINT `FK_job_emp` FOREIGN KEY (`eid`) REFERENCES `employer` (`id`);
-COMMIT;
+  ADD CONSTRAINT `FK_jobs_employers` FOREIGN KEY (`eid`) REFERENCES `employers` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+--
+-- Dumping data for table `account`
+--
+
+INSERT INTO `accounts` (`id`, `username`, `email`, `password`, `role`, `userid`, `employerid`, `adminid`) VALUES
+(1, 'user', 'user@gmail.com', '$2y$10$ELdxtgw4BD/KYvo1zYIRbONWKAIof5kAu1Y7Wb0zNjF/rFDWNVN0y', 'user', 1, NULL, NULL),
+(2, 'emp', 'employer@gmail.com', '$2y$10$WRm0yPFVtnWR.8bpVBlYxOrCCtZK4kY5mPGKfOYoVG7OInn9s/TiG', 'employer', NULL, 1, NULL);
+
+
+
+--
+-- Dumping data for table `employer`
+--
+
+INSERT INTO `employers` (`id`, `name`, `location`, `workingtime`, `quality`, `ownproject`, `prize`, `email`, `phone`, `introduce`, `logo`, `active`) VALUES
+(2, 'FPT', 'Ho Chi Minh', 'Full-time', '50', 'Duy', '1', 'a@a.a', '099455256', 'Fpt software', '1', '1');
+
+--
+-- Dumping data for table `jobs`
+--
+
+INSERT INTO `jobs` (`id`, `name`, `salary`, `salarymin`, `salarymax`, `reasons`, `descriptions`, `requirements`, `location`, `worktype`, `eid`, `elogo`, `ename`, `createon`) VALUES
+(1, 'Java Backend Developer (MySQL, Spring)', '1000', 1000.00, 2000.00, 'reason', 'descriptions', 'requirements', 'Ho Chi Minh', 'Company', 2, '', '', '2023-12-08 23:58:08');
+
+
+--
+-- Dumping data for table `user`
+--
+INSERT INTO `users` (`id`, `name`, `introduce`, `education`, `experience`, `skill`, `ownproject`, `certificate`, `prize`) VALUES
+(1, 'Dat', 'introduce', 'education', 'experience', 'skill', 'ownproject', 'certificate', 'prize');
+COMMIT;
