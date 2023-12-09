@@ -12,21 +12,30 @@ use Illuminate\Database\Eloquent\Model;
  * Class Account
  * 
  * @property int $id
- * @property string|null $username
- * @property string|null $password
- * @property string|null $role
+ * @property string $username
+ * @property string $email
+ * @property string $password
+ * @property string $role
+ * @property int|null $userid
+ * @property int|null $employerid
+ * @property int|null $adminid
  * @property int|null $uid
+ * 
+ * @property Admin|null $admin
+ * @property Employer|null $employer
+ * @property User|null $user
  *
  * @package App\Models
  */
 class Account extends Model
 {
 	protected $table = 'accounts';
-	public $incrementing = false;
 	public $timestamps = false;
 
 	protected $casts = [
-		'id' => 'int',
+		'userid' => 'int',
+		'employerid' => 'int',
+		'adminid' => 'int',
 		'uid' => 'int'
 	];
 
@@ -36,8 +45,27 @@ class Account extends Model
 
 	protected $fillable = [
 		'username',
+		'email',
 		'password',
 		'role',
+		'userid',
+		'employerid',
+		'adminid',
 		'uid'
 	];
+
+	public function admin()
+	{
+		return $this->belongsTo(Admin::class, 'adminid');
+	}
+
+	public function employer()
+	{
+		return $this->belongsTo(Employer::class, 'employerid');
+	}
+
+	public function user()
+	{
+		return $this->belongsTo(User::class, 'userid');
+	}
 }

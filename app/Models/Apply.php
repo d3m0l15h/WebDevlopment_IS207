@@ -12,11 +12,14 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Class Apply
  * 
- * @property int|null $jid
- * @property int|null $uid
+ * @property int $jid
+ * @property int $uid
  * @property Carbon $time
  * @property string|null $cv
  * @property string|null $letter
+ * 
+ * @property Job $job
+ * @property User $user
  *
  * @package App\Models
  */
@@ -33,10 +36,18 @@ class Apply extends Model
 	];
 
 	protected $fillable = [
-		'jid',
-		'uid',
 		'time',
 		'cv',
 		'letter'
 	];
+
+	public function job()
+	{
+		return $this->belongsTo(Job::class, 'jid');
+	}
+
+	public function user()
+	{
+		return $this->belongsTo(User::class, 'uid');
+	}
 }

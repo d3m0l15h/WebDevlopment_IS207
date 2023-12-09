@@ -6,6 +6,8 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -24,8 +26,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $eid
  * @property string $elogo
  * @property string $ename
+ * @property Carbon $createon
  * 
  * @property Employer $employer
+ * @property Collection|Apply[] $applies
  *
  * @package App\Models
  */
@@ -37,7 +41,8 @@ class Job extends Model
 	protected $casts = [
 		'salarymin' => 'float',
 		'salarymax' => 'float',
-		'eid' => 'int'
+		'eid' => 'int',
+		'createon' => 'datetime'
 	];
 
 	protected $fillable = [
@@ -52,11 +57,17 @@ class Job extends Model
 		'worktype',
 		'eid',
 		'elogo',
-		'ename'
+		'ename',
+		'createon'
 	];
 
 	public function employer()
 	{
 		return $this->belongsTo(Employer::class, 'eid');
+	}
+
+	public function applies()
+	{
+		return $this->hasMany(Apply::class, 'jid');
 	}
 }

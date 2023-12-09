@@ -6,6 +6,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -20,12 +21,15 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $ownproject
  * @property string|null $certificate
  * @property string|null $prize
+ * 
+ * @property Collection|Account[] $accounts
+ * @property Collection|Apply[] $applies
  *
  * @package App\Models
  */
 class User extends Model
 {
-	protected $table = 'user';
+	protected $table = 'users';
 	public $timestamps = false;
 
 	protected $fillable = [
@@ -38,4 +42,14 @@ class User extends Model
 		'certificate',
 		'prize'
 	];
+
+	public function accounts()
+	{
+		return $this->hasMany(Account::class, 'userid');
+	}
+
+	public function applies()
+	{
+		return $this->hasMany(Apply::class, 'uid');
+	}
 }

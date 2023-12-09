@@ -25,13 +25,14 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $logo
  * @property string $active
  * 
+ * @property Collection|Account[] $accounts
  * @property Collection|Job[] $jobs
  *
  * @package App\Models
  */
 class Employer extends Model
 {
-	protected $table = 'employer';
+	protected $table = 'employers';
 	public $timestamps = false;
 
 	protected $fillable = [
@@ -47,6 +48,11 @@ class Employer extends Model
 		'logo',
 		'active'
 	];
+
+	public function accounts()
+	{
+		return $this->hasMany(Account::class, 'employerid');
+	}
 
 	public function jobs()
 	{

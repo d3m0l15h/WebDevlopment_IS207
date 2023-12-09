@@ -53,17 +53,7 @@ CREATE TABLE `admins` (
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `apply`
---
 
-CREATE TABLE `applies` (
-  `jid`     int(11) DEFAULT NULL,
-  `uid`     int(11) DEFAULT NULL,
-  `time`    timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `cv`      varchar(256) DEFAULT NULL,
-  `letter`  varchar(256) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -149,12 +139,27 @@ ALTER TABLE `admins`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `apply`
+-- Table structure for table `apply`
 --
+
+CREATE TABLE `applies` (
+  `jid`     int(10) UNSIGNED NOT NULL,
+  `uid`     int(10) UNSIGNED NOT NULL,
+  `time`    timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `cv`      varchar(256) DEFAULT NULL,
+  `letter`  varchar(256) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 ALTER TABLE `applies`
-  -- ADD PRIMARY KEY (`uid`,`jid`),
+  ADD PRIMARY KEY (`jid`, `uid` ),
   ADD KEY `FK_applies_jobs` (`jid`),
   ADD KEY `FK_applies_users` (`uid`);
+
+
+-- ALTER TABLE `applies`
+--   ADD PRIMARY KEY (`uid`,`jid`),
+--   ADD KEY `FK_applies_jobs` (`jid`),
+--   ADD KEY `FK_applies_user` (`uid`);
 
 --
 -- Indexes for table `employer`
@@ -183,31 +188,31 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `accounts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admins`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT for table `employer`
 --
 ALTER TABLE `employers`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT for table `jobs`
 --
 ALTER TABLE `jobs`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- Constraints for dumped tables
@@ -222,50 +227,47 @@ ALTER TABLE `accounts`
   ADD CONSTRAINT `FK_accounts_users` FOREIGN KEY (`userid`) REFERENCES `users` (`id`);
 
 --
--- Constraints for table `applies`
---
-ALTER TABLE `applies`
-  ADD CONSTRAINT `FK_applies_jobs` FOREIGN KEY (`jid`) REFERENCES `jobs` (`id`),
-  ADD CONSTRAINT `FK_applies_users` FOREIGN KEY (`uid`) REFERENCES `users` (`id`);
-
---
 -- Constraints for table `jobs`
 --
 ALTER TABLE `jobs`
   ADD CONSTRAINT `FK_jobs_employers` FOREIGN KEY (`eid`) REFERENCES `employers` (`id`);
+
+ALTER TABLE `applies`
+  ADD CONSTRAINT `FK_applies_jobs` FOREIGN KEY (`jid`) REFERENCES `jobs` (`id`),
+  ADD CONSTRAINT `FK_applies_user` FOREIGN KEY (`uid`) REFERENCES `users` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
 --
--- Dumping data for table `account`
+-- Dumping data for table `user`
 --
-
-INSERT INTO `accounts` (`id`, `username`, `email`, `password`, `role`, `userid`, `employerid`, `adminid`) VALUES
-(1, 'user', 'user@gmail.com', '$2y$10$ELdxtgw4BD/KYvo1zYIRbONWKAIof5kAu1Y7Wb0zNjF/rFDWNVN0y', 'user', 1, NULL, NULL),
-(2, 'emp', 'employer@gmail.com', '$2y$10$WRm0yPFVtnWR.8bpVBlYxOrCCtZK4kY5mPGKfOYoVG7OInn9s/TiG', 'employer', NULL, 1, NULL);
-
-
+INSERT INTO `users` (`id`, `name`, `introduce`, `education`, `experience`, `skill`, `ownproject`, `certificate`, `prize`) VALUES
+(1, 'Dat', 'introduce', 'education', 'experience', 'skill', 'ownproject', 'certificate', 'prize');
 
 --
 -- Dumping data for table `employer`
 --
 
 INSERT INTO `employers` (`id`, `name`, `location`, `workingtime`, `quality`, `ownproject`, `prize`, `email`, `phone`, `introduce`, `logo`, `active`) VALUES
-(2, 'FPT', 'Ho Chi Minh', 'Full-time', '50', 'Duy', '1', 'a@a.a', '099455256', 'Fpt software', '1', '1');
+(1, 'FPT', 'Ho Chi Minh', 'Full-time', '50', 'Duy', '1', 'a@a.a', '099455256', 'Fpt software', '1', '1');
+
+--
+-- Dumping data for table `account`
+--
+
+INSERT INTO `accounts` (`id`, `username`, `email`, `password`, `role`, `userid`, `employerid`, `adminid`, `uid`) VALUES
+(1, 'user', 'user@gmail.com', '$2y$10$ELdxtgw4BD/KYvo1zYIRbONWKAIof5kAu1Y7Wb0zNjF/rFDWNVN0y', 'user', 1, NULL, NULL, NULL),
+(2, 'emp', 'employer@gmail.com', '$2y$10$WRm0yPFVtnWR.8bpVBlYxOrCCtZK4kY5mPGKfOYoVG7OInn9s/TiG', 'employer', NULL, 1, NULL, NULL);
+
 
 --
 -- Dumping data for table `jobs`
 --
 
 INSERT INTO `jobs` (`id`, `name`, `salary`, `salarymin`, `salarymax`, `reasons`, `descriptions`, `requirements`, `location`, `worktype`, `eid`, `elogo`, `ename`, `createon`) VALUES
-(1, 'Java Backend Developer (MySQL, Spring)', '1000', 1000.00, 2000.00, 'reason', 'descriptions', 'requirements', 'Ho Chi Minh', 'Company', 2, '', '', '2023-12-08 23:58:08');
+(1, 'Java Backend Developer (MySQL, Spring)', '1000', 1000.00, 2000.00, 'reason', 'descriptions', 'requirements', 'Ho Chi Minh', 'Company', 1, '', '', '2023-12-08 23:58:08');
 
 
---
--- Dumping data for table `user`
---
-INSERT INTO `users` (`id`, `name`, `introduce`, `education`, `experience`, `skill`, `ownproject`, `certificate`, `prize`) VALUES
-(1, 'Dat', 'introduce', 'education', 'experience', 'skill', 'ownproject', 'certificate', 'prize');
 COMMIT;
