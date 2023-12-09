@@ -2,6 +2,7 @@
 @extends('layouts.app')
 @section('content')
   <link rel="stylesheet" href="./assets/css/search.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css" rel="stylesheet">
 
 
   <div class="modal fade" id="filterModal" tabindex="-1" aria-labelledby="filterModalLabel" aria-hidden="true">
@@ -51,37 +52,39 @@
       <div class="heading">
         <div class="container">
           <div class="row d-flex justify-content-center text-center">
+            <form>
             <div class="col-lg-8 w-100 d-flex justify-content-center gap-2   flex-row">
-              <select class="form-select w-auto" aria-label="Default select example">
-                <option selected>Địa điểm</option>
-                <option value="1">Hồ Chí Minh</option>
-                <option value="2">Hà Nội</option>
-                <option value="3">Đà nẵng </option>
-                <option value=""> Cần Thơ</option>
-                <option value="">Huế</option>
+              <select class="form-select w-auto" aria-label="Default select example" name="location" value="{{ request('location') }}>
+                <option selected value="0">Địa điểm</option>
+                <option value="HCM">Hồ Chí Minh</option>
+                <option value="HN">Hà Nội</option>
+                <option value="DN">Đà nẵng </option>
+                <option value="CT">Cần Thơ</option>
+                <option value="Hue">Huế</option>
               </select>
-              <input class="w-50 p-3 rounded-2 " type="text" placeholder="Nhập từ khóa" >
-              <button class="w-auto p-3 rounded-2 bg-color d-flex justify-content-center align-content-center border-0 ">
+              <input class="w-50 p-3 rounded-2 " type="search" placeholder="Nhập từ khóa" name="search" value="{{ request('search') }}">
+              <button class="w-auto p-3 rounded-2 bg-color d-flex justify-content-center align-content-center border-0" action="submit">
                 <img src="./assets/img/search.png" width="32px" height="32px;" alt="">
                 <p class="m-0 fw-bold text-light ">Tìm kiếm</p>
               </button>
             </div>
+            </form>
           </div>
           <div class="row mt-2 ">
             <form action="" method="get">
               <ul class="row d-flex  flex-row bull list-unstyled justify-content-center ">
                 <li class="w-auto p-2  ">Gợi ý: </li>
                 <li class="list-item w-auto p-2 rounded-2 border-light border-1 ">
-                  <button class="hint-item  rounded-2  bg-transparent text-light" type="submit" name="key" value="java">Java</button>
+                  <button class="hint-item  rounded-2  bg-transparent text-light" type="submit" name="search" value="java">Java</button>
                 </li>
                 <li class="list-item w-auto p-2 rounded-2 border-light border-1 ">
-                  <button class="hint-item  rounded-2  bg-transparent text-light" type="submit" name="key" value="C#">C#</button>
+                  <button class="hint-item  rounded-2  bg-transparent text-light" type="submit" name="search" value="C#">C#</button>
                 </li>
                 <li class="list-item w-auto p-2 rounded-2 border-light border-1 ">
-                  <button class="hint-item  rounded-2  bg-transparent text-light" type="submit" name="key" value="Golang">Golang</button>
+                  <button class="hint-item  rounded-2  bg-transparent text-light" type="submit" name="search" value="Golang">Golang</button>
                 </li>
                 <li class="list-item w-auto p-2 rounded-2 border-light border-1 ">
-                  <button class="hint-item  rounded-2  bg-transparent text-light" type="submit" name="key" value="React">React</button>
+                  <button class="hint-item  rounded-2  bg-transparent text-light" type="submit" name="search" value="React">React</button>
                 </li>
               </ul>
             </form>
@@ -108,7 +111,7 @@
               <div class="d-flex  justify-content-start gap-4">
                 <img src="assets/img/blog/blog-author.jpg" alt="" class="avt-com rounded-4 " >
                 <div class="post-meta">
-                  <p class="post-author fw-bold ">FPT</p>
+                  <p class="post-author fw-bold ">{{$job->employer->name}}</p>
                   <p class="money-num fw-bold "><span><img src="./assets/img/circle-money.png" alt="" width="20" height="20"></span> ${{$job->salarymin}} - ${{$job->salarymax}}</p>
                   <p>at {{$job->worktype}}</p>
                   <p>{{$job->location}}</p>
@@ -118,68 +121,13 @@
           </div>
           @endforeach
           <!-- End post list item -->
-          <div class="col-xl-6 col-lg-6">
-            <article>
-              <h2 class="title">
-                <a href="blog-details.php">Java Backend Developer (MySQL, Spring)</a>
-              </h2>
-              <div class="d-flex  justify-content-start gap-4">
-                <img src="assets/img/blog/blog-author.jpg" alt="" class="avt-com rounded-4 " >
-                <div class="post-meta">
-                  <p class="post-author fw-bold ">OGC</p>
-                  <p class="money-num fw-bold "><span><img src="./assets/img/circle-money.png" alt="" width="20" height="20"></span> $1000 - $2000</p>
-                  <p>at Company</p>
-                  <p>Ho Chi Minh</p>
-                </div>
-              </div>
-
-            </article>
-          </div>
-          <div class="col-xl-6 col-lg-6">
-            <article>
-              <h2 class="title">
-                <a href="blog-details.php">Java Backend Developer (MySQL, Spring)</a>
-              </h2>
-              <div class="d-flex  justify-content-start gap-4">
-                <img src="assets/img/blog/blog-author.jpg" alt="" class="avt-com rounded-4 " >
-                <div class="post-meta">
-                  <p class="post-author fw-bold ">OGC</p>
-                  <p class="money-num fw-bold "><span><img src="./assets/img/circle-money.png" alt="" width="20" height="20"></span> $1000 - $2000</p>
-                  <p>at Company</p>
-                  <p>Ho Chi Minh</p>
-                </div>
-              </div>
-
-            </article>
-          </div>
-          <div class="col-xl-6 col-lg-6">
-            <article>
-              <h2 class="title">
-                <a href="blog-details.php">Java Backend Developer (MySQL, Spring)</a>
-              </h2>
-              <div class="d-flex  justify-content-start gap-4">
-                <img src="assets/img/blog/blog-author.jpg" alt="" class="avt-com rounded-4 " >
-                <div class="post-meta">
-                  <p class="post-author fw-bold ">OGC</p>
-                  <p class="money-num fw-bold "><span><img src="./assets/img/circle-money.png" alt="" width="20" height="20"></span> $1000 - $2000</p>
-                  <p>at Company</p>
-                  <p>Ho Chi Minh</p>
-                </div>
-              </div>
-
-            </article>
-          </div>
-
-        
 
         </div><!-- End blog posts list -->
 
         <div class="pagination d-flex justify-content-center">
-          <ul>
-            <li class="active"><a href="#">1</a></li>
-            <li ><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-          </ul>
+          @if(!empty($jobs) && $jobs->count() && !request('search'))
+            {!! $jobs->appends(Request::all())->links() !!}
+          @endif
         </div><!-- End pagination -->
 
       </div>

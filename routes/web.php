@@ -35,6 +35,7 @@ Route::post('/account/register', [
     AccountController::class,
     'store'
 ])->name('register');
+
 Route::get('/account/register', function () {
     abort(404);
 });
@@ -44,6 +45,7 @@ Route::post('/account/employer', [
     AccountController::class,
     'employer'
 ])->name('employer');
+
 Route::get('/account/employer', function () {
     abort(404);
 });
@@ -53,6 +55,7 @@ Route::post('/account/login', [
     AccountController::class,
     'login'
 ])->name('login');
+
 Route::get('/account/login', function () {
     abort(404);
 });
@@ -74,6 +77,7 @@ Route::post('/profile/user', [
     ProfileController::class,
     'user'
 ])->name('profile.user');
+
 Route::get('/profile/user', function () {
     abort(404);
 });
@@ -83,6 +87,7 @@ Route::post('/profile/employer', [
     ProfileController::class,
     'employer'
 ])->name('profile.employer');
+
 Route::get('/profile/employer', function () {
     abort(404);
 });
@@ -92,6 +97,7 @@ Route::get('/job/create', [
     JobController::class,
     'index'
 ])->name('job.create');
+
 Route::post('/job/create', [
     JobController::class,
     'store'
