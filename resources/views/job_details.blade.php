@@ -11,7 +11,7 @@
                         <img class="ratio ratio-1x1 rounded-3" src="~/images/@Model.emp.Logo" alt="">
                     </div>
                     <div class="col-lg-6 text-start">
-                        <h1>@Model.emp.Name</h1>
+                        <h1>{{$job->name}}</h1>
                         <p class="mb-0">@Model.emp.Introduce</p>
                     </div>
                 </div>
@@ -32,7 +32,7 @@
                                 Lý do để gia nhập công ty
                             </h3>
                             <ul>
-                                <li>@Model.job.Reasons</li>
+                                <li>{!! $job->strength !!}</li>
                             </ul>
                         </div>
                     </div>
@@ -87,7 +87,7 @@
                             <h3 class="sidebar-title">Senior Fullstack Developer (Java, PHP, Javascript)</h3>
                             <p>@Model.emp.Name</p>
                             <div class="salary-wrapper d-flex flex-row justify-content-start gap-2">
-                                <img src="~/assets/img/circle-money.png" width="20" height="20" alt="">
+                                <img src="{{ asset('assets/img/circle-money.png')}}" width="20" height="20" alt="">
                                 <p class="money-num fw-bold ">@Model.job.Salary</p>
                             </div>
 

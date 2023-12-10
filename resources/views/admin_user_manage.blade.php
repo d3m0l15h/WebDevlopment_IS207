@@ -34,7 +34,7 @@
                                             </ul>
                                         </div>
                                     </div>
-                                    <img class="avt-user" src="./assets/img/clients/client-1.png" alt="" />
+                                    <img class="avt-user" src="{{ asset('assets/img/clients/client-1.png')}}" alt="" />
                                     <div class="col pt-2 ">
                                         <p class="row fw-bold p-0 m-0">Myob</p>
                                         <p class="row  p-0 m-0">khangels@gmail.com</p>
@@ -75,7 +75,7 @@
                                             </ul>
                                         </div>
                                     </div>
-                                    <img class="avt-user" src="./assets/img/clients/client-1.png" alt="" />
+                                    <img class="avt-user" src="{{ asset('assets/img/clients/client-1.png')}}" alt="" />
                                     <div class="col pt-2 ">
                                         <p class="row fw-bold p-0 m-0">Myob</p>
                                         <p class="row  p-0 m-0">khangels@gmail.com</p>

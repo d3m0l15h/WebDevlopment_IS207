@@ -34,7 +34,7 @@
                                                   </ul>
                                               </div>
                                           </div>
-                                          <img class="avt-user" src="./assets/img/blog/blog-author-6.jpg" alt="" />
+                                          <img class="avt-user" src="{{ asset('assets/img/blog/blog-author-6.jpg')}}" alt="" />
                                           <div class="col pt-2 ">
                                               <p class="row fw-bold p-0 m-0">John Jennie</p>
                                               <p class="row  p-0 m-0">jen@gmail.com/p>
@@ -75,7 +75,7 @@
                                                   </ul>
                                               </div>
                                           </div>
-                                          <img class="avt-user" src="./assets/img/blog/blog-author-6.jpg" alt="" />
+                                          <img class="avt-user" src="{{ asset('assets/img/blog/blog-author-6.jpg')}}" alt="" />
                                           <div class="col pt-2 ">
                                               <p class="row fw-bold p-0 m-0">John Jennie</p>
                                               <p class="row  p-0 m-0">jen@gmail.com/p>

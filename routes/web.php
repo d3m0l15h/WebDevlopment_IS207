@@ -32,11 +32,6 @@ Route::get('/search',[
     'search'
 ])->name('search');
 
-Route::get('/search/{id}',[
-    SearchController::class,
-    'job_details'
-])->name('search.details');
-
 //Account Register
 Route::post('/account/register', [
     AccountController::class,
@@ -117,6 +112,11 @@ Route::get('/job/{id}/edit', [
     JobController::class,
     'edit_job'
 ])->name('job.edit');
+
+Route::get('/job/{slug}', [
+    JobController::class,
+    'detail'
+])->name('job.detail');
 
 Route::post('/job/create', [
     JobController::class,

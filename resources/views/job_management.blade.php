@@ -32,7 +32,7 @@
             <div class="box">
               <div class="content d-flex flex-row">
                 <div class="avatar-containter">
-                    <img src="./assets/img/blog/blog-author-2.jpg" alt="" class="w-100 ">
+                    <img src="{{ asset('assets/img/blog/blog-author-2.jpg')}}" alt="" class="w-100 ">
                 </div>
                 <div class="info-container ms-4 ">
                     <h3>{{$job->name}}</h3>

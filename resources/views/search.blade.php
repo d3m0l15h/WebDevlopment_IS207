@@ -1,7 +1,7 @@
 
 @extends('layouts.app')
 @section('content')
-  <link rel="stylesheet" href="./assets/css/search.css">
+  <link rel="stylesheet" href="{{ asset('assets/css/search.css')}}">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css" rel="stylesheet">
 
 
@@ -64,7 +64,7 @@
               </select>
               <input class="w-50 p-3 rounded-2 " type="search" placeholder="Nhập từ khóa" name="search" value="{{ request('search') }}">
               <button class="w-auto p-3 rounded-2 bg-color d-flex justify-content-center align-content-center border-0" action="submit">
-                <img src="./assets/img/search.png" width="32px" height="32px;" alt="">
+                <img src="{{ asset('assets/img/search.png')}}" width="32px" height="32px;" alt="">
                 <p class="m-0 fw-bold text-light ">Tìm kiếm</p>
               </button>
             </div>
@@ -106,13 +106,13 @@
           <div class="col-xl-6 col-lg-6">
             <article>
               <h2 class="title">
-                <a href="/search/{{$job->id}}">{{$job->name}}</a>
+                <a href="{{route('job.detail',['slug'=>Str::slug($job->name).'-'.$job->id])}}">{{$job->name}}</a>
               </h2>
               <div class="d-flex  justify-content-start gap-4">
-                <img src="assets/img/blog/blog-author.jpg" alt="" class="avt-com rounded-4 " >
+                <img src="{{ asset('assets/img/blog/blog-author.jpg')}}" alt="" class="avt-com rounded-4 " >
                 <div class="post-meta">
                   <p class="post-author fw-bold ">{{$job->employer->name}}</p>
-                  <p class="money-num fw-bold "><span><img src="./assets/img/circle-money.png" alt="" width="20" height="20"></span> ${{$job->salarymin}} - ${{$job->salarymax}}</p>
+                  <p class="money-num fw-bold "><span><img src="{{ asset('assets/img/circle-money.png')}}" alt="" width="20" height="20"></span> ${{$job->salarymin}} - ${{$job->salarymax}}</p>
                   <p>at {{$job->worktype}}</p>
                   <p>{{$job->location}}</p>
                 </div>

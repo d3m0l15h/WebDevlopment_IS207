@@ -297,9 +297,11 @@
                             <div class="w-50 p-2 ">
                                 <label for="recipient-name" class="col-form-label">Email</label>
                                 <input type="email" class="form-control" id="email" name="email">
+                                @if (old('form_type') == 'employer')
                                 @error('email')
-                                    <div class="alert alert-sm alert-danger mt-2">{{ $message }}</div>
+                                    <div class="alert alert-danger mt-2">{{ $message }}</div>
                                 @enderror
+                            @endif
                             </div>
                             <div class="w-50 p-2 ">
                                 <label for="message-text" class="col-form-label">Nơi làm việc</label>
@@ -313,16 +315,20 @@
                             <div class="w-50 p-2 ">
                                 <label for="recipient-name" class="col-form-label">Tài khoản</label>
                                 <input type="text" class="form-control" id="username" name="username">
+                                @if (old('form_type') == 'employer')
                                 @error('username')
-                                    <div class="alert alert-sm alert-danger mt-2">{{ $message }}</div>
+                                    <div class="alert alert-danger mt-2">{{ $message }}</div>
                                 @enderror
+                            @endif
                             </div>
                             <div class="w-50 p-2 ">
                                 <label for="message-text" class="col-form-label">Mật Khẩu</label>
                                 <input type="password" class="form-control" id="password" name="password">
+                                @if (old('form_type') == 'employer')
                                 @error('password')
-                                    <div class="alert alert-sm alert-danger mt-2">{{ $message }}</div>
+                                    <div class="alert alert-danger mt-2">{{ $message }}</div>
                                 @enderror
+                            @endif
                             </div>
                         </div>
                     </div>

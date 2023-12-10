@@ -120,7 +120,7 @@
                                 <li><a href="{{route('admin.dashboard')}}">Quản Trị Viên</a></li>
                                 <li><a href="{{route('admin.employer')}}">Quản Lý Nhà Tuyển Dụng</a></li>
                                 <li><a href="{{route('admin.user')}}">Quản Lý Người Lao Động</a></li>
-                                <li><a href="#">Đăng xuất</a></li>
+                                <li><a href="{{route('logout')}}">Đăng xuất</a></li>
                             </ul>
                           </li>
                     </ul>
