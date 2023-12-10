@@ -69,9 +69,9 @@
             <!-- Nav Menu -->
             <nav id="navmenu" class="navmenu">
                 <ul>
-                    <li><a href="index.php#hero" class="active">Trang chủ</a></li>
+                    <li><a href="/" class="active">Trang chủ</a></li>
                     <li><a href="{{ route('search') }}">Tìm việc làm</a></li>
-                    <li class="dropdown has-dropdown">
+                    <li class="dropdown has-dropdown" >
                         <a href="#"><span>Công việc</span> <i class="bi bi-chevron-down"></i></a>
                         <ul class="dd-box-shadow">
                             <li><a href="#"></a></li>
@@ -87,11 +87,9 @@
                                 </ul>
                             </li>
                             <li><a href="#">Theo kinh nghiệm</a></li>
-                            <li><a href="#">Dropdown 3</a></li>
-                            <li><a href="#">Dropdown 4</a></li>
                         </ul>
                     </li>
-                    <li><a href="index.php#contact">Contact</a></li>
+                    <li><a href="/contact">Contact</a></li>
                 </ul>
 
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>

@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\EmployerController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\ProfileController;
@@ -35,7 +37,6 @@ Route::post('/account/register', [
     AccountController::class,
     'store'
 ])->name('register');
-
 Route::get('/account/register', function () {
     abort(404);
 });
@@ -45,7 +46,6 @@ Route::post('/account/employer', [
     AccountController::class,
     'employer'
 ])->name('employer');
-
 Route::get('/account/employer', function () {
     abort(404);
 });
@@ -55,7 +55,6 @@ Route::post('/account/login', [
     AccountController::class,
     'login'
 ])->name('login');
-
 Route::get('/account/login', function () {
     abort(404);
 });
@@ -87,10 +86,21 @@ Route::post('/profile/employer', [
     ProfileController::class,
     'employer'
 ])->name('profile.employer');
-
 Route::get('/profile/employer', function () {
     abort(404);
 });
+
+//profile employer employee-management
+Route::get('/profile/employee-management', [
+    EmployerController::class,
+    'manage_employee_applies'
+])->name('profile.employee-management');
+
+//profil user job
+Route::get('/profile/jobs', [
+    JobController::class,
+    'manage_user_jobs'
+])->name('profile.jobs');
 
 //Job
 Route::get('/job/create', [
@@ -102,3 +112,19 @@ Route::post('/job/create', [
     JobController::class,
     'store'
 ])->name('job.store');
+
+// Admin
+Route::get('/admin/employer', [
+    AdminController::class,
+    'manage_employer'
+])->name('admin.employer');
+
+Route::get('/admin/user', [
+    AdminController::class,
+    'manage_user'
+])->name('admin.user');
+
+Route::get('/admin/dashboard', [
+    AdminController::class,
+    'dashboard'
+])->name('admin.dashboard');

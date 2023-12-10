@@ -7,6 +7,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
  * Class Account
@@ -27,7 +28,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @package App\Models
  */
-class Account extends Model
+class Account extends Authenticatable
 {
 	protected $table = 'accounts';
 	public $timestamps = false;

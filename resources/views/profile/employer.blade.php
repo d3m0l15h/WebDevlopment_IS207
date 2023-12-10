@@ -15,8 +15,8 @@
       <a href="cv.php" class="fs-5 active">
           Thông tin
       </a>
-      <a href="employ-management.php" class="fs-5">
-          Quản lý tuyển dụng
+      <a href="/profile/employee-management" class="fs-5">
+          Quản lý ứng viên
       </a>
   </div>
   <section id="blog-details" class="blog-details">

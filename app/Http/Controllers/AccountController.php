@@ -16,8 +16,8 @@ class AccountController extends Controller
     {
         // Validate the request data
         $request->validate([
-            'username' => 'required|unique:account',
-            'email' => 'required|email|unique:account',
+            'username' => 'required|unique:accounts',
+            'email' => 'required|email|unique:accounts',
             'password' => 'required|confirmed',
             'terms' => 'accepted',
         ], [
@@ -53,9 +53,9 @@ class AccountController extends Controller
         $request->validate([
             'name' => 'required',
             'phone' => 'required',
-            'email' => 'required|unique:account',
+            'email' => 'required|unique:accounts',
             'location' => 'required',
-            'username' => 'required|unique:account',
+            'username' => 'required|unique:accounts',
             'password' => 'required',
 
         ], [

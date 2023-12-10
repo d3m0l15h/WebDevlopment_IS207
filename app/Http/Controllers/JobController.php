@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
+use App\Models\Job;
 
 class JobController extends Controller
 {
@@ -25,5 +24,10 @@ class JobController extends Controller
             'location' => 'required',
         ]);
         return redirect()->back();
+    }
+
+    public function manage_user_jobs() {
+        $jobs = Job::all();
+        return view('my_jobs', compact('jobs'));
     }
 }

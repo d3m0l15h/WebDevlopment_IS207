@@ -1,6 +1,7 @@
-@include('header')
-  <link rel="stylesheet" href="{{ asset('assets/css/cv.css')}}">
-  <link rel="stylesheet" href="{{ asset('assets/css/profile-nav.css')}}">
+@extends('layouts.app')
+@section('content')
+  <link rel="stylesheet" href="{{ asset('assets/css/cv.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/profile-nav.css') }}">
   <main id="main blog-details">
 
     <!-- Blog Details Page Title & Breadcrumbs -->
@@ -116,4 +117,4 @@
     </section><!-- End Blog-details Section -->
 
   </main>
-@include('footer')
+@endsection

@@ -1,5 +1,6 @@
-@include('header')
-  <link rel="stylesheet" href="./assets/css/employ-management.css">
+@extends('layouts.app')
+@section('content')
+  <link rel="stylesheet" href="{{ asset('assets/css/employ-management.css') }}">
   <main id="main blog-details">
 
     <!-- Blog Details Page Title & Breadcrumbs -->
@@ -128,4 +129,4 @@
     </section><!-- End Blog-details Section -->
 
   </main>
-@include('footer')
+@endsection

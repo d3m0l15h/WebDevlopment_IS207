@@ -1,13 +1,15 @@
-<?php include 'header-login.php'  ?>
-<link rel="stylesheet" href="./assets/css/admin.css">
-<link rel="stylesheet" href="./assets/css/profile-nav.css">
-<link rel="stylesheet" href="./assets/css/admin-user.css">
+@extends('layouts.app')
+@section('content')
+  <link rel="stylesheet" href="{{ asset('assets/css/admin.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/profile-nav.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/admin-user.css') }}">
+
 <main id="main blog-details">
     <section id="blog-details" class="blog-details">
         <div class="" data-aos="fade-up" data-aos-delay="100">
             <div class="row g-5 d-flex position-relative justify-content-center gap-2">
                 <div class="col-lg-2 box-content box-sidebar">
-                     <?php include 'admin-sidebar.php'  ?>
+                    @include('layouts.admin_sidebar')
                 </div>
                 <div class="col-lg-8  box-content">
                     <div class="box">
@@ -81,4 +83,5 @@
         </div>
     </section>
 </main>
-<?php include 'footer.php'  ?>
+
+@endsection

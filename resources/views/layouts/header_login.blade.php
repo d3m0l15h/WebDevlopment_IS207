@@ -59,7 +59,7 @@
         class="container-fluid d-flex align-items-center justify-content-between"
       >
         <a
-          href="index.php"
+          href="/"
            class="logo d-flex align-items-center me-auto me-xl-0"
         >
             <!-- Uncomment the line below if you also wish to use an image logo -->
@@ -75,7 +75,7 @@
                 <li><a href="{{ route('search')}}">Tìm việc làm</a></li>
                 <li class="dropdown has-dropdown">
                     <a href="#"
-                ><span>Dropdown</span> <i class="bi bi-chevron-down"></i
+                ><span>Công Việc</span> <i class="bi bi-chevron-down"></i
               ></a>
                     <ul class="dd-box-shadow">
                         <li><a href="#"></a></li>
@@ -93,8 +93,6 @@
                             </ul>
                         </li>
                         <li><a href="#">Theo kinh nghiệm</a></li>
-                        <li><a href="#">Dropdown 3</a></li>
-                        <li><a href="#">Dropdown 4</a></li>
                     </ul>
                 </li>
                 <li><a href="index.php#contact">Contact</a></li>
@@ -115,9 +113,12 @@
 
                             
                             <ul class="dd-box-shadow">
-                                <li><a href="#">Hồ sơ của tôi</a></li>
-                                <li><a href="#">Công việc của tôi</a></li>
-                                <li><a href="create-job.php">Đăng tin tuyển dụng</a></li>
+                                <li><a href="{{route('profile')}}">Hồ sơ của tôi</a></li>
+                                <li><a href="{{route('profile.jobs')}}">Công việc của tôi</a></li>
+                                <li><a href="{{route('job.create')}}">Đăng tin tuyển dụng</a></li>
+                                <li><a href="{{route('admin.dashboard')}}">Quản Trị Viên</a></li>
+                                <li><a href="{{route('admin.employer')}}">Quản Lý Nhà Tuyển Dụng</a></li>
+                                <li><a href="{{route('admin.user')}}">Quản Lý Người Lao Động</a></li>
                                 <li><a href="#">Đăng xuất</a></li>
                             </ul>
                           </li>
