@@ -116,6 +116,7 @@
                                 <li><a href="{{route('profile')}}">Hồ sơ của tôi</a></li>
                                 <li><a href="{{route('profile.jobs')}}">Công việc của tôi</a></li>
                                 <li><a href="{{route('job.create')}}">Đăng tin tuyển dụng</a></li>
+                                <li><a href="{{route('profile.job-management')}}">Danh Sách Công Việc</a></li>
                                 <li><a href="{{route('admin.dashboard')}}">Quản Trị Viên</a></li>
                                 <li><a href="{{route('admin.employer')}}">Quản Lý Nhà Tuyển Dụng</a></li>
                                 <li><a href="{{route('admin.user')}}">Quản Lý Người Lao Động</a></li>

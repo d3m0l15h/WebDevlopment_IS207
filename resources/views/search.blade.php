@@ -106,7 +106,7 @@
           <div class="col-xl-6 col-lg-6">
             <article>
               <h2 class="title">
-                <a href="blog-details.php">{{$job->name}}</a>
+                <a href="/search/{{$job->id}}">{{$job->name}}</a>
               </h2>
               <div class="d-flex  justify-content-start gap-4">
                 <img src="assets/img/blog/blog-author.jpg" alt="" class="avt-com rounded-4 " >

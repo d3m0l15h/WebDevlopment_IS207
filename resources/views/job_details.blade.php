@@ -1,6 +1,7 @@
-<?php include 'header.php'  ?>
-  <link rel="stylesheet" href="./assets/css/blog-details.css">
-  <link rel="stylesheet" href="./assets/css/main.css">
+@extends('layouts.app')
+@section('content')
+  <link rel="stylesheet" href="{{ asset('assets/css/blog-details.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
   <main id="main blog-details">
       <div data-aos="fade" class="page-title">
         <div class="heading">
@@ -129,7 +130,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="@Url.Action("Apply", "Job")" method="post" enctype="multipart/form-data">
+                    <form action="submit" method="post" enctype="multipart/form-data">
                         <input type="text" name="Jid" class="form-control" id="recipient-name" style="opacity: 0" value="@Model.job.Id">
                         <div class="mb-3">
                             <label for="cv-file" class="col-form-label fs-5 fw-bold">Tải CV</label>
@@ -150,4 +151,4 @@
         </div>
     </div>
   </main>
-  <?php include 'footer.php'  ?>
+@endsection

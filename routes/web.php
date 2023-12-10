@@ -32,6 +32,11 @@ Route::get('/search',[
     'search'
 ])->name('search');
 
+Route::get('/search/{id}',[
+    SearchController::class,
+    'job_details'
+])->name('search.details');
+
 //Account Register
 Route::post('/account/register', [
     AccountController::class,
@@ -90,11 +95,11 @@ Route::get('/profile/employer', function () {
     abort(404);
 });
 
-//profile employer employee-management
-Route::get('/profile/employee-management', [
+//profile employer job-management
+Route::get('/profile/job-management', [
     EmployerController::class,
-    'manage_employee_applies'
-])->name('profile.employee-management');
+    'manage_job_applies'
+])->name('profile.job-management');
 
 //profil user job
 Route::get('/profile/jobs', [
@@ -107,6 +112,11 @@ Route::get('/job/create', [
     JobController::class,
     'index'
 ])->name('job.create');
+
+Route::get('/job/{id}/edit', [
+    JobController::class,
+    'edit_job'
+])->name('job.edit');
 
 Route::post('/job/create', [
     JobController::class,

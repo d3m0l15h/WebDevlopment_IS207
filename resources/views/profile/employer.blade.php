@@ -15,7 +15,7 @@
       <a href="cv.php" class="fs-5 active">
           Thông tin
       </a>
-      <a href="/profile/employee-management" class="fs-5">
+      <a href="/profile/job-management" class="fs-5">
           Quản lý ứng viên
       </a>
   </div>

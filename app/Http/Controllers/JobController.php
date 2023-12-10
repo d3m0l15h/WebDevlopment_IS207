@@ -30,4 +30,9 @@ class JobController extends Controller
         $jobs = Job::all();
         return view('my_jobs', compact('jobs'));
     }
+
+    public function edit_job($id) {
+        $job = Job::where('id', '=', $id)->get()[0] ;
+        return view('edit_job', compact('job'));
+    }
 }
