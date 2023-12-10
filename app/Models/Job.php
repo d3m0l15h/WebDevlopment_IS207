@@ -18,14 +18,13 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $salary
  * @property float|null $salarymin
  * @property float|null $salarymax
+ * @property string $strength
  * @property string $reasons
  * @property string $descriptions
  * @property string $requirements
  * @property string $location
  * @property string $worktype
  * @property int $eid
- * @property string $elogo
- * @property string $ename
  * @property Carbon $createon
  * 
  * @property Employer $employer
@@ -50,14 +49,13 @@ class Job extends Model
 		'salary',
 		'salarymin',
 		'salarymax',
+		'strength',
 		'reasons',
 		'descriptions',
 		'requirements',
 		'location',
 		'worktype',
 		'eid',
-		'elogo',
-		'ename',
 		'createon'
 	];
 
