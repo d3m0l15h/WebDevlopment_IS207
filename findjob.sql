@@ -36,7 +36,7 @@ CREATE TABLE `accounts` (
   `userid` int(10) UNSIGNED DEFAULT NULL,
   `employerid` int(10) UNSIGNED DEFAULT NULL,
   `adminid` int(10) UNSIGNED DEFAULT NULL,
-  `uid` int(10) DEFAULT NULL
+  `status`  varchar(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
@@ -48,7 +48,8 @@ CREATE TABLE `accounts` (
 
 CREATE TABLE `admins` (
   `id` int(10) UNSIGNED NOT NULL,
-  `username` varchar(50) DEFAULT NULL
+  `username` varchar(50) DEFAULT NULL,
+  `status`  varchar(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -73,7 +74,7 @@ CREATE TABLE `employers` (
   `phone` varchar(255) NOT NULL,
   `introduce` varchar(255) NOT NULL,
   `logo` varchar(255) NOT NULL,
-  `active` varchar(1) NOT NULL
+  `status`  varchar(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -96,7 +97,9 @@ CREATE TABLE `jobs` (
   `eid` int(10) UNSIGNED NOT NULL,
   `elogo` varchar(255) NOT NULL,
   `ename` varchar(255) NOT NULL,
-  `createon` datetime NOT NULL DEFAULT current_timestamp()
+  `createon` datetime NOT NULL DEFAULT current_timestamp(),
+  `strength` text NOT NULL,
+  `status`  varchar(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -114,7 +117,8 @@ CREATE TABLE `users` (
   `skill` varchar(255) DEFAULT NULL,
   `ownproject` varchar(255) DEFAULT NULL,
   `certificate` varchar(255) DEFAULT NULL,
-  `prize` varchar(255) DEFAULT NULL
+  `prize` varchar(255) DEFAULT NULL,
+  `status`  varchar(1) NOT NULL DEFAULT '1',
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -148,7 +152,7 @@ CREATE TABLE `applies` (
   `time`    timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `cv`      varchar(256) DEFAULT NULL,
   `letter`  varchar(256) DEFAULT NULL,
-  `status`  varchar(256) NOT NULL DEFAULT '1',
+  `status`  varchar(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 ALTER TABLE `applies`
@@ -268,13 +272,13 @@ INSERT INTO `accounts` (`id`, `username`, `email`, `password`, `role`, `userid`,
 -- Dumping data for table `jobs`
 --
 
-INSERT INTO `jobs` (`id`, `name`, `salary`, `salarymin`, `salarymax`, `reasons`, `descriptions`, `requirements`, `location`, `worktype`, `eid`, `createon`, `status`) VALUES
-(1, 'Java Backend Developer (MySQL, Spring)', '1000', 1000.00, 2000.00, 'reason', 'descriptions', 'requirements', 'Ho Chi Minh', 'Company', 1, '2023-12-08 23:58:08', '1'),
-(2, 'Full stack Developer', '1000', 2000.00, 3000.00, 'reason', 'descriptions', 'requirements', 'Ho Chi Minh', 'Company', 1, '2023-12-08 23:58:08', '1'),
-(3, 'Mobile Developer', '1000', 5000.00, 8000.00, 'reason', 'descriptions', 'requirements', 'Ho Chi Minh', 'Company', 1, '2023-12-08 23:58:08', '1'),
-(4, 'Senior BA Fintech', '1000', 200.00, 300.00, 'reason', 'descriptions', 'requirements', 'Ho Chi Minh', 'Company', 1, '2023-12-08 23:58:08', '1'),
-(5, 'Fresher', '1000', 200.00, 300.00, 'reason', 'descriptions', 'requirements', 'Ho Chi Minh', 'Company', 1, '2023-12-08 23:58:08', '1'),
-(6, 'Fresher 2', '1000', 200.00, 300.00, 'reason', 'descriptions', 'requirements', 'Ho Chi Minh', 'Company', 1, '2023-12-08 23:58:08', '1');
+INSERT INTO `jobs` (`id`, `name`, `salary`, `salarymin`, `salarymax`, `reasons`, `descriptions`, `requirements`, `location`, `worktype`, `eid`, `createon`, `strength`, `status`) VALUES
+(1, 'Java Backend Developer (MySQL, Spring)', '1000', 1000.00, 2000.00, 'reason', 'descriptions', 'requirements', 'Ho Chi Minh', 'Company', 1, '2023-12-08 23:58:08', '', '1'),
+(2, 'Full stack Developer', '1000', 2000.00, 3000.00, 'reason', 'descriptions', 'requirements', 'Ho Chi Minh', 'Company', 1, '2023-12-08 23:58:08', '', '1'),
+(3, 'Mobile Developer', '1000', 5000.00, 8000.00, 'reason', 'descriptions', 'requirements', 'Ho Chi Minh', 'Company', 1, '2023-12-08 23:58:08', '', '1'),
+(4, 'Senior BA Fintech', '1000', 200.00, 300.00, 'reason', 'descriptions', 'requirements', 'Ho Chi Minh', 'Company', 1, '2023-12-08 23:58:08', '', '1'),
+(5, 'Fresher', '1000', 200.00, 300.00, 'reason', 'descriptions', 'requirements', 'Ho Chi Minh', 'Company', 1, '2023-12-08 23:58:08', '', '1'),
+(6, 'Fresher 2', '1000', 200.00, 300.00, 'reason', 'descriptions', 'requirements', 'Ho Chi Minh', 'Company', 1, '2023-12-08 23:58:08', '', '1');
 
 
 COMMIT;

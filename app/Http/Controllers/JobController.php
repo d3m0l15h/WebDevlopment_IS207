@@ -74,10 +74,10 @@ class JobController extends Controller
     }
 
     public function upload_cv(Request $request) {
-        if (auth()->user() == null || auth()->user()->user == null ) {
-            return abort(404);
-        }
-        
+        // if (auth()->user() == null || auth()->user()->user == null ) {
+        //     return abort(404);
+        // }
+
         $user_id = auth()->user()->user->id;
         $job_detail = Job::where('id', '=', $request->jid)->get()[0];
 

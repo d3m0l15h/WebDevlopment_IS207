@@ -25,6 +25,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $worktype
  * @property int $eid
  * @property Carbon $createon
+ * @property string $strength
  * @property string $status
  * 
  * @property Employer $employer
@@ -56,6 +57,7 @@ class Job extends Model
 		'worktype',
 		'eid',
 		'createon',
+		'strength',
 		'status'
 	];
 
