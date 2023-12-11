@@ -118,7 +118,7 @@ CREATE TABLE `users` (
   `ownproject` varchar(255) DEFAULT NULL,
   `certificate` varchar(255) DEFAULT NULL,
   `prize` varchar(255) DEFAULT NULL,
-  `status`  varchar(1) NOT NULL DEFAULT '1',
+  `status`  varchar(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
