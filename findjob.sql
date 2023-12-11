@@ -147,7 +147,8 @@ CREATE TABLE `applies` (
   `uid`     int(10) UNSIGNED NOT NULL,
   `time`    timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `cv`      varchar(256) DEFAULT NULL,
-  `letter`  varchar(256) DEFAULT NULL
+  `letter`  varchar(256) DEFAULT NULL,
+  `status`  varchar(256) NOT NULL DEFAULT '1',
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 ALTER TABLE `applies`
@@ -243,31 +244,37 @@ ALTER TABLE `applies`
 --
 -- Dumping data for table `user`
 --
-INSERT INTO `users` (`id`, `name`, `introduce`, `education`, `experience`, `skill`, `ownproject`, `certificate`, `prize`) VALUES
-(1, 'Dat', 'introduce', 'education', 'experience', 'skill', 'ownproject', 'certificate', 'prize');
+INSERT INTO `users` (`id`, `name`, `introduce`, `education`, `experience`, `skill`, `ownproject`, `certificate`, `prize`, `status`) VALUES
+(1, 'Dat', 'introduce', 'education', 'experience', 'skill', 'ownproject', 'certificate', 'prize', '1');
 
 --
 -- Dumping data for table `employer`
 --
 
-INSERT INTO `employers` (`id`, `name`, `location`, `workingtime`, `quality`, `ownproject`, `prize`, `email`, `phone`, `introduce`, `logo`, `active`) VALUES
+INSERT INTO `employers` (`id`, `name`, `location`, `workingtime`, `quality`, `ownproject`, `prize`, `email`, `phone`, `introduce`, `logo`, `status`) VALUES
 (1, 'FPT', 'Ho Chi Minh', 'Full-time', '50', 'Duy', '1', 'a@a.a', '099455256', 'Fpt software', '1', '1');
 
 --
 -- Dumping data for table `account`
 --
 
-INSERT INTO `accounts` (`id`, `username`, `email`, `password`, `role`, `userid`, `employerid`, `adminid`, `uid`) VALUES
-(1, 'user', 'user@gmail.com', '$2y$10$ELdxtgw4BD/KYvo1zYIRbONWKAIof5kAu1Y7Wb0zNjF/rFDWNVN0y', 'user', 1, NULL, NULL, NULL),
-(2, 'emp', 'employer@gmail.com', '$2y$10$WRm0yPFVtnWR.8bpVBlYxOrCCtZK4kY5mPGKfOYoVG7OInn9s/TiG', 'employer', NULL, 1, NULL, NULL);
+INSERT INTO `accounts` (`id`, `username`, `email`, `password`, `role`, `userid`, `employerid`, `adminid`, `status`) VALUES
+(1, 'user', 'user@gmail.com', '$2y$10$ELdxtgw4BD/KYvo1zYIRbONWKAIof5kAu1Y7Wb0zNjF/rFDWNVN0y', 'user', 1, NULL, NULL, '1'),
+(2, 'emp', 'employer@gmail.com', '$2y$10$WRm0yPFVtnWR.8bpVBlYxOrCCtZK4kY5mPGKfOYoVG7OInn9s/TiG', 'employer', NULL, 1, NULL, '1');
+(3, 'admin', 'duydao@gbst.com', '$2y$10$OWR0Q/HgrLDBRyJaUtWT3.PnX6K2ScAWlW2EgZRa.3fFSnAo1AgnG', 'employer', NULL, 1, NULL, '1');
 
 
 --
 -- Dumping data for table `jobs`
 --
 
-INSERT INTO `jobs` (`id`, `name`, `salary`, `salarymin`, `salarymax`, `reasons`, `descriptions`, `requirements`, `location`, `worktype`, `eid`, `elogo`, `ename`, `createon`) VALUES
-(1, 'Java Backend Developer (MySQL, Spring)', '1000', 1000.00, 2000.00, 'reason', 'descriptions', 'requirements', 'Ho Chi Minh', 'Company', 1, '', '', '2023-12-08 23:58:08');
+INSERT INTO `jobs` (`id`, `name`, `salary`, `salarymin`, `salarymax`, `reasons`, `descriptions`, `requirements`, `location`, `worktype`, `eid`, `createon`, `status`) VALUES
+(1, 'Java Backend Developer (MySQL, Spring)', '1000', 1000.00, 2000.00, 'reason', 'descriptions', 'requirements', 'Ho Chi Minh', 'Company', 1, '2023-12-08 23:58:08', '1'),
+(2, 'Full stack Developer', '1000', 2000.00, 3000.00, 'reason', 'descriptions', 'requirements', 'Ho Chi Minh', 'Company', 1, '2023-12-08 23:58:08', '1'),
+(3, 'Mobile Developer', '1000', 5000.00, 8000.00, 'reason', 'descriptions', 'requirements', 'Ho Chi Minh', 'Company', 1, '2023-12-08 23:58:08', '1'),
+(4, 'Senior BA Fintech', '1000', 200.00, 300.00, 'reason', 'descriptions', 'requirements', 'Ho Chi Minh', 'Company', 1, '2023-12-08 23:58:08', '1'),
+(5, 'Fresher', '1000', 200.00, 300.00, 'reason', 'descriptions', 'requirements', 'Ho Chi Minh', 'Company', 1, '2023-12-08 23:58:08', '1'),
+(6, 'Fresher 2', '1000', 200.00, 300.00, 'reason', 'descriptions', 'requirements', 'Ho Chi Minh', 'Company', 1, '2023-12-08 23:58:08', '1');
 
 
 COMMIT;

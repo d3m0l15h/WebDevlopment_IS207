@@ -21,6 +21,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $ownproject
  * @property string|null $certificate
  * @property string|null $prize
+ * @property string $status
  * 
  * @property Collection|Account[] $accounts
  * @property Collection|Apply[] $applies
@@ -40,7 +41,8 @@ class User extends Model
 		'skill',
 		'ownproject',
 		'certificate',
-		'prize'
+		'prize',
+		'status'
 	];
 
 	public function accounts()

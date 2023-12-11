@@ -18,7 +18,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $salary
  * @property float|null $salarymin
  * @property float|null $salarymax
- * @property string $strength
  * @property string $reasons
  * @property string $descriptions
  * @property string $requirements
@@ -26,6 +25,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $worktype
  * @property int $eid
  * @property Carbon $createon
+ * @property string $status
  * 
  * @property Employer $employer
  * @property Collection|Apply[] $applies
@@ -49,14 +49,14 @@ class Job extends Model
 		'salary',
 		'salarymin',
 		'salarymax',
-		'strength',
 		'reasons',
 		'descriptions',
 		'requirements',
 		'location',
 		'worktype',
 		'eid',
-		'createon'
+		'createon',
+		'status'
 	];
 
 	public function employer()

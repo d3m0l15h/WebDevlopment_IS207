@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Employer;
 use Illuminate\Http\Request;
 use App\Models\Job;
+use App\Models\Apply;
 use Illuminate\Support\Facades\Auth;
 
 class JobController extends Controller
@@ -65,5 +66,28 @@ class JobController extends Controller
     {
         $job = Job::where('id', '=', $id)->get()[0];
         return view('edit_job', compact('job'));
+    }
+
+    public function job_request() {
+        $applies = Apply::all();
+        return view('admin_request', compact('applies'));
+    }
+
+    public function upload_cv(Request $request) {
+        if (auth()->user() == null || auth()->user()->user == null ) {
+            return abort(404);
+        }
+        
+        $user_id = auth()->user()->user->id;
+        $job_detail = Job::where('id', '=', $request->jid)->get()[0];
+
+        // $account = Apply::create([
+        //     'username' => $request->username,
+        //     'email' => $request->email,
+        //     'password' => bcrypt($request->password),
+        //     'userID' => $user->id,
+        // ]);
+
+        return redirect()->back();
     }
 }

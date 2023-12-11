@@ -26,26 +26,7 @@
                 <div class="col-lg-8 box-content">
                     <div class="box round-2">
                     </div>
-                    <div class="box">
-                        <div class="content">
-                            <h3>
-                                Lý do để gia nhập công ty
-                            </h3>
-                            <ul>
-                                <li>{!! $job->strength !!}</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="box">
-                        <div class="content">
-                            <h3>
-                                Why you'll love working here
-                            </h3>
-                            <ul>
-                                <li>@Model.job.Reasons</li>
-                            </ul>
-                        </div>
-                    </div>
+                    <!-- Box -->
                     <div class="box">
                         <div class="content">
                             <h3>
@@ -57,6 +38,7 @@
                             </ul>
                         </div>
                     </div>
+                     <!-- Box -->
                     <div class="box">
                         <div class="content">
                             <h3>
@@ -69,6 +51,7 @@
                             </ul>
                         </div>
                     </div>
+                     <!-- Box -->
                     <div class="box">
                         <div class="content">
                             <h3>
@@ -80,6 +63,29 @@
                             </ul>
                         </div>
                     </div>
+                     <!-- Box -->
+                    <div class="box">
+                        <div class="content">
+                            <h3>
+                                Lý do để gia nhập công ty
+                            </h3>
+                            <ul>
+                                <li>@Model.job.Reasons</li>
+                            </ul>
+                        </div>
+                    </div>
+                     <!-- Box -->
+                    <div class="box">
+                        <div class="content">
+                            <h3>
+                                Tại sao bạn sẽ yêu thích làm việc tại đây
+                            </h3>
+                            <ul>
+                                <li>@Model.job.Reasons</li>
+                            </ul>
+                        </div>
+                    </div>
+                     <!-- !Box -->
                 </div>
                 <div class="col-lg-3 box-content box-sidebar">
                     <div class="sidebar box">
@@ -87,7 +93,7 @@
                             <h3 class="sidebar-title">Senior Fullstack Developer (Java, PHP, Javascript)</h3>
                             <p>@Model.emp.Name</p>
                             <div class="salary-wrapper d-flex flex-row justify-content-start gap-2">
-                                <img src="{{ asset('assets/img/circle-money.png')}}" width="20" height="20" alt="">
+                                <img src="{{ asset('assets/img/circle-money.png') }}" width="20" height="20" alt="">
                                 <p class="money-num fw-bold ">@Model.job.Salary</p>
                             </div>
 
@@ -130,16 +136,16 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="submit" method="post" enctype="multipart/form-data">
-                        <input type="text" name="Jid" class="form-control" id="recipient-name" style="opacity: 0" value="@Model.job.Id">
+                    <form method="POST" enctype="multipart/form-data" action="{{ route('profile.jobrequest') }}">
+                        <input id="jid" name="jid" type="text" class="form-control" style="opacity: 0" value="{{$job->id}}">
                         <div class="mb-3">
                             <label for="cv-file" class="col-form-label fs-5 fw-bold">Tải CV</label>
-                            <input type="file" class="form-control" id="Cv" name="Cv">
+                            <input id="cv-file" name="cv-file" type="file" class="form-control">
                         </div>
                         <div class="mb-3">
                             <label for="message-text" class="col-form-label fs-5 fw-bold">Thư xin việc</label>
                             <p>Những kỹ năng, dự án hay thành tựu nào chứng tỏ bạn là một ứng viên tiềm năng cho vị trí ứng tuyển này?</p>
-                            <textarea class="form-control" id="Letter" name="Letter"></textarea>
+                            <textarea id="letter" name="letter" class="form-control"></textarea>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

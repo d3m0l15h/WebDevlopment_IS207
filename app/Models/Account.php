@@ -20,7 +20,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property int|null $userid
  * @property int|null $employerid
  * @property int|null $adminid
- * @property int|null $uid
+ * @property string $status
  * 
  * @property Admin|null $admin
  * @property Employer|null $employer
@@ -36,8 +36,7 @@ class Account extends Authenticatable
 	protected $casts = [
 		'userid' => 'int',
 		'employerid' => 'int',
-		'adminid' => 'int',
-		'uid' => 'int'
+		'adminid' => 'int'
 	];
 
 	protected $hidden = [
@@ -52,7 +51,7 @@ class Account extends Authenticatable
 		'userid',
 		'employerid',
 		'adminid',
-		'uid'
+		'status'
 	];
 
 	public function admin()

@@ -33,7 +33,7 @@ class ProfileController extends Controller
         $employer->location = $request->location;
         $employer->working_time = $request->workingTime;
         $employer->introduce = $request->introduce;
-        $employer->own_project = $request->ownProject;
+        $employer->ownproject = $request->ownProject;
         $employer->prize = $request->prize;
 
         $employer->save();
@@ -50,7 +50,7 @@ class ProfileController extends Controller
         $user->education = $request->education;
         $user->experience = $request->experience;
         $user->skill = $request->skill;
-        $user->own_project = $request->ownProject;
+        $user->ownproject = $request->ownProject;
         $user->certificate = $request->certificate;
         $user->prize = $request->prize;
 

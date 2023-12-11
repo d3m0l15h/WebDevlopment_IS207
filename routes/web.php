@@ -102,6 +102,21 @@ Route::get('/profile/jobs', [
     'manage_user_jobs'
 ])->name('profile.jobs');
 
+
+Route::get('/profile/job-request', [
+    JobController::class,
+    'job_request'
+])->name('profile.jobrequest');
+
+
+Route::post('/profile/uploadcv', [
+    JobController::class,
+    'upload_cv'
+])->name('profile.uploadcv');
+Route::get('/profile/employer', function () {
+    abort(404);
+});
+
 //Job
 Route::get('/job/create', [
     JobController::class,

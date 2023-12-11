@@ -112,7 +112,7 @@
                 <img src="{{ asset('assets/img/blog/blog-author.jpg')}}" alt="" class="avt-com rounded-4 " >
                 <div class="post-meta">
                   <p class="post-author fw-bold ">{{$job->employer->name}}</p>
-                  <p class="money-num fw-bold "><span><img src="{{ asset('assets/img/circle-money.png')}}" alt="" width="20" height="20"></span> ${{$job->salarymin}} - ${{$job->salarymax}}</p>
+                  <p class="money-num fw-bold "><span><img src="{{ asset('assets/img/circle-money.png') }}" alt="" width="20" height="20"></span> ${{$job->salarymin}} - ${{$job->salarymax}}</p>
                   <p>at {{$job->worktype}}</p>
                   <p>{{$job->location}}</p>
                 </div>

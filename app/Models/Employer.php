@@ -23,7 +23,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $phone
  * @property string $introduce
  * @property string $logo
- * @property string $active
+ * @property string $status
  * 
  * @property Collection|Account[] $accounts
  * @property Collection|Job[] $jobs
@@ -46,7 +46,7 @@ class Employer extends Model
 		'phone',
 		'introduce',
 		'logo',
-		'active'
+		'status'
 	];
 
 	public function accounts()

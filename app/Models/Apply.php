@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon $time
  * @property string|null $cv
  * @property string|null $letter
+ * @property string $status
  * 
  * @property Job $job
  * @property User $user
@@ -38,7 +39,8 @@ class Apply extends Model
 	protected $fillable = [
 		'time',
 		'cv',
-		'letter'
+		'letter',
+		'status'
 	];
 
 	public function job()
