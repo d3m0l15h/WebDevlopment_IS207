@@ -36,14 +36,12 @@ class AccountController extends Controller
             'username' => $request->username,
             'email' => $request->email,
             'password' => bcrypt($request->password),
-            'userID' => $user->id,
+            'userid' => $user->id,
         ]);
 
         // Log the user in
         auth()->login($account);
-
         session()->flash('success', 'Registration successful!');
-
         return redirect()->back();
     }
     public function employer(Request $request)
