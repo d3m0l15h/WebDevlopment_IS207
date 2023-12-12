@@ -28,6 +28,8 @@ class JobController extends Controller
             'reason' => 'required',
             'required' => 'required',
             'salary' => 'required',
+            'salarymin' => 'required',
+            'salarymax' => 'required',
             'location' => 'required|in:HCM,HN,DN,CT,Hue',
         ]);
         $job = new Job();
@@ -37,24 +39,32 @@ class JobController extends Controller
         $job->reasons = $request->reason;
         $job->requirements = $request->required;
         $job->salary = $request->salary;
+        $job->salarymin = (float)$request->salarymin;
+        $job->salarymax = (float)$request->salarymax;
         $job->location = $request->location;
-        $job->worktype = $request->WorkType;
+        $job->worktype = $request->worktype;
+        $job->worktime = $request->worktime;
         $job->eid = auth()->user()->employer->id;
         $job->save();
         session()->flash('success', 'Job created successfully');
         return redirect()->back();
     }
+
     public function detail($slug)
     {
         $parts = explode('-', $slug);
-        $job = Job::where('id', end($parts))->first();
+        $jobid = end($parts);
+        $job = Job::where('id', $jobid)->first();
+        $applied = null;
 
+        if (Auth::check()) {
+            $applied = Apply::where([['jid', '=', $jobid], ['uid', '=', auth()->user()->user->id]])->get();
+        }
+       
         if (!$job) {
         // Handle the case where no job with the given slug exists.
         }
-
-        $id = $job->id;
-        return view('job_details', compact('job'));
+        return view('job_details', compact('job', 'applied'));
     }
 
     public function manage_user_jobs()
@@ -109,17 +119,21 @@ class JobController extends Controller
     }
 
     public function upload_cv(Request $request) {
-        // if (auth()->user() == null || auth()->user()->user == null ) {
-        //     return abort(404);
-        // }
-        
-        $user_id = auth()->user()->user->id;
-        // $job_detail = Job::where('id', '=', $request->jid)->get()[0];
+        $user = auth()->user()->user;
+        $cv = '';
+
+        if ($request->cvfile != null) {
+            $cvfile = $request->file('cvfile');
+            $ext = $cvfile->extension();
+            $final_name = date("YmdHis").$user->name.".".$ext;
+            $cvfile->storeAs('/assets/img/resume/', $final_name,['disk' => 'public_uploads']);
+            $cv = "assets/img/resume/".$final_name;
+        }
 
         $apply = Apply::create([
             'jid' => (int)$request->jid,
-            'uid' => (int)$user_id,
-            'cv' => '',
+            'uid' => (int)$user->id,
+            'cv' => $cv,
             'letter' => $request->letter
         ]);
         // $apply->job()->create(Job::find($request->jid));

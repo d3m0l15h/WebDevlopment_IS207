@@ -15,7 +15,7 @@ class SearchController extends Controller
         if ($search_job) {
             $jobs = Job::where('name', 'like', '%' . $search_job . '%')->get();
         } else {
-            $jobs = Job::paginate(5);
+            $jobs = Job::paginate(20);
         }
         return view('search', compact('jobs'));
     }

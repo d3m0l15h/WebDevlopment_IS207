@@ -68,6 +68,7 @@ class AccountController extends Controller
         ]);
 
         $employer = Employer::create([
+            'phone' => $request->phone,
             'name' => $request->name,
             'location' => $request->location,
         ]);
@@ -77,7 +78,7 @@ class AccountController extends Controller
             'email' => $request->email,
             'password' => bcrypt($request->password),
             'role' => 'employer',
-            'employerID' => $employer->id,
+            'employerid' => $employer->id,
         ]);
 
         auth()->login($account);

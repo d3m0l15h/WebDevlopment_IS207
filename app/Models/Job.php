@@ -27,6 +27,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon $createon
  * @property string $strength
  * @property string $status
+ * @property string|null $worktime
  * 
  * @property Employer $employer
  * @property Collection|Apply[] $applies
@@ -58,7 +59,8 @@ class Job extends Model
 		'eid',
 		'createon',
 		'strength',
-		'status'
+		'status',
+		'worktime'
 	];
 
 	public function employer()

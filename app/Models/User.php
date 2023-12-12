@@ -24,6 +24,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $status
  * @property string|null $location
  * @property string|null $avatar
+ * @property string|null $phone
  * 
  * @property Collection|Account[] $accounts
  * @property Collection|Apply[] $applies
@@ -46,7 +47,8 @@ class User extends Model
 		'prize',
 		'status',
 		'location',
-		'avatar'
+		'avatar',
+		'phone'
 	];
 
 	public function accounts()
