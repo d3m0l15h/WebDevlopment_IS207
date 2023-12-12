@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $cv
  * @property string|null $letter
  * @property string $status
+ * @property string|null $cvfile
  * 
  * @property Job $job
  * @property User $user
@@ -37,10 +38,13 @@ class Apply extends Model
 	];
 
 	protected $fillable = [
+		'jid',
+		'uid',
 		'time',
 		'cv',
 		'letter',
-		'status'
+		'status',
+		'cvfile'
 	];
 
 	public function job()

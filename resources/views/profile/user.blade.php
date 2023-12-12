@@ -64,14 +64,27 @@
                 </div>
                 <!-- End Sidebar -->
             </div>
+            {{-- <form class="" method="POST" action="{{route('profile.uploadavatar')}}" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="avatar">Upload Avatar</label>
+                    <input type="file" name="avatar" id="avatar" class="form-control-file" required>
+                  </div>
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-outline-primary">Submit</button>
+                  </div>
+            </form> --}}
 
-            <form class="col-lg-8 box-content" method="POST" action="{{route('profile.user')}}">
+            <form class="col-lg-8 box-content" method="POST" action="{{route('profile.user')}}" enctype="multipart/form-data">
                 @csrf
                 <div class="box" id="introduce-section">
                     <div class="content d-flex flex-row">
                         <div class="avatar-containter">
+                            @if($userProfile->avatar != null)
+                            <img src="{{asset($userProfile->avatar)}}" alt="" class="w-100 ">
+                            @else
                             <img src="{{ asset('assets/img/blog/blog-author-2.jpg')}}" alt="" class="w-100 ">
-                            
+                            <input type="file" name="avatar" class="w-100 h-100 opacity-0 top-0 bottom-0 position-absolute left-0 start-0 end-0">
+                            @endif
                         </div>
 
                         <div class="info-container ms-4 ">

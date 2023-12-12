@@ -81,6 +81,11 @@ Route::get('/profile/user', function () {
     abort(404);
 });
 
+Route::post('/profile/upload-avatar', [
+    ProfileController::class,
+    'upload_avatar'
+])->name('profile.uploadavatar');
+
 //profile update
 Route::post('/profile/employer', [
     ProfileController::class,
@@ -108,12 +113,17 @@ Route::get('/profile/job-request', [
     'job_request'
 ])->name('profile.jobrequest');
 
+Route::post('/profile/job-accept', [
+    JobController::class,
+    'job_accept'
+])->name('profile.jobaccept');
+
 
 Route::post('/profile/uploadcv', [
     JobController::class,
     'upload_cv'
 ])->name('profile.uploadcv');
-Route::get('/profile/employer', function () {
+Route::get('/profile/uploadcv', function () {
     abort(404);
 });
 

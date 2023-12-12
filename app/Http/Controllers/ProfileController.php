@@ -40,6 +40,25 @@ class ProfileController extends Controller
         session()->flash('success', 'Cập nhật thông tin thành công');
         return redirect()->route('profile');
     }
+
+    public function upload_avatar(Request $request)
+    {
+        $user_id = auth()->user()->user->id;
+        $user = User::find($user_id);
+
+        $avatar = $request->file('avatar');
+        $ext = $avatar->extension();
+        $final_name = date("YmdHis").$user->name.".".$ext;
+        $avatar->storeAs(public_path('/assets/img/avatar'), $final_name);
+        
+        // $imageName = time().'.'.$request->image->getClientOriginalExtension();
+        // $request->image->move(public_path('/assets/img/avatar'), $imageName);
+        
+        $user->save();
+        session()->flash('success', 'Cập nhật avatar');
+        return redirect()->route('profile');
+    }
+
     public function user(Request $request)
     {
         $userID = auth()->user()->user->id;
@@ -53,6 +72,15 @@ class ProfileController extends Controller
         $user->ownproject = $request->ownProject;
         $user->certificate = $request->certificate;
         $user->prize = $request->prize;
+
+        if ($request->avatar != null) {
+            $avatar = $request->file('avatar');
+            $ext = $avatar->extension();
+            $final_name = date("YmdHis").$user->name.".".$ext;
+            // $avatar->storeAs('/public/assets/img/avatar', $final_name);
+            $avatar->storeAs('/assets/img/avatar/', $final_name,['disk' => 'public_uploads']);
+            $user->avatar = "assets/img/avatar/".$final_name;
+        }
 
         $user->save();
         session()->flash('success', 'Cập nhật thông tin thành công');

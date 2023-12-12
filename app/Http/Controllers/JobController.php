@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Job;
 use App\Models\Apply;
 use Illuminate\Support\Facades\Auth;
+use Log;
 
 class JobController extends Controller
 {
@@ -69,24 +70,61 @@ class JobController extends Controller
     }
 
     public function job_request() {
-        $applies = Apply::all();
-        return view('admin_request', compact('applies'));
+        $employer_id = auth()->user()->employer->id;
+        $jobs = Job::where('eid', '=', $employer_id)->get();
+        $applies = [];
+
+        if (!empty($jobs)) {
+            $job_ids = $jobs->map(fn($item): int => $item->id);
+            $applies = Apply::whereIn('jid', $job_ids)->get();
+            Log::info($applies);
+        }
+        $mapping_status = function($str) { return $this->mapping_status($str); };
+
+        return view('admin_request', compact('applies', 'mapping_status'));
+    }
+
+    private function mapping_status($status) {
+        if ($status == '2') {
+            return 'Đã Trúng Tuyển';
+        }
+
+        if ($status == '3') {
+            return 'Đã Từ Chối';
+        }
+
+        if ($status == '1') {
+            return 'Chờ Xác Nhận';
+        }
+    }
+
+    public function job_accept(Request $request) {
+        $status = $request->status;
+        if ($request->statusdenied != null) {
+
+        }
+
+        Apply::where([['jid', '=', $request->jid], ['uid', '=', $request->uid]])->update(['status' => $request->status]);
+        return redirect()->back();
     }
 
     public function upload_cv(Request $request) {
         // if (auth()->user() == null || auth()->user()->user == null ) {
         //     return abort(404);
         // }
-
+        
         $user_id = auth()->user()->user->id;
-        $job_detail = Job::where('id', '=', $request->jid)->get()[0];
+        // $job_detail = Job::where('id', '=', $request->jid)->get()[0];
 
-        // $account = Apply::create([
-        //     'username' => $request->username,
-        //     'email' => $request->email,
-        //     'password' => bcrypt($request->password),
-        //     'userID' => $user->id,
-        // ]);
+        $apply = Apply::create([
+            'jid' => (int)$request->jid,
+            'uid' => (int)$user_id,
+            'cv' => '',
+            'letter' => $request->letter
+        ]);
+        // $apply->job()->create(Job::find($request->jid));
+        // $apply->user()->create(auth()->user()->user);
+        $apply->save();
 
         return redirect()->back();
     }

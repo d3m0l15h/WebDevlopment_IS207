@@ -11,7 +11,7 @@ class SearchController extends Controller
     //
     public function search() {
         $search_job = request('search');
-        Log::info(request("location"));
+        // Log::info(request("location"));
         if ($search_job) {
             $jobs = Job::where('name', 'like', '%' . $search_job . '%')->get();
         } else {

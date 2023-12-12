@@ -136,7 +136,8 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form method="POST" enctype="multipart/form-data" action="{{ route('profile.jobrequest') }}">
+                    <form method="POST" enctype="multipart/form-data" action="{{ route('profile.uploadcv') }}">
+                        @csrf
                         <input id="jid" name="jid" type="text" class="form-control" style="opacity: 0" value="{{$job->id}}">
                         <div class="mb-3">
                             <label for="cv-file" class="col-form-label fs-5 fw-bold">Tải CV</label>

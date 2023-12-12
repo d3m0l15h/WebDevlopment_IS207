@@ -105,7 +105,7 @@
                               Thời gian làm việc
                           </h3>
                           <div class="form-floating" id="project-section">
-                              <textarea name="workingTime" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px">{{ $userProfile->working_time }}</textarea>
+                              <textarea name="workingTime" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px">{{ $userProfile->workingtime }}</textarea>
                           </div>
                       </div>
                   </div>
@@ -115,7 +115,7 @@
                               Dự án đã thực hiện
                           </h3>
                           <div class="form-floating">
-                              <textarea name="ownProject" class="form-control" id="floatingTextarea2" style="height: 100px">{{ $userProfile->own_project}}</textarea>
+                              <textarea name="ownProject" class="form-control" id="floatingTextarea2" style="height: 100px">{{ $userProfile->ownproject}}</textarea>
                           </div>
                       </div>
                   </div>
