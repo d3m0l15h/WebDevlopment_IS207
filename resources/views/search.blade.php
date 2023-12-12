@@ -109,7 +109,11 @@
                 <a href="{{route('job.detail',['slug'=>Str::slug($job->name).'-'.$job->id])}}">{{$job->name}}</a>
               </h2>
               <div class="d-flex  justify-content-start gap-4">
+                @if ($job->employer->logo != null)
+                  <img src="{{ asset($job->employer->logo)}}" alt="" class="avt-com rounded-4 ">
+                @else
                 <img src="{{ asset('assets/img/blog/blog-author.jpg')}}" alt="" class="avt-com rounded-4 " >
+                @endif
                 <div class="post-meta">
                   <p class="post-author fw-bold ">{{$job->employer->name}}</p>
                   <p class="money-num fw-bold "><span><img src="{{ asset('assets/img/circle-money.png') }}" alt="" width="20" height="20"></span> ${{$job->salarymin}} - ${{$job->salarymax}}</p>

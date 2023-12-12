@@ -81,11 +81,6 @@ Route::get('/profile/user', function () {
     abort(404);
 });
 
-Route::post('/profile/upload-avatar', [
-    ProfileController::class,
-    'upload_avatar'
-])->name('profile.uploadavatar');
-
 //profile update
 Route::post('/profile/employer', [
     ProfileController::class,

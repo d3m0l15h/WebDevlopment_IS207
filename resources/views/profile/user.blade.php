@@ -79,14 +79,13 @@
                 <div class="box" id="introduce-section">
                     <div class="content d-flex flex-row">
                         <div class="avatar-containter">
-                            @if($userProfile->avatar != null)
+                            @if($userProfile->avatar != null && strlen($userProfile->avatar) > 4)
                             <img src="{{asset($userProfile->avatar)}}" alt="" class="w-100 ">
                             @else
                             <img src="{{ asset('assets/img/blog/blog-author-2.jpg')}}" alt="" class="w-100 ">
                             <input type="file" name="avatar" class="w-100 h-100 opacity-0 top-0 bottom-0 position-absolute left-0 start-0 end-0">
                             @endif
                         </div>
-
                         <div class="info-container ms-4 ">
                             <input type="text" name="name" value="{{$userProfile->name}}" />
                             <p>{{ $email }}</p>
@@ -141,7 +140,7 @@
                             Dự án đã thực hiện
                         </h3>
                         <div class="form-floating">
-                            <textarea name="ownProject" class="form-control" id="floatingTextarea2" style="height: 100px">{{$userProfile->own_project}}</textarea>
+                            <textarea name="ownProject" class="form-control" id="floatingTextarea2" style="height: 100px">{{$userProfile->ownproject}}</textarea>
                         </div>
                     </div>
                 </div>
@@ -153,6 +152,16 @@
                         </h3>
                         <div class="form-floating">
                             <textarea name="certificate" class="form-control" id="floatingTextarea2" style="height: 100px">{{$userProfile->certificate}}</textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="box" id="prize-section">
+                    <div class="content">
+                        <h3>
+                            Địa Chỉ
+                        </h3>
+                        <div class="form-floating">
+                            <textarea name="certificate" class="form-control" id="floatingTextarea2" style="height: 100px">{{$userProfile->location}}</textarea>
                         </div>
                     </div>
                 </div>
