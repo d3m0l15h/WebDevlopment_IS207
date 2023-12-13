@@ -116,7 +116,8 @@ class JobController extends Controller
         Apply::where([['jid', '=', $request->jid], ['uid', '=', $request->uid]])->update(['status' => $request->status]);
         // Send mail
         // Mail::to($user->mail)->send(new SendAcceptResume($user->name));
-        Mail::to("daokhanhduycm@gmail.com")->send(new SendAcceptResume($user->name));
+        $filePath = public_path($request->cv);
+        Mail::to("daokhanhduycm@gmail.com")->send(new SendAcceptResume($user->name, $filePath));
         return redirect()->back();
     }
 

@@ -47,6 +47,7 @@
                                             @endif
                                             <input id="jid" name="jid" value="{{$apply->jid}}" style="display: none;"/>
                                             <input id="uid" name="uid" value="{{$apply->uid}}" style="display: none;"/>
+                                            <input id="cv" name="cv" value="{{$apply->cv}}" style="display: none;"/>
                                         </form>
                                         <div class="col pt-2 ">
                                             <p class="row fw-bold p-0 m-0">{{$apply->user->name}}</p>
