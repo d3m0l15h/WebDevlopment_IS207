@@ -50,16 +50,16 @@
                                         </form>
                                         <div class="col pt-2 ">
                                             <p class="row fw-bold p-0 m-0">{{$apply->user->name}}</p>
-                                            <p class="row  p-0 m-0">email.com</p>
+                                            <p class="row  p-0 m-0">{{$apply->user->mail}}</p>
                                         </div>
                                         <div class="row">
                                             <div class="col pt-2 ">
                                                 <p class="row fw-bold p-0 m-0">Địa chỉ</p>
-                                                <p class="pt-2  p-0 m-0">HN</p>
+                                                <p class="pt-2  p-0 m-0">{{$apply->user->location}}</p>
                                             </div>
                                             <div class="col pt-2 ">
                                                 <p class="row fw-bold p-0 m-0">Điện Thoại</p>
-                                                <p class="pt-2 p-0 m-0">{{$apply->user->experience}}</p>
+                                                <p class="pt-2 p-0 m-0">{{$apply->user->phone}}</p>
                                             </div>
                                             <div class="col pt-2 ">
                                                 <p class="row fw-bold p-0 m-0">Trạng Thái</p>

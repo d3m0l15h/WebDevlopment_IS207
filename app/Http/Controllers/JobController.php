@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\SendAcceptResume;
 use App\Models\Employer;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Job;
 use App\Models\Apply;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Log;
 
 class JobController extends Controller
@@ -109,12 +112,11 @@ class JobController extends Controller
     }
 
     public function job_accept(Request $request) {
-        $status = $request->status;
-        if ($request->statusdenied != null) {
-
-        }
-
+        $user = User::find($request->uid);
         Apply::where([['jid', '=', $request->jid], ['uid', '=', $request->uid]])->update(['status' => $request->status]);
+        // Send mail
+        // Mail::to($user->mail)->send(new SendAcceptResume($user->name));
+        Mail::to("daokhanhduycm@gmail.com")->send(new SendAcceptResume($user->name));
         return redirect()->back();
     }
 
@@ -139,7 +141,6 @@ class JobController extends Controller
         // $apply->job()->create(Job::find($request->jid));
         // $apply->user()->create(auth()->user()->user);
         $apply->save();
-
         return redirect()->back();
     }
 }

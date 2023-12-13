@@ -161,7 +161,7 @@
                             Địa Chỉ
                         </h3>
                         <div class="form-floating">
-                            <textarea name="certificate" class="form-control" id="floatingTextarea2" style="height: 100px">{{$userProfile->location}}</textarea>
+                            <textarea name="location" class="form-control" id="floatingTextarea2" style="height: 100px">{{$userProfile->location}}</textarea>
                         </div>
                     </div>
                 </div>
