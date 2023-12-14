@@ -114,8 +114,6 @@
                                 Unactive
                             </label>
                         </div>
-                        <div class="mb-3">
-                            <input type="submit" class="btn btn-primary" value="Đăng tin">
                     </div>
                     <div class="mb-3">
                         <div class="form-check">

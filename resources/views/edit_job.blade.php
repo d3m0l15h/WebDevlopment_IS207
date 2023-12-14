@@ -5,7 +5,6 @@
   <div data-aos="fade" class="page-title">
     <div class="heading ps-4 ">
       <h1 class="text-white ">Chỉnh sửa tin tuyển dụng</h1>
-      <h1 class="text-white ">{{$job->name}}</h1>
     </div>
   </div>
   <section>
@@ -13,8 +12,7 @@
           <form action="{{ route('job.store') }}" method="post">
 @csrf
           <div class="form-floating mb-4">
-            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"
-                            name="title"></textarea>
+            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" name="title" value="{{$job->name}}"></textarea>
             <label for="floatingTextarea2">Tiêu đề công việc</label>
                          @error('title')
                             <div class="alert alert-danger">{{ $message }}</div>
@@ -22,40 +20,40 @@
           </div>
           <div class="form-floating mb-4">
             <h4>Điểm mạnh của công ty</h4>
-                        <textarea class="editor" name="strength" id="strength" contenteditable="true"></textarea>
+                        <textarea class="editor" name="strength" id="strength" contenteditable="true" value="{{$job->strength}}"></textarea>
                         @error('strength')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
           </div>
           <div class="form-floating mb-4">
             <h4>Mô tả công việc</h4>
-                        <textarea class="editor" id="description" name="description" contenteditable="true"></textarea>
+                        <textarea class="editor" id="description" name="description" contenteditable="true" value="{{$job->descriptions}}"></textarea>
                         @error('description')
                             <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
           </div>
           <div class="form-floating mb-4">
             <h4>Yêu cầu công việc</h4>
-                        <textarea class="editor" id="required" name="required" contenteditable="true"></textarea>
+                        <textarea class="editor" id="required" name="required" contenteditable="true" value="{{$job->requirements}}"></textarea>
                         @error('required')
                             <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
           </div>
           <div class="form-floating mb-4">
             <h4>Tại sao bạn lại làm việc tại đây</h4>
-                        <textarea class="editor" id="reason" name="reason" contenteditable="true"></textarea>
+                        <textarea class="editor" id="reason" name="reason" contenteditable="true" value="{{$job->reasons}}"></textarea>
                         @error('reason')
                             <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
           </div>
           <div class="mb-3">
-            <input type="number" class="form-control" id="luong" name="luong" placeholder="Nhập lương">
+            <input type="number" class="form-control" id="luong" name="salary" placeholder="Nhập lương">
           </div>
           <div class="mb-3">
-            <input type="number" class="form-control" id="minSalary" name="salryMin" placeholder="Lương tối thiểu">
+            <input type="number" class="form-control" id="minSalary" name="salarymin" placeholder="Lương tối thiểu" value="{{$job->salarymin}}">
         </div>
         <div class="mb-3">
-          <input type="number" class="form-control" id="maxSalary" name="salaryMax" placeholder="Lương tối đa">
+          <input type="number" class="form-control" id="maxSalary" name="salarymax" placeholder="Lương tối đa" value="{{$job->salarymax}}">
         </div>
           <div class="mb-3">
               <p class="fw-bold">Hình thức làm việc</p>

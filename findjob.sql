@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 14, 2023 at 09:41 AM
+-- Generation Time: Dec 14, 2023 at 05:48 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -109,16 +109,17 @@ CREATE TABLE `employers` (
   `phone` varchar(255) NOT NULL,
   `introduce` text DEFAULT NULL,
   `logo` varchar(255) DEFAULT NULL,
-  `status` varchar(1) NOT NULL DEFAULT '1'
+  `status` varchar(1) NOT NULL DEFAULT '1',
+  `email` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `employers`
 --
 
-INSERT INTO `employers` (`id`, `name`, `location`, `workingtime`, `quality`, `ownproject`, `prize`, `phone`, `introduce`, `logo`, `status`) VALUES
-(1, 'FPT', 'Ho Chi Minh', 'Full-time', '50', 'Duy', '1', '099455256', 'Fpt software', 'assets/img/avatar/20231212025557FPT.webp', '1'),
-(2, 'NAB Innovation Centre Vietnam', 'Ho Chi Minh', NULL, NULL, NULL, NULL, '9099999555', 'The NAB Innovation Centre Vietnam is owned by NAB - Australia’s largest business bank.', 'assets/img/avatar/20231212163842NAB Innovation Centre Vietnam.webp', '1');
+INSERT INTO `employers` (`id`, `name`, `location`, `workingtime`, `quality`, `ownproject`, `prize`, `phone`, `introduce`, `logo`, `status`, `email`) VALUES
+(1, 'FPT', 'Ho Chi Minh', 'Full-time', '50', 'Duy', '1', '099455256', 'Fpt software', 'assets/img/avatar/20231212025557FPT.webp', '1', 'employer@gmail.com'),
+(2, 'NAB Innovation Centre Vietnam', 'Ho Chi Minh', NULL, NULL, NULL, NULL, '9099999555', 'The NAB Innovation Centre Vietnam is owned by NAB - Australia’s largest business bank.', 'assets/img/avatar/20231212163842NAB Innovation Centre Vietnam.webp', '1', NULL);
 
 -- --------------------------------------------------------
 
