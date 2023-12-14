@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\SendAcceptResume;
+use App\Mail\EmployerAcceptResume;
+use App\Mail\EmployerDeninedResume;
+use App\Mail\UserApplyResume;
 use App\Models\Employer;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -117,7 +119,14 @@ class JobController extends Controller
         // Send mail
         // Mail::to($user->mail)->send(new SendAcceptResume($user->name));
         $filePath = public_path($request->cv);
-        Mail::to("daokhanhduycm@gmail.com")->send(new SendAcceptResume($user->name, $filePath));
+        $job = Job::find($request->jid);
+        $employer = $job->employer;
+        if ($request->status == '2') {
+            Mail::to("daokhanhduycm@gmail.com")->send(new EmployerAcceptResume($user->name, $employer->name, $job->name, $filePath));
+        } else {
+            Mail::to("daokhanhduycm@gmail.com")->send(new EmployerDeninedResume($user->name, $employer->name, $job->name, $filePath));
+        }
+         
         return redirect()->back();
     }
 
@@ -139,8 +148,13 @@ class JobController extends Controller
             'cv' => $cv,
             'letter' => $request->letter
         ]);
+        $job = Job::find($request->jid);
+        $employer = $job->employer;
         // $apply->job()->create(Job::find($request->jid));
         // $apply->user()->create(auth()->user()->user);
+
+        //$employer->mail
+        Mail::to("daokhanhduycm@gmail.com")->send(new UserApplyResume($user->name, $employer->name, $job->name, $cv));
         $apply->save();
         return redirect()->back();
     }
