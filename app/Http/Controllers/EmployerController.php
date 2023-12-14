@@ -17,10 +17,11 @@ class EmployerController extends Controller
         if (!Auth::check()) {
             return abort(404);
         }
-
-        $employer = auth()->user()->employer;
-        // Log::info($employer->id);
-        $jobs = Job::where('eid', '=', $employer->id)->get() ;
+        if(auth()->user()->role == 'user') {
+            return abort(404);
+        }
+        $employer_id = auth()->user()->employer->id;
+        $jobs = Job::where('eid', '=', $employer_id)->get() ;
         $applies = Apply::all();
         return view('job_management', compact('applies', 'jobs'));
     }

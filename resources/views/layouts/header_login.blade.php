@@ -95,7 +95,7 @@
                         <li><a href="#">Theo kinh nghiệm</a></li>
                     </ul>
                 </li>
-                <li><a href="index.php#contact">Contact</a></li>
+                <li><a href="{{route('home')}}#contact">Contact</a></li>
             </ul>
 
             <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
@@ -120,9 +120,11 @@
                             
                             <ul class="dd-box-shadow">
                                 <li><a href="{{route('profile')}}">Hồ sơ của tôi</a></li>
-                                <li><a href="{{route('profile.jobs')}}">Công việc của tôi</a></li>
+                                @if (auth()->user()->role == "user")
+                                  <li><a href="{{route('profile.jobs')}}">Công việc của tôi</a></li>
+                                @endif
                                 <li><a href="{{route('job.create')}}">Đăng tin tuyển dụng</a></li>
-                                <li><a href="{{route('profile.job-management')}}">Danh Sách Công Việc</a></li>
+                                <li><a href="{{route('job.list')}}">Danh Sách Công Việc</a></li>
                                 <li><a href="{{route('profile.jobrequest')}}">Danh Sách Ứng Tuyển</a></li>
                                 <li><a href="{{route('admin.dashboard')}}">Quản Trị Viên</a></li>
                                 <li><a href="{{route('admin.employer')}}">Quản Lý Nhà Tuyển Dụng</a></li>

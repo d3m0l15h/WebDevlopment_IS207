@@ -91,10 +91,10 @@ Route::get('/profile/employer', function () {
 });
 
 //profile employer job-management
-Route::get('/profile/job-management', [
+Route::get('/job/list', [
     EmployerController::class,
     'manage_job_applies'
-])->name('profile.job-management');
+])->name('job.list');
 
 //profil user job
 Route::get('/profile/jobs', [
@@ -103,7 +103,7 @@ Route::get('/profile/jobs', [
 ])->name('profile.jobs');
 
 
-Route::get('/profile/job-request', [
+Route::get('/profile/job_request', [
     JobController::class,
     'job_request'
 ])->name('profile.jobrequest');

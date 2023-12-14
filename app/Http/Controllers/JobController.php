@@ -86,6 +86,8 @@ class JobController extends Controller
 
     public function job_request() {
         $employer_id = auth()->user()->employer->id;
+        if($employer_id == null)
+            return abort(404);
         $jobs = Job::where('eid', '=', $employer_id)->get();
         $applies = [];
 
