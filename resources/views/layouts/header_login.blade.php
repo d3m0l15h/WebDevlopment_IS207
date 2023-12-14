@@ -107,7 +107,13 @@
                     <ul>
                         <li class="dropdown has-dropdown">
                             <div class="d-flex flex-row justify-align-content-around align-items-center gap-2 ">
+                                @if (auth()->user()->role == "user")
+                                <img src="{{asset(auth()->user()->user->avatar)}}" alt="" class="">
+                                @elseif (auth()->user()->role == "employer")
+                                <img src="{{asset(auth()->user()->employer->logo)}}" alt="" class="">
+                                @else
                                 <img src="{{ asset('assets/img/blog/blog-author-2.jpg')}}" alt="" class="">
+                                @endif
                                 <p class="text-light fw-bold m-0 gap-2 ">{{ auth()->user()->username}}</p>
                             </div>
 

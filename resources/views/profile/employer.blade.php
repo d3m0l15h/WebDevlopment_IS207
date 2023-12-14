@@ -69,8 +69,14 @@
                 <div class="box" id="introduce-section">
                       <div class="content d-flex flex-row">
                           <div class="avatar-containter position-relative ">
-                              <img src="{{ asset('assets/img/blog/blog-author-2.jpg')}}" alt="" class="w-100 ">
-                              <input type="file" name="" id="" class="w-100 h-100 opacity-0 top-0 bottom-0 position-absolute left-0 start-0 end-0  ">
+                            <div class="avatar-containter">
+                                @if($userProfile->logo != null && strlen($userProfile->logo) > 4)
+                                <img src="{{asset($userProfile->logo)}}" alt="" class="w-100 ">
+                                @else
+                                <img src="{{ asset('assets/img/blog/blog-author-2.jpg')}}" alt="" class="w-100 ">
+                                <input type="file" name="avatar" class="avatar">
+                                @endif
+                            </div>
                           </div>
                          
                           <div class="info-container ms-4 ">
@@ -105,7 +111,7 @@
                               Thời gian làm việc
                           </h3>
                           <div class="form-floating" id="project-section">
-                              <textarea name="workingTime" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px">{{ $userProfile->working_time }}</textarea>
+                              <textarea name="workingTime" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px">{{ $userProfile->workingtime }}</textarea>
                           </div>
                       </div>
                   </div>
@@ -115,7 +121,7 @@
                               Dự án đã thực hiện
                           </h3>
                           <div class="form-floating">
-                              <textarea name="ownProject" class="form-control" id="floatingTextarea2" style="height: 100px">{{ $userProfile->own_project}}</textarea>
+                              <textarea name="ownProject" class="form-control" id="floatingTextarea2" style="height: 100px">{{ $userProfile->ownproject}}</textarea>
                           </div>
                       </div>
                   </div>

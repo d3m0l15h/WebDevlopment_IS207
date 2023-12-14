@@ -36,14 +36,12 @@ class AccountController extends Controller
             'username' => $request->username,
             'email' => $request->email,
             'password' => bcrypt($request->password),
-            'userID' => $user->id,
+            'userid' => $user->id,
         ]);
 
         // Log the user in
         auth()->login($account);
-
         session()->flash('success', 'Registration successful!');
-
         return redirect()->back();
     }
     public function employer(Request $request)
@@ -70,6 +68,7 @@ class AccountController extends Controller
         ]);
 
         $employer = Employer::create([
+            'phone' => $request->phone,
             'name' => $request->name,
             'location' => $request->location,
         ]);
@@ -79,7 +78,7 @@ class AccountController extends Controller
             'email' => $request->email,
             'password' => bcrypt($request->password),
             'role' => 'employer',
-            'employerID' => $employer->id,
+            'employerid' => $employer->id,
         ]);
 
         auth()->login($account);

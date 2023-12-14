@@ -16,13 +16,12 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $name
  * @property string|null $location
  * @property string|null $workingtime
- * @property string $quality
+ * @property string|null $quality
  * @property string|null $ownproject
  * @property string|null $prize
- * @property string $email
  * @property string $phone
- * @property string $introduce
- * @property string $logo
+ * @property string|null $introduce
+ * @property string|null $logo
  * @property string $status
  * 
  * @property Collection|Account[] $accounts
@@ -42,7 +41,6 @@ class Employer extends Model
 		'quality',
 		'ownproject',
 		'prize',
-		'email',
 		'phone',
 		'introduce',
 		'logo',

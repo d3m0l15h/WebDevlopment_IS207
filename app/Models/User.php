@@ -22,6 +22,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $certificate
  * @property string|null $prize
  * @property string $status
+ * @property string|null $location
+ * @property string|null $avatar
+ * @property string|null $phone
  * 
  * @property Collection|Account[] $accounts
  * @property Collection|Apply[] $applies
@@ -42,7 +45,10 @@ class User extends Model
 		'ownproject',
 		'certificate',
 		'prize',
-		'status'
+		'status',
+		'location',
+		'avatar',
+		'phone'
 	];
 
 	public function accounts()

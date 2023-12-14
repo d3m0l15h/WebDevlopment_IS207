@@ -11,11 +11,11 @@ class SearchController extends Controller
     //
     public function search() {
         $search_job = request('search');
-        Log::info(request("location"));
+        // Log::info(request("location"));
         if ($search_job) {
             $jobs = Job::where('name', 'like', '%' . $search_job . '%')->get();
         } else {
-            $jobs = Job::paginate(5);
+            $jobs = Job::paginate(20);
         }
         return view('search', compact('jobs'));
     }

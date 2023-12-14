@@ -64,16 +64,28 @@
                 </div>
                 <!-- End Sidebar -->
             </div>
+            {{-- <form class="" method="POST" action="{{route('profile.uploadavatar')}}" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="avatar">Upload Avatar</label>
+                    <input type="file" name="avatar" id="avatar" class="form-control-file" required>
+                  </div>
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-outline-primary">Submit</button>
+                  </div>
+            </form> --}}
 
-            <form class="col-lg-8 box-content" method="POST" action="{{route('profile.user')}}">
+            <form class="col-lg-8 box-content" method="POST" action="{{route('profile.user')}}" enctype="multipart/form-data">
                 @csrf
                 <div class="box" id="introduce-section">
                     <div class="content d-flex flex-row">
                         <div class="avatar-containter">
-                            <img src="{{ asset('assets/img/blog/blog-author-2.jpg')}}" alt="" class="w-100 ">
-                            
+                            @if($userProfile->avatar != null && strlen($userProfile->avatar) > 4)
+                            <img src="{{asset($userProfile->avatar)}}" alt="" class="w-100 ">
+                            @else
+                            <img src="{{ asset('assets/img/blog/blog-author-2.jpg')}}" alt="" class="w-100">
+                            <input type="file" name="avatar" class="avatar">
+                            @endif
                         </div>
-
                         <div class="info-container ms-4 ">
                             <input type="text" name="name" value="{{$userProfile->name}}" />
                             <p>{{ $email }}</p>
@@ -128,7 +140,7 @@
                             Dự án đã thực hiện
                         </h3>
                         <div class="form-floating">
-                            <textarea name="ownProject" class="form-control" id="floatingTextarea2" style="height: 100px">{{$userProfile->own_project}}</textarea>
+                            <textarea name="ownProject" class="form-control" id="floatingTextarea2" style="height: 100px">{{$userProfile->ownproject}}</textarea>
                         </div>
                     </div>
                 </div>
@@ -140,6 +152,16 @@
                         </h3>
                         <div class="form-floating">
                             <textarea name="certificate" class="form-control" id="floatingTextarea2" style="height: 100px">{{$userProfile->certificate}}</textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="box" id="prize-section">
+                    <div class="content">
+                        <h3>
+                            Địa Chỉ
+                        </h3>
+                        <div class="form-floating">
+                            <textarea name="location" class="form-control" id="floatingTextarea2" style="height: 100px">{{$userProfile->location}}</textarea>
                         </div>
                     </div>
                 </div>

@@ -95,8 +95,6 @@ CREATE TABLE `jobs` (
   `location` varchar(80) NOT NULL,
   `worktype` varchar(255) NOT NULL,
   `eid` int(10) UNSIGNED NOT NULL,
-  `elogo` varchar(255) NOT NULL,
-  `ename` varchar(255) NOT NULL,
   `createon` datetime NOT NULL DEFAULT current_timestamp(),
   `strength` text NOT NULL,
   `status`  varchar(1) NOT NULL DEFAULT '1'

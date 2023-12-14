@@ -69,33 +69,33 @@
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <input type="number" class="form-control" id="minSalary" name="salryMin"
+                        <input type="number" class="form-control" id="minSalary" name="salarymin"
                             placeholder="Lương tối thiểu" value=0>
                     </div>
                     <div class="mb-3">
-                        <input type="number" class="form-control" id="maxSalary" name="salaryMax"
+                        <input type="number" class="form-control" id="maxSalary" name="salarymax"
                             placeholder="Lương tối đa" value="0">
                     </div>
                     <div class="mb-3">
                         <p class="fw-bold">Hình thức làm việc</p>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="WorkType" value="remote" id="remote">
+                            <input class="form-check-input" type="radio" name="worktype" value="remote" id="remote">
                             <label class="form-check-label" for="remote">
                                 Remote
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="WorkType" value="offline" id="offline"
+                            <input class="form-check-input" type="radio" name="worktype" value="company" id="company"
                                 checked>
-                            <label class="form-check-label" for="offline">
-                                Offline
+                            <label class="form-check-label" for="company">
+                                Company
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="WorkType" value="both"
-                                id="both">
-                            <label class="form-check-label" for="both">
-                                Both
+                            <input class="form-check-input" type="radio" name="worktype" value="hybrid"
+                                id="hybrid">
+                            <label class="form-check-label" for="hybrid">
+                                Hybrid
                             </label>
                         </div>
                     </div>
@@ -116,7 +116,25 @@
                         </div>
                         <div class="mb-3">
                             <input type="submit" class="btn btn-primary" value="Đăng tin">
+                    </div>
+                    <div class="mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="worktime" value="Full-time"
+                                id="flexRadioDefault3" checked>
+                            <label class="form-check-label" for="flexRadioDefault3">
+                                Full-time
+                            </label>
                         </div>
+                        <div class="form-check mb-4">
+                            <input class="form-check-input" type="radio" name="worktime" value="Part-time"
+                                id="flexRadioDefault4">
+                            <label class="form-check-label" for="flexRadioDefault4">
+                                Part-time
+                            </label>
+                        </div>
+                        <div class="mb-3">
+                            <input type="submit" class="btn btn-primary" value="Đăng tin">
+                    </div>
                 </form>
                 @if (Session::has('success'))
                         <script>
