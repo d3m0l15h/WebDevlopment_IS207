@@ -90,7 +90,7 @@ class JobController extends Controller
         if (!empty($jobs)) {
             $job_ids = $jobs->map(fn($item): int => $item->id);
             $applies = Apply::whereIn('jid', $job_ids)->get();
-            Log::info($applies);
+            //Log::info($applies);
         }
         $mapping_status = function($str) { return $this->mapping_status($str); };
 
