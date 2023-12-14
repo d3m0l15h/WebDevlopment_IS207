@@ -119,7 +119,7 @@
                         @csrf
                         <input type="hidden" name="form_type" value="login">
                         <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">Email</label>
+                            <label for="recipient-name" class="col-form-label">Email or User Name</label>
                             <input type="text" class="form-control" id="account" name="email">
                             @if (old('form_type') == 'login')
                                 @error('email')
