@@ -23,6 +23,6 @@ class EmployerController extends Controller
         $employer_id = auth()->user()->employer->id;
         $jobs = Job::where('eid', '=', $employer_id)->get() ;
         $applies = Apply::all();
-        return view('job_management', compact('applies', 'jobs'));
+        return view('employer.job_management', compact('applies', 'jobs'));
     }
 }

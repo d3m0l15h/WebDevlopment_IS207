@@ -18,7 +18,7 @@ class AdminController extends Controller
         } else {
             $users = User::all();
         }
-        return view('admin_user_manage', compact('users'));
+        return view('admin.user_manage', compact('users'));
     }
 
     
@@ -29,10 +29,10 @@ class AdminController extends Controller
         } else {
             $employers = Employer::all();
         }
-        return view('admin_employ_manage', compact('employers'));
+        return view('admin.employ_manage', compact('employers'));
     }
 
     public function dashboard() {
-        return view('admin');
+        return view('admin.index');
     }
 }

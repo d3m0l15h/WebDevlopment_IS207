@@ -31,14 +31,6 @@
                             <p>Kinh nghiệm</p>
                             <h3 class="main-color text-center">6 năm</h3>
                         </li>
-                        <li class="list-group-item">
-                            <p>Vị trí cao nhất</p>
-                            <h3 class="main-color text-center">Junior</h3>
-                        </li>
-                        <li class="list-group-item">
-                            <p>Công ty từng làm việc</p>
-                            <h3 class="main-color text-center">10</h3>
-                        </li>
                     </ul>
                     <button type="file" class="w-100 bg-color border-0 button rounded-2 p-2 text-white mt-4" data-bs-toggle="modal" data-bs-target="#editCVModal">
                        

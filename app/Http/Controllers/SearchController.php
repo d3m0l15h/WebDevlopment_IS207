@@ -22,6 +22,6 @@ class SearchController extends Controller
 
     public function job_details($id) {
         $job_details = Job::where('id', '=', $id);
-        return view('job_details', compact('job_details'));
+        return view('job.detail', compact('job_details'));
     }
 }

@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Models\Job;
 use App\Models\Apply;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log as FacadesLog;
 use Illuminate\Support\Facades\Mail;
 use Log;
 
@@ -22,7 +23,7 @@ class JobController extends Controller
             return abort(404);
         if (auth()->user()->role == 'user')
             return abort(404);
-        return view('create_job');
+        return view('job.create');
     }
     public function store(Request $request)
     {
@@ -69,19 +70,20 @@ class JobController extends Controller
         if (!$job) {
         // Handle the case where no job with the given slug exists.
         }
-        return view('job_details', compact('job', 'applied'));
+        return view('job.detail', compact('job', 'applied'));
     }
 
     public function user_jobs()
     {
         $jobs = Job::all();
-        return view('my_jobs', compact('jobs'));
+        return view('user.applied', compact('jobs'));
     }
 
     public function edit_job($id)
     {
         $job = Job::where('id', '=', $id)->get()[0];
-        return view('edit_job', compact('job'));
+        FacadesLog::info($job);
+        return view('job.edit', compact('job'));
     }
 
     public function job_request() {
@@ -98,7 +100,7 @@ class JobController extends Controller
         }
         $mapping_status = function($str) { return $this->mapping_status($str); };
 
-        return view('admin_request', compact('applies', 'mapping_status'));
+        return view('admin.request_manage', compact('applies', 'mapping_status'));
     }
 
     private function mapping_status($status) {
