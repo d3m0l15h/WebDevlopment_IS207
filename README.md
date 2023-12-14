@@ -2,6 +2,7 @@
 
 - php artisan serve
 - php artisan code:models
+- php artisan make:mail UserApplyResume
 - Apply Status: 0: Deleted, 1: Active(WaitToConfirm), 2: Accept, 3: Denied
 
 

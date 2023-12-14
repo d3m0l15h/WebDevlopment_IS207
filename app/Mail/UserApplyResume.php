@@ -2,23 +2,27 @@
 
 namespace App\Mail;
 
-use Illuminate\Mail\Mailables\Address;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Mail\Mailables\Attachment;
+use Illuminate\Mail\Attachment;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class SendAcceptResume extends Mailable
+class UserApplyResume extends Mailable
 {
     use Queueable, SerializesModels;
 
     /**
      * Create a new message instance.
      */
-    public function __construct(private $name, private $cvfile)
+    public function __construct(
+        private $candidatename, 
+        private $employer,
+        private $jobtitle,
+        private $cvfile
+        )
     {
         //
     }
@@ -29,7 +33,8 @@ class SendAcceptResume extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Send Accept Resume',
+            // duyd apply Senior java 20231112
+            subject: $this->candidatename.' Apply '.$this->jobtitle.' '.date("YmdHis"),
         );
     }
 
@@ -39,8 +44,11 @@ class SendAcceptResume extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mail.send_accept_resume',
-            with: ['name' => $this->name ]
+            view: 'mail.user_apply_resume',
+            with: [
+                'candidatename' => $this->candidatename,
+                'employer' => $this->employer,
+            ]
         );
     }
 
