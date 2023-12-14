@@ -18,7 +18,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $cv
  * @property string|null $letter
  * @property string $status
- * @property string|null $cvfile
  * 
  * @property Job $job
  * @property User $user
@@ -43,8 +42,7 @@ class Apply extends Model
 		'time',
 		'cv',
 		'letter',
-		'status',
-		'cvfile'
+		'status'
 	];
 
 	public function job()

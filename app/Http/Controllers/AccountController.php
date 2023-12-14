@@ -31,7 +31,9 @@ class AccountController extends Controller
         ]);
 
         // Create a new user and save it to the database
-        $user = User::create();
+        $user = User::create([
+                'email' => $request->email,
+        ]);
         $account = Account::create([
             'username' => $request->username,
             'email' => $request->email,
@@ -70,6 +72,7 @@ class AccountController extends Controller
         $employer = Employer::create([
             'phone' => $request->phone,
             'name' => $request->name,
+            'email' => $request->email,
             'location' => $request->location,
         ]);
 
@@ -90,11 +93,15 @@ class AccountController extends Controller
     public function login(Request $request)
     {
         $request->validate([
-            'email' => 'required|email',
+            'email' => 'required',
             'password' => 'required'
         ]);
-
-        $user = Account::where('email', $request->email)->first();
+        $email = $request->email;
+        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $user = Account::where('email', $request->email)->first();
+        } else {
+            $user = Account::where('username', $request->email)->first();
+        }
 
         if ($user && Hash::check($request->password, $user->password)) {
             Auth::login($user);
