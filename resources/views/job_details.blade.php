@@ -32,10 +32,7 @@
                             <h3>
                                 Mô tả công việc
                             </h3>
-                            <ul>
-                                <li>@Model.job.Descriptions</li>
-                                
-                            </ul>
+                            {!! $job->descriptions !!}
                         </div>
                     </div>
                      <!-- Box -->
@@ -44,23 +41,7 @@
                             <h3>
                                 Yêu cầu công việc
                             </h3>
-                            <ul>
-
-                                <li>@Model.job.Requirements</li>
-                              
-                            </ul>
-                        </div>
-                    </div>
-                     <!-- Box -->
-                    <div class="box">
-                        <div class="content">
-                            <h3>
-                                Giờ làm việc
-                            </h3>
-                            <ul>
-                                <li>@Model.emp.WorkingTime</li>
-
-                            </ul>
+                            {!! $job->requirements !!}
                         </div>
                     </div>
                      <!-- Box -->
@@ -85,7 +66,19 @@
                             </ul>
                         </div>
                     </div>
-                     <!-- !Box -->
+                     <!-- Box -->
+                    <div class="box">
+                        <div class="content">
+                            <h3>
+                                Giờ làm việc
+                            </h3>
+                            <ul>
+                                <li>@Model.emp.WorkingTime</li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- !Box -->
                 </div>
                 <div class="col-lg-3 box-content box-sidebar">
                     <div class="sidebar box">
