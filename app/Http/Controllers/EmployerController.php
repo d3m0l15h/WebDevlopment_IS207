@@ -13,7 +13,7 @@ use Log;
 class EmployerController extends Controller
 {
     //
-    public function manage_job_applies() {
+    public function manage_jobs() {
         if (!Auth::check()) {
             return abort(404);
         }

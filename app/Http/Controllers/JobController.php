@@ -72,7 +72,7 @@ class JobController extends Controller
         return view('job_details', compact('job', 'applied'));
     }
 
-    public function manage_user_jobs()
+    public function user_jobs()
     {
         $jobs = Job::all();
         return view('my_jobs', compact('jobs'));

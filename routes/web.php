@@ -76,7 +76,6 @@ Route::post('/profile/user', [
     ProfileController::class,
     'user'
 ])->name('profile.user');
-
 Route::get('/profile/user', function () {
     abort(404);
 });
@@ -93,20 +92,20 @@ Route::get('/profile/employer', function () {
 //profile employer job-management
 Route::get('/job/list', [
     EmployerController::class,
-    'manage_job_applies'
+    'manage_jobs'
 ])->name('job.list');
 
 //profil user job
-Route::get('/profile/jobs', [
+Route::get('/profile/applies', [
     JobController::class,
-    'manage_user_jobs'
-])->name('profile.jobs');
+    'user_jobs'
+])->name('profile.myapplies');
 
 
-Route::get('/profile/job_request', [
+Route::get('/admin/employer_request', [
     JobController::class,
     'job_request'
-])->name('profile.jobrequest');
+])->name('admin.request');
 
 Route::post('/profile/job-accept', [
     JobController::class,
