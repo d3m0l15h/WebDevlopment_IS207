@@ -7,7 +7,6 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -122,11 +121,7 @@ Route::get('/jobs', [
     JobController::class,
     'index'
 ])->name('jobs');
-//GET job detail
-Route::get('/job/{slug}', [
-    JobController::class,
-    'show'
-])->name('job.detail');
+
 //GET job create form
 Route::get('/job/create', [
     JobController::class,
@@ -137,7 +132,11 @@ Route::post('/job/create', [
     JobController::class,
     'store'
 ])->name('job.store');
-
+//GET job detail
+Route::get('/job/{slug}', [
+    JobController::class,
+    'show'
+])->name('job.detail');
 //GET job edit
 Route::get('/job/{id}/edit', [
     JobController::class,

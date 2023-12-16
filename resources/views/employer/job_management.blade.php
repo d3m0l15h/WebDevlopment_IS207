@@ -51,11 +51,17 @@
                             <button type="button" class="edit-btn rounded-2  m-2" onclick="location.href='{{ route('job.update', ['id' => $job->id]) }}'"><p>Edit</p></button>
                         </li>
                         <li>
-                            <button type="button" class="unac-btn rounded-2  m-2">Unactive</button>
+                            <button type="button" class="unac-btn rounded-2  m-2">
+                              @if($job->status == '0')
+                                Active
+                              @else
+                                Unactive
+                              @endif
+                            </button>
                         </li>
-                        <li>
+                        {{-- <li>
                             <button type="button" class="del-btn rounded-2  m-2">Delete</button>
-                        </li>
+                        </li> --}}
                     </ul>
                 </div>
                 <!-- !Edit Button -->

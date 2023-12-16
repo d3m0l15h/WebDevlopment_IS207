@@ -17,7 +17,8 @@ use Log;
 
 class JobController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         $search_job = request('search');
         $location = request('location');
 

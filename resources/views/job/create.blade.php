@@ -98,22 +98,6 @@
                     </div>
                     <div class="mb-3">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="activation" value="active"
-                                id="flexRadioDefault1" checked>
-                            <label class="form-check-label" for="flexRadioDefault1">
-                                Active
-                            </label>
-                        </div>
-                        <div class="form-check mb-4">
-                            <input class="form-check-input" type="radio" name="activation" value="unactive"
-                                id="flexRadioDefault2">
-                            <label class="form-check-label" for="flexRadioDefault2">
-                                Unactive
-                            </label>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <div class="form-check">
                             <input class="form-check-input" type="radio" name="worktime" value="Full-time"
                                 id="flexRadioDefault3" checked>
                             <label class="form-check-label" for="flexRadioDefault3">
