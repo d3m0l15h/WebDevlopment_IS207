@@ -13,16 +13,26 @@ use Log;
 class EmployerController extends Controller
 {
     //
-    public function manage_jobs() {
-        if (!Auth::check()) {
+    public function manage_jobs(Request $request) {
+        if(!Auth::check()) {
             return abort(404);
         }
-        if(auth()->user()->role == 'user') {
+        if(auth()->user()->role != 'employer') {
             return abort(404);
         }
+
         $employer_id = auth()->user()->employer->id;
         $jobs = Job::where('eid', '=', $employer_id)->get() ;
-        $applies = Apply::all();
-        return view('employer.job_management', compact('applies', 'jobs'));
+        
+        if ($request->has('search')) {
+            $search = $request->get('search');
+            $jobs = Job::where('name', 'like', '%' . $search . '%')
+                        ->where('eid', '=', $employer_id)
+                        ->get();
+        } else {
+            $jobs = Job::where('eid', '=', $employer_id)->get() ;
+        }
+    
+        return view('employer.job_management', ['jobs' => $jobs]);
     }
 }

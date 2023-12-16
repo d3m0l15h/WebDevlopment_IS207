@@ -30,6 +30,7 @@ class ProfileController extends Controller
         $employerID = auth()->user()->employer->id;
         $employer = Employer::find($employerID);
 
+        $employer->name = $request->name;
         $employer->location = $request->location;
         $employer->workingtime = $request->workingTime;
         $employer->introduce = $request->introduce;
@@ -75,5 +76,9 @@ class ProfileController extends Controller
         $user->save();
         session()->flash('success', 'Cập nhật thông tin thành công');
         return redirect()->route('profile');
+    }
+    public function company(Request $request)
+    {
+        
     }
 }

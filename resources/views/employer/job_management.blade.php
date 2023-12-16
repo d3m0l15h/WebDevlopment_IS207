@@ -17,13 +17,15 @@
         <div class="col-lg-3 box-content box-sidebar">
 
             <div class="sidebar box">
-                <h3>Bộ lọc</h3>
+                <h3>Tìm kiếm</h3>
+                <form action="{{ route('employer.manage_jobs')}}" method="GET">
                 <ul class="list-group list-group-flush mt-4 ">
-                   <input type="text" name="" id="">
-                </ul>
-                <button type="file" class="w-100 bg-color border-0 button rounded-2 p-2 text-white mt-4" >
-                    Áp dụng
-                </button>
+                  <input type="text" name="search" id="search">
+                  </ul>
+                  <button type="submit" class="w-100 bg-color border-0 button rounded-2 p-2 text-white mt-4" >
+                    Tìm
+                  </button>
+                </form>
             </div><!-- End Sidebar -->
           </div>  
           <div class="col-lg-8 box-content">
@@ -46,7 +48,7 @@
                 <div class="edit-container h-100 flex-grow-1 ">
                     <ul>
                         <li>
-                            <button type="button" class="edit-btn rounded-2  m-2" onclick="location.href='/job/{{$job->id}}/edit'"><p>Edit</p></button>
+                            <button type="button" class="edit-btn rounded-2  m-2" onclick="location.href='{{ route('job.update', ['id' => $job->id]) }}'"><p>Edit</p></button>
                         </li>
                         <li>
                             <button type="button" class="unac-btn rounded-2  m-2">Unactive</button>

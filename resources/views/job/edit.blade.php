@@ -9,7 +9,7 @@
         </div>
         <section>
             <div class="container">
-                <form action="" method="post">
+                <form action="{{ route('job.update', ['id' => $job->id]) }}" method="post">
                     @csrf
                     <div class="form-floating mb-4">
                         <input type="text" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
@@ -63,36 +63,33 @@
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <input type="number" class="form-control" id="luong" name="salary" placeholder="Nhập lương" value={{$job->salary}}>
-                        @error('salary')
-                            <div class="alert alert-danger mt-2">{{ $message }}</div>
-                        @enderror
+                        <input type="number" class="form-control" id="luong" name="salary" placeholder="Nhập lương" value={{$job->salary}} required>
                     </div>
                     <div class="mb-3">
                         <input type="number" class="form-control" id="minSalary" name="salarymin"
-                            placeholder="Lương tối thiểu" value={{ $job->salarymin}}>
+                            placeholder="Lương tối thiểu" value={{ $job->salarymin}} required>
                     </div>
                     <div class="mb-3">
                         <input type="number" class="form-control" id="maxSalary" name="salarymax"
-                            placeholder="Lương tối đa" value={{ $job->salarymax}}>
+                            placeholder="Lương tối đa" value={{ $job->salarymax}} required>
                     </div>
                     <div class="mb-3">
                         <p class="fw-bold">Hình thức làm việc</p>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="worktype" value="remote" id="remote" {{ $job->worktype == 'remote' ? 'checked' : '' }}>
+                            <input class="form-check-input" type="radio" name="worktype" value="Remote" id="remote" {{ $job->worktype == 'remote' ? 'checked' : '' }}>
                             <label class="form-check-label" for="remote">
                                 Remote
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="worktype" value="company" id="company"
+                            <input class="form-check-input" type="radio" name="worktype" value="Company" id="company"
                             {{ $job->worktype == 'company' ? 'checked' : '' }}>
                             <label class="form-check-label" for="company">
                                 Company
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="worktype" value="hybrid"
+                            <input class="form-check-input" type="radio" name="worktype" value="Hybrid"
                                 id="hybrid" {{ $job->worktype == 'hybrid' ? 'checked' : '' }}>
                             <label class="form-check-label" for="hybrid">
                                 Hybrid
@@ -131,7 +128,7 @@
                             </label>
                         </div>
                         <div class="mb-3">
-                            <input type="submit" class="btn btn-primary" value="Đăng tin">
+                            <input type="submit" class="btn btn-primary" value="Cập nhật">
                     </div>
                 </form>
                 @if (Session::has('success'))

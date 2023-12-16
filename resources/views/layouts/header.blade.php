@@ -26,6 +26,9 @@
     <link href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/vendor/aos/aos.css') }}" rel="stylesheet" />
+    
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <!-- Template Main CSS File -->
     <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet" />
@@ -70,7 +73,7 @@
             <nav id="navmenu" class="navmenu">
                 <ul>
                     <li><a href="/" class="active">Trang chủ</a></li>
-                    <li><a href="{{ route('search') }}">Tìm việc làm</a></li>
+                    <li><a href="{{ route('jobs') }}">Tìm việc làm</a></li>
                     <li class="dropdown has-dropdown" >
                         <a href="#"><span>Công việc</span> <i class="bi bi-chevron-down"></i></a>
                         <ul class="dd-box-shadow">

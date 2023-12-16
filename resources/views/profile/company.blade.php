@@ -11,14 +11,6 @@
   </div>
   <!-- End Page Title -->
   <!-- Blog-details Section - Blog Details Page -->
-  <div class="container profile-nav d-flex flex-row justify-content-start ">
-      <a href="{{route('profile')}}" class="fs-5 active">
-          Thông tin
-      </a>
-      <a href="#" class="fs-5">
-          Quản lý ứng viên
-      </a>
-  </div>
   <section id="blog-details" class="blog-details">
       <div class="container" data-aos="fade-up" data-aos-delay="100">
           <div class="row g-5 d-flex gap-2 position-relative">
@@ -30,35 +22,6 @@
                           </div>
                       </div>
                   
-                      <h6 class="fw-bold mb-2 text-center">Hoàn thiện doanh nghiệp của bạn</h6>
-                      <ul class="list-group list-group-flush mt-4 ">
-                  
-                          <li class="list-group-item"> 
-                            <a href="#introduce-section">
-                              + Giới thiệu
-                            </a>
-                          </li>
-                          <li class="list-group-item">
-                              <a href="#location-section">
-                                  + Địa chỉ
-                              </a>
-                          </li>
-                          <li class="list-group-item">
-                              <a href="#workingtime-section">
-                                  + Thời gian làm việc
-                              </a>
-                          </li>
-                          <li class="list-group-item">
-                              <a href="#project-section">
-                                  + Dự án đã thực hiện
-                              </a>
-                          </li>
-                          <li class="list-group-item">
-                              <a href="#prize-section">
-                                  + Giải thưởng 
-                              </a>
-                          </li>
-                      </ul>
                       <button  class="w-100 bg-color border-0 button rounded-2 p-2 text-white mt-4">
                       </button>
                   </div>

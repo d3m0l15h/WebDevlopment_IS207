@@ -32,6 +32,11 @@ class AdminController extends Controller
         return view('admin.employ_manage', compact('employers'));
     }
 
+    public function manage_request() {
+        
+        return view('admin.request_manage');
+    }
+
     public function dashboard() {
         return view('admin.index');
     }

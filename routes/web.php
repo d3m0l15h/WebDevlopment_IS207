@@ -8,6 +8,7 @@ use App\Http\Controllers\JobController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,12 +27,7 @@ Route::get('/', [
     'index'
 ])->name('home');
 
-//searchController
-Route::get('/search',[
-    SearchController::class,
-    'search'
-])->name('search');
-
+//////////////////ACCOUNT
 //Account Register
 Route::post('/account/register', [
     AccountController::class,
@@ -65,13 +61,14 @@ Route::get('/account/logout', [
     'logout'
 ])->name('logout');
 
-//profile
+////////////////////////PROFILE
 Route::get('/profile', [
     ProfileController::class,
     'index'
 ])->name('profile');
 
 //profile update
+//POST
 Route::post('/profile/user', [
     ProfileController::class,
     'user'
@@ -81,6 +78,7 @@ Route::get('/profile/user', function () {
 });
 
 //profile update
+//POST
 Route::post('/profile/employer', [
     ProfileController::class,
     'employer'
@@ -89,30 +87,28 @@ Route::get('/profile/employer', function () {
     abort(404);
 });
 
-//profile employer job-management
+////////////////////////////EMPLOYER
+//GET job list
 Route::get('/job/list', [
     EmployerController::class,
     'manage_jobs'
-])->name('job.list');
+])->name('employer.manage_jobs');
 
+//////////////////USER
 //profil user job
-Route::get('/profile/applies', [
-    JobController::class,
-    'user_jobs'
-])->name('profile.myapplies');
+//GET user job apply
+Route::get('/applied', [
+    UserController::class,
+    'applied'
+])->name('user.applied');
 
-
-Route::get('/admin/employer_request', [
-    JobController::class,
-    'job_request'
-])->name('admin.request');
-
+//POST
 Route::post('/profile/job-accept', [
     JobController::class,
     'job_accept'
 ])->name('profile.jobaccept');
 
-
+//POST
 Route::post('/profile/uploadcv', [
     JobController::class,
     'upload_cv'
@@ -121,39 +117,57 @@ Route::get('/profile/uploadcv', function () {
     abort(404);
 });
 
-//Job
-Route::get('/job/create', [
+//////////////////////////JOB
+Route::get('/jobs', [
     JobController::class,
     'index'
-])->name('job.create');
-
-Route::get('/job/{id}/edit', [
-    JobController::class,
-    'edit_job'
-])->name('job.edit');
-
+])->name('jobs');
+//GET job detail
 Route::get('/job/{slug}', [
     JobController::class,
-    'detail'
+    'show'
 ])->name('job.detail');
-
+//GET job create form
+Route::get('/job/create', [
+    JobController::class,
+    'create'
+])->name('job.create');
+//POST job create
 Route::post('/job/create', [
     JobController::class,
     'store'
 ])->name('job.store');
 
-// Admin
-Route::get('/admin/employer', [
-    AdminController::class,
-    'manage_employer'
-])->name('admin.employer');
+//GET job edit
+Route::get('/job/{id}/edit', [
+    JobController::class,
+    'edit'
+])->name('job.edit');
+//POST job edit
+Route::post('/job/{id}/edit', [
+    JobController::class,
+    'update'
+])->name('job.update');
 
-Route::get('/admin/user', [
-    AdminController::class,
-    'manage_user'
-])->name('admin.user');
+//Admin
+Route::group(['middleware' => ['admin']], function () {
+    Route::get('/admin/employer', [
+        AdminController::class,
+        'manage_employer'
+    ])->name('admin.employer');
 
-Route::get('/admin/dashboard', [
-    AdminController::class,
-    'dashboard'
-])->name('admin.dashboard');
+    Route::get('/admin/user', [
+        AdminController::class,
+        'manage_user'
+    ])->name('admin.user');
+
+    Route::get('/admin/dashboard', [
+        AdminController::class,
+        'dashboard'
+    ])->name('admin.dashboard');
+
+    Route::get('/admin/request', [
+        AdminController::class,
+        'manage_request'
+    ])->name('admin.request');
+});

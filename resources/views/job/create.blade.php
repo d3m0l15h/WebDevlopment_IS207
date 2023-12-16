@@ -63,36 +63,33 @@
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <input type="number" class="form-control" id="luong" name="salary" placeholder="Nhập lương">
-                        @error('salary')
-                            <div class="alert alert-danger mt-2">{{ $message }}</div>
-                        @enderror
+                        <input type="number" class="form-control" id="luong" name="salary" placeholder="Nhập lương" required>
                     </div>
                     <div class="mb-3">
                         <input type="number" class="form-control" id="minSalary" name="salarymin"
-                            placeholder="Lương tối thiểu" value=0>
+                            placeholder="Lương tối thiểu" value=0 required>
                     </div>
                     <div class="mb-3">
                         <input type="number" class="form-control" id="maxSalary" name="salarymax"
-                            placeholder="Lương tối đa" value="0">
+                            placeholder="Lương tối đa" value="0" required>
                     </div>
                     <div class="mb-3">
                         <p class="fw-bold">Hình thức làm việc</p>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="worktype" value="remote" id="remote">
+                            <input class="form-check-input" type="radio" name="worktype" value="Remote" id="remote">
                             <label class="form-check-label" for="remote">
                                 Remote
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="worktype" value="company" id="company"
+                            <input class="form-check-input" type="radio" name="worktype" value="Company" id="company"
                                 checked>
                             <label class="form-check-label" for="company">
                                 Company
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="worktype" value="hybrid"
+                            <input class="form-check-input" type="radio" name="worktype" value="Hybrid"
                                 id="hybrid">
                             <label class="form-check-label" for="hybrid">
                                 Hybrid

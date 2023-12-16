@@ -17,11 +17,45 @@ use Log;
 
 class JobController extends Controller
 {
-    public function index()
+    public function index() {
+        $search_job = request('search');
+        $location = request('location');
+
+    if ($search_job && $location) {
+        $jobs = Job::where('name', 'like', '%' . $search_job . '%')
+                    ->where('location', 'like', '%' . $location . '%')
+                    ->get();
+    } elseif ($search_job) {
+        $jobs = Job::where('name', 'like', '%' . $search_job . '%')->get();
+    } elseif ($location) {
+        $jobs = Job::where('location', 'like', '%' . $location . '%')->get();
+    } else {
+        $jobs = Job::paginate(20);
+    }
+
+    return view('job.index', compact('jobs'));
+    }
+    public function show($slug)
+    {
+        $parts = explode('-', $slug);
+        $jobid = end($parts);
+        $job = Job::where('id', $jobid)->first();
+        $applied = null;
+
+        // if (Auth::check()) {
+        //     $applied = Apply::where([['jid', '=', $jobid], ['uid', '=', auth()->user()->user->id]])->get();
+        // }
+       
+        if (!$job) {
+        // Handle the case where no job with the given slug exists.
+        }
+        return view('job.detail', compact('job', 'applied'));
+    }
+    public function create()
     {
         if (!Auth::check())
             return abort(404);
-        if (auth()->user()->role == 'user')
+        if (auth()->user()->role != 'employer')
             return abort(404);
         return view('job.create');
     }
@@ -33,9 +67,6 @@ class JobController extends Controller
             'strength' => 'required',
             'reason' => 'required',
             'required' => 'required',
-            'salary' => 'required',
-            'salarymin' => 'required',
-            'salarymax' => 'required',
             'location' => 'required|in:HCM,HN,DN,CT,Hue',
         ]);
         $job = new Job();
@@ -55,53 +86,59 @@ class JobController extends Controller
         session()->flash('success', 'Job created successfully');
         return redirect()->back();
     }
-
-    public function detail($slug)
-    {
-        $parts = explode('-', $slug);
-        $jobid = end($parts);
-        $job = Job::where('id', $jobid)->first();
-        $applied = null;
-
-        if (Auth::check()) {
-            $applied = Apply::where([['jid', '=', $jobid], ['uid', '=', auth()->user()->user->id]])->get();
-        }
-       
-        if (!$job) {
-        // Handle the case where no job with the given slug exists.
-        }
-        return view('job.detail', compact('job', 'applied'));
-    }
-
-    public function user_jobs()
-    {
-        $jobs = Job::all();
-        return view('user.applied', compact('jobs'));
-    }
-
-    public function edit_job($id)
+    public function edit($id)
     {
         $job = Job::where('id', '=', $id)->get()[0];
-        FacadesLog::info($job);
         return view('job.edit', compact('job'));
     }
-
-    public function job_request() {
-        $employer_id = auth()->user()->employer->id;
-        if($employer_id == null)
-            return abort(404);
-        $jobs = Job::where('eid', '=', $employer_id)->get();
-        $applies = [];
-
-        if (!empty($jobs)) {
-            $job_ids = $jobs->map(fn($item): int => $item->id);
-            $applies = Apply::whereIn('jid', $job_ids)->get();
-            //Log::info($applies);
-        }
-        $mapping_status = function($str) { return $this->mapping_status($str); };
-
-        return view('admin.request_manage', compact('applies', 'mapping_status'));
+    public function update(Request $request){
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'strength' => 'required',
+            'reason' => 'required',
+            'required' => 'required',
+            'location' => 'required|in:HCM,HN,DN,CT,Hue',
+        ],[
+            'title.required' => 'The title field cannot empty.',
+            'description.required' => 'The description field cannot empty.',
+            'strength.required' => 'The strength field cannot empty.',
+            'reason.required' => 'The reason field cannot empty.',
+            'required.required' => 'The required field cannot empty.',
+        ]);
+        $job = Job::find($request->id);
+        $job->name = $request->title;
+        $job->descriptions = $request->description;
+        $job->strength = $request->strength;
+        $job->reasons = $request->reason;
+        $job->requirements = $request->required;
+        $job->salary = $request->salary;
+        $job->salarymin = (float)$request->salarymin;
+        $job->salarymax = (float)$request->salarymax;
+        $job->location = $request->location;
+        $job->worktype = $request->worktype;
+        $job->worktime = $request->worktime;
+        $job->save();
+        session()->flash('success', 'Job updated successfully');
+        return redirect()->back();
     }
+    
+    // public function job_request() {
+    //     $employer_id = auth()->user()->employer->id;
+    //     if($employer_id == null)
+    //         return abort(404);
+    //     $jobs = Job::where('eid', '=', $employer_id)->get();
+    //     $applies = [];
+
+    //     if (!empty($jobs)) {
+    //         $job_ids = $jobs->map(fn($item): int => $item->id);
+    //         $applies = Apply::whereIn('jid', $job_ids)->get();
+    //         //Log::info($applies);
+    //     }
+    //     $mapping_status = function($str) { return $this->mapping_status($str); };
+
+    //     return view('admin.request_manage', compact('applies', 'mapping_status'));
+    // }
 
     private function mapping_status($status) {
         if ($status == '2') {

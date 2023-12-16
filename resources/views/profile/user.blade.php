@@ -12,11 +12,11 @@
       </div>
   </div>
   <div class="container profile-nav d-flex flex-row justify-content-start ">
-      <a href="cv.php" class="fs-5 active">
+      <a href="{{route('profile')}}" class="fs-5 active">
           Thông tin
       </a>
-      <a href="#" class="fs-5">
-          Quản lý ứng viên
+      <a href="{{route('user.applied')}}" class="fs-5">
+          Công việc
       </a>
   </div>
   <section id="blog-details" class="blog-details">

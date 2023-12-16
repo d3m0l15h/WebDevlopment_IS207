@@ -13,10 +13,10 @@
 
     <!-- Blog-details Section - Blog Details Page -->
     <div class="container profile-nav d-flex flex-row justify-content-start ">
-      <a href="cv.php" class="fs-5 ">
-          Hồ sơ của tôi
+      <a href="{{route('profile')}}" class="fs-5 ">
+          Thông tin
       </a>
-      <a href="my-jobs.php" class="fs-5 active">
+      <a href="{{route('user.applied')}}" class="fs-5 active">
           Công việc
       </a>
     </div>
