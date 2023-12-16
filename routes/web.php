@@ -45,6 +45,11 @@ Route::get('/account/employer', function () {
     abort(404);
 });
 
+Route::get('/job/apply', [
+    EmployerController::class,
+    'manage_applies'
+])->name('employer.manage_applies');
+
 //Account Login
 Route::post('/account/login', [
     AccountController::class,
@@ -121,7 +126,6 @@ Route::get('/jobs', [
     JobController::class,
     'index'
 ])->name('jobs');
-
 //GET job create form
 Route::get('/job/create', [
     JobController::class,

@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
-    <title>FindJob</title>
+    <title>FindingJob.</title>
     <meta content="" name="description" />
     <meta content="" name="keywords" />
 
@@ -124,6 +124,7 @@
                                         <li><a href="{{ route('profile') }}">Hồ sơ của tôi</a></li>
                                         <li><a href="{{ route('job.create') }}">Đăng tin tuyển dụng</a></li>
                                         <li><a href="{{ route('employer.manage_jobs') }}">Danh Sách Công Việc</a></li>
+                                        <li><a href="{{ route('employer.manage_applies') }}">Danh Sách Ứng Viên</a></li>
                                     @endif
                                     @if (auth()->user()->role == 'admin')
                                         <li><a href="{{ route('admin.request') }}">Yêu cầu đăng kí NTD</a></li>
