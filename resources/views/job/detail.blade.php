@@ -85,23 +85,20 @@
                                     <p><i class="fas fa-clock"></i> {{ $job->createon->diffForHumans() }}</p>
                                 </div>
                                 {{-- @if (sizeof($applied) == 0) --}}
-                                @if (Auth::check())
-                                    @if (auth()->user()->role == 'user')
+                                @if (Auth::check() && auth()->user()->role == 'user')
+                                    @if ($applied == null)
                                         <button data-bs-toggle="modal" data-bs-target="#send-cv" type="button"
-                                            class="w-100 bg-color rounded-2 p-2 text-light fw-2 emp-btn border-0 ">ỨNG
-                                            TUYỂN</button>
+                                            class="w-100 bg-color rounded-2 p-2 text-light fw-2 emp-btn border-0">ỨNG TUYỂN</button>
+                                    @else
+                                        <button data-bs-toggle="modal" data-bs-target="#send-cv" disabled type="button"
+                                            class="w-100 bg-color rounded-2 p-2 text-light fw-2 emp-btn border-0 ">ĐÃ ỨNG TUYỂN</button>
                                     @endif
                                 @else
                                     <button data-bs-toggle="modal" data-bs-target="#send-cv" type="button"
                                         class="w-100 bg-color rounded-2 p-2 text-light fw-2 emp-btn border-0 "
                                         style="background-color: gray" disabled>ỨNG TUYỂN</button>
                                 @endif
-                                {{-- @else
-                                    <button data-bs-toggle="modal" data-bs-target="#send-cv" disabled type="button"
-                                        class="w-100 bg-color rounded-2 p-2 text-light fw-2 emp-btn border-0 ">ĐÃ ỨNG
-                                        TUYỂN</button>
-                                @endif --}}
-                                <!-- <button style="background-color:gray" data-bs-toggle="modal" data-bs-target="#send-cv" type="button" class="w-100 rounded-2 p-2 text-light fw-2 emp-btn border-0 pe-none">ỨNG TUYỂN</button> -->
+    
 
                             </div>
                             <div class="sidebar-item tags">

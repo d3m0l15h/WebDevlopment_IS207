@@ -42,9 +42,9 @@ class JobController extends Controller
         $job = Job::where('id', $jobid)->first();
         $applied = null;
 
-        // if (Auth::check()) {
-        //     $applied = Apply::where([['jid', '=', $jobid], ['uid', '=', auth()->user()->user->id]])->get();
-        // }
+        if (Auth::check()) {
+            $applied = Apply::where([['jid', '=', $jobid], ['uid', '=', auth()->user()->user->id]])->get()[0];
+        }
        
         if (!$job) {
         // Handle the case where no job with the given slug exists.
