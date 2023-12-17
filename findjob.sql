@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 17, 2023 at 05:40 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Generation Time: Dec 17, 2023 at 05:50 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -106,8 +106,8 @@ CREATE TABLE `employers` (
   `location` varchar(255) DEFAULT NULL,
   `workingtime` varchar(255) DEFAULT NULL,
   `quality` varchar(255) DEFAULT NULL,
-  `ownproject` varchar(255) DEFAULT NULL,
-  `prize` varchar(255) DEFAULT NULL,
+  `ownproject` text DEFAULT NULL,
+  `prize` text DEFAULT NULL,
   `phone` varchar(255) NOT NULL,
   `introduce` text DEFAULT NULL,
   `logo` varchar(255) DEFAULT NULL,
@@ -171,13 +171,13 @@ INSERT INTO `jobs` (`id`, `name`, `salary`, `salarymin`, `salarymax`, `reasons`,
 CREATE TABLE `users` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(50) DEFAULT NULL,
-  `introduce` varchar(255) DEFAULT NULL,
-  `education` varchar(255) DEFAULT NULL,
-  `experience` varchar(255) DEFAULT NULL,
-  `skill` varchar(255) DEFAULT NULL,
-  `ownproject` varchar(255) DEFAULT NULL,
-  `certificate` varchar(255) DEFAULT NULL,
-  `prize` varchar(255) DEFAULT NULL,
+  `introduce` text DEFAULT NULL,
+  `education` text DEFAULT NULL,
+  `experience` text DEFAULT NULL,
+  `skill` text DEFAULT NULL,
+  `ownproject` text DEFAULT NULL,
+  `certificate` text DEFAULT NULL,
+  `prize` text DEFAULT NULL,
   `status` varchar(1) NOT NULL DEFAULT '1',
   `location` varchar(255) DEFAULT NULL,
   `avatar` text DEFAULT NULL,
