@@ -12,7 +12,7 @@
                 <div class="col-lg-10">
                     <h2 data-aos="fade-up" data-aos-delay="100">
                         Chào mừng dến với
-                        <span class="welcome-title main-color">Find Your Job</span>
+                        <span class="welcome-title main-color">Finding Job.</span>
                     </h2>
                     <p data-aos="fade-up" data-aos-delay="200">
                         Chúng tôi giúp bạn định hướng nghề nghiệp
