@@ -164,11 +164,19 @@ Route::group(['middleware' => ['admin']], function () {
         AdminController::class,
         'manage_employer'
     ])->name('admin.employer');
+    Route::get('/admin/employer/{id}/status_toggle', [
+        AdminController::class,
+        'employer_status'
+    ])->name('admin.employer_status');
 
     Route::get('/admin/user', [
         AdminController::class,
         'manage_user'
     ])->name('admin.user');
+    Route::get('/admin/user/{id}/status_toggle', [
+        AdminController::class,
+        'user_status'
+    ])->name('admin.user_status');
 
     Route::get('/admin/dashboard', [
         AdminController::class,
@@ -179,10 +187,10 @@ Route::group(['middleware' => ['admin']], function () {
         AdminController::class,
         'manage_request'
     ])->name('admin.request');
-    Route::get('/user/{id}', [
+    Route::get('/admin/user/{id}', [
         AdminController::class,
         'user_show'
-    ])->name('admin.view_request');
+    ])->name('admin.user_show');
     Route::post('/admin/request', [
         AdminController::class,
         'request_become_employer'

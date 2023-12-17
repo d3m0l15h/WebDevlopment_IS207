@@ -15,9 +15,9 @@
                     <div class="box">
                         <h3>Yêu Cầu Làm Nhà Tuyển Dụng</h3>
                         <div class="view-content p-4">
-                            <form class="input-group flex-nowrap mb-4 " action="/Admin/EmpManage" method="get">
+                            <form class="input-group flex-nowrap mb-4 " action="{{route('admin.request')}}" method="get">
                                 <span class="input-group-text" id="addon-wrapping"></span>
-                                <input name="name" type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
+                                <input name="search" type="text" class="form-control" placeholder="Username or Email" aria-label="Username" aria-describedby="addon-wrapping">
                             </form>
                             <div class="w-100 user-container d-flex flex-wrap">
                                 @if ($employers == null || sizeof($employers) == 0 )
@@ -26,12 +26,12 @@
                                 @foreach($employers as $employer)
                                 <div class="row w-100">
                                     <div class="col a-box rounded-4 p-4 item-user w-50 position-relative" style="border-radius: 12px;">
-                                        <form class="position-absolute top-0 end-0 mt-1 me-4" action="{{ route('admin.request_become_employer') }}" method="POST">
+                                        <form class="position-absolute end-0 mt-1 me-4" action="{{ route('admin.request_become_employer') }}" method="POST">
                                             @csrf
                                             <div class="dropdown">
                                                 <button class="btn btn-secondary bg-color" type="submit" >Xác nhận</button>
                                             </div>
-                                            <input id="eid" name="eid" value="{{$employer->id}}" style="display: none;"/>
+                                            <input id="eid" name="eid" value="{{$employer->id}}" type="hidden"/>
                                         </form>
                                         <div class="col pt-2 ">
                                             <p class="row fw-bold p-0 m-0">{{$employer->name}}</p>

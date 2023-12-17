@@ -116,7 +116,7 @@
                               Thời gian làm việc
                           </h3>
                           <div class="form-floating" id="project-section">
-                              <textarea class="editor" name="workingTime" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px">{{ $userProfile->workingtime }}</textarea>
+                              <textarea name="workingTime" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px">{{ $userProfile->workingtime }}</textarea>
                           </div>
                             @error('workingTime')
                                 <div class="alert alert-danger mt-2">{{ $message }}</div>
@@ -156,10 +156,6 @@
               @if (session('success'))
               <script>
                 toastr.success('{{ session('success') }}');
-            </script>
-            @else
-            <script>
-                toastr.error('Update failed');
             </script>
                 @endif
           </div>
