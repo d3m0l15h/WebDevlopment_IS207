@@ -6,6 +6,7 @@ use App\Http\Controllers\JobController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -92,3 +93,28 @@ Route::get('/job/create', [
     JobController::class,
     'index'
 ])->name('job.create');
+
+Route::get('/admin', [
+    AdminController::class,
+    'index'
+])->name('admin');
+
+Route::get('/admin/user-management', [
+    AdminController::class,
+    'userManagement'
+])->name('admin.user');
+
+Route::get('/admin/employer-management', [
+    AdminController::class,
+    'empManagement'
+])->name('admin.employer');
+
+Route::get('/admin/view-user/{id}', [
+    AdminController::class,
+    'viewUser'
+])->name('admin.view');
+
+Route::get('/admin/view-employer/{id}', [
+    AdminController::class,
+    'viewEmp'
+])->name('admin.view');

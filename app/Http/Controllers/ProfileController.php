@@ -58,4 +58,5 @@ class ProfileController extends Controller
         session()->flash('success', 'Cập nhật thông tin thành công');
         return redirect()->route('profile');
     }
+
 }
