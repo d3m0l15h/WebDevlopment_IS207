@@ -127,7 +127,7 @@
                                         <li><a href="{{ route('employer.manage_applies') }}">Danh Sách Ứng Viên</a></li>
                                     @endif
                                     @if (auth()->user()->role == 'admin')
-                                        <li><a href="{{ route('admin.request') }}">Yêu cầu đăng kí NTD</a></li>
+                                        <li><a href="{{ route('admin.request') }}">Yêu cầu làm Nhà Tuyển Dụng</a></li>
                                         <li><a href="{{ route('admin.dashboard') }}">Quản Trị Viên</a></li>
                                         <li><a href="{{ route('admin.employer') }}">Quản Lý Nhà Tuyển Dụng</a></li>
                                         <li><a href="{{ route('admin.user') }}">Quản Lý Người Lao Động</a></li>

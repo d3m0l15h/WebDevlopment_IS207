@@ -32,7 +32,7 @@ class AccountController extends Controller
 
         // Create a new user and save it to the database
         $user = User::create([
-                'email' => $request->email,
+                'email' => $request->email
         ]);
         $account = Account::create([
             'username' => $request->username,
@@ -74,6 +74,7 @@ class AccountController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'location' => $request->location,
+            'status' => '3' // status la 3 (Cho Admin Accept)
         ]);
 
         $account = Account::create([

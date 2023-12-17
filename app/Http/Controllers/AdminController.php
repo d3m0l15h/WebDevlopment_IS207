@@ -33,8 +33,13 @@ class AdminController extends Controller
     }
 
     public function manage_request() {
-        
-        return view('admin.request_manage');
+        $employers = Employer::where('status', '=', '3')->get();
+        return view('admin.request_manage', compact('employers'));
+    }
+
+    public function request_become_employer(Request $request) {
+        Employer::find($request->eid)->update(['status' => '1']);
+        return redirect()->back();
     }
 
     public function dashboard() {

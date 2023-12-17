@@ -174,4 +174,8 @@ Route::group(['middleware' => ['admin']], function () {
         AdminController::class,
         'manage_request'
     ])->name('admin.request');
+    Route::post('/admin/request', [
+        AdminController::class,
+        'request_become_employer'
+    ])->name('admin.request_become_employer');
 });
