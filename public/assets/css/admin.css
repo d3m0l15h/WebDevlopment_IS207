@@ -1,76 +1,84 @@
-.blog-logo img {
-  width: 100%;
-  height: auto;
+﻿.blog-logo img {
+    width: 100%;
+    height: auto;
 }
 
 .page-title .heading h1,
 .page-title nav ol li + li::before {
-  color: #ffff;
+    color: #ffff;
 }
 
 .blog-details {
-  background-color: rgba(var(--default-color-rgb), 0.05);
-  background-image: linear-gradient(
-    179deg,
-    rgba(0, 0, 0, 1) 35.2%,
-    var(--main-color) 150.9%
-  );
+    background-color: rgba(var(--default-color-rgb), 0.05);
+    background-image: linear-gradient(
+        179deg,
+        rgba(0, 0, 0, 1) 35.2%,
+        var(--main-color) 150.9%
+    );
 }
 
 .page-title .heading {
-  padding-bottom: 40px;
+    padding-bottom: 40px;
 }
 
 .blog-details .box {
-  background-color: #fff;
-  border-radius: 8px;
-  height: fit-content;
-  position: relative;
-  margin-top: 10px;
+    background-color: #fff;
+    border-radius: 8px;
+    height: fit-content;
+    position: relative;
+    margin-top: 10px;
 }
 
 .blog-details .box {
-  padding: 30px;
+    padding: 30px;
 }
 
 .blog-details .box-content {
-  padding: 0;
-  margin: 0;
-  padding-top: 120px;
+    padding: 0;
+    margin: 0;
+    padding-top: 120px;
 }
 
 .blog-details .post-img {
-  padding: 30px;
+    padding: 30px;
 }
 
 .blog-details .box-sidebar {
-  position: sticky;
-  overflow: auto;
+    position: sticky;
+    overflow: auto;
 }
 
 .avatar-containter {
-  width: 150px;
+    width: 150px;
 }
 
 .avatar-containter img {
-  border-radius: 50%;
+    border-radius: 50%;
 }
 
 .box .edit-icon {
-  float: inline-end;
-  width: 24px;
-  height: 24px;
+    float: inline-end;
+    width: 24px;
+    height: 24px;
 }
 
 .cv-image {
-  width: 100%;
+    width: 100%;
 }
 
 .tab p {
-  margin: 0;
+    margin: 0;
 }
 
 .a-box {
-  background-color: #ffff;
-  margin: 12px;
+    background-color: #ffff;
+    margin: 12px;
+}
+
+.item-dashboard {
+    height: 290px;
+}
+
+.item-dashboard h2 {
+    font-size: 100px;
 }
