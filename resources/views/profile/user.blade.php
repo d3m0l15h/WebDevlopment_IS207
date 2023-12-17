@@ -81,6 +81,7 @@
                         <div class="avatar-containter">
                             @if($userProfile->avatar != null && strlen($userProfile->avatar) > 4)
                             <img src="{{asset($userProfile->avatar)}}" alt="" class="w-100 ">
+                            <input type="file" name="avatar" class="avatar">
                             @else
                             <img src="{{ asset('assets/img/blog/blog-author-2.jpg')}}" alt="" class="w-100">
                             <input type="file" name="avatar" class="avatar">
