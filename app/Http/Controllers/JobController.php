@@ -42,8 +42,11 @@ class JobController extends Controller
         $job = Job::where('id', $jobid)->first();
         $applied = null;
 
-        if (Auth::check()) {
-            $applied = Apply::where([['jid', '=', $jobid], ['uid', '=', auth()->user()->user->id]])->get()[0];
+        if (Auth::check() && auth()->user()->role == 'user') {
+            $result = Apply::where([['jid', '=', $jobid], ['uid', '=', auth()->user()->user->id]])->get();
+            if (sizeof($result) != 0) {
+                $applied = $result[0];
+            }
         }
        
         if (!$job) {
