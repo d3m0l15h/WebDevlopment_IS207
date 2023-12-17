@@ -67,7 +67,7 @@
                         <div class="sidebar box">
                             <div class="sidebar-item categories">
                                 <h3 class="sidebar-title mb-1">{{ $job->name }}</h3>
-                                <a href="#" class="ms-0">Xem công ty</a>
+                                <a href="{{route('profile.company',['slug' => Str::slug($job->employer->name).'-'.$job->eid])}}" class="ms-0">Xem công ty</a>
                                 <div class="salary-wrapper d-flex flex-row justify-content-start gap-2 mt-1">
                                     <img src="{{ asset('assets/img/circle-money.png') }}" width="20" height="20"
                                         alt="">

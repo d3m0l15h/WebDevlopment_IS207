@@ -77,9 +77,17 @@ class ProfileController extends Controller
         session()->flash('success', 'Cập nhật thông tin thành công');
         return redirect()->route('profile');
     }
-    public function company(Request $request)
+    public function company($slug)
     {
+        $parts = explode('-', $slug);
+        $eid = end($parts);
+        $employer = Employer::find($eid);
+        if ($employer == null) {
+            return abort(404);
+        }
+        $email = $employer->accounts->first()->email;
         
+        return view('profile.company', ['employer' => $employer, 'email' => $email]);
     }
 
 }

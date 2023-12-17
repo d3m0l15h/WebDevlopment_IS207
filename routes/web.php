@@ -65,7 +65,7 @@ Route::get('/account/logout', [
     'logout'
 ])->name('logout');
 
-////////////////////////PROFILE
+////////////////////////////PROFILE
 Route::get('/profile', [
     ProfileController::class,
     'index'
@@ -91,6 +91,11 @@ Route::get('/profile/employer', function () {
     abort(404);
 });
 
+Route::get('/employer/{slug}', [
+    ProfileController::class,
+    'company'
+])->name('profile.company');
+
 ////////////////////////////EMPLOYER
 //GET job list
 Route::get('/job/list', [
@@ -98,7 +103,8 @@ Route::get('/job/list', [
     'manage_jobs'
 ])->name('employer.manage_jobs');
 
-//////////////////USER
+
+/////////////////////////////USER
 //profil user job
 //GET user job apply
 Route::get('/applied', [
@@ -173,4 +179,8 @@ Route::group(['middleware' => ['admin']], function () {
         AdminController::class,
         'manage_request'
     ])->name('admin.request');
+    Route::get('/user/{id}', [
+        AdminController::class,
+        'user_show'
+    ])->name('admin.view_request');
 });
