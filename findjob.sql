@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 14, 2023 at 05:48 PM
+-- Generation Time: Dec 17, 2023 at 04:31 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -46,9 +46,10 @@ CREATE TABLE `accounts` (
 INSERT INTO `accounts` (`id`, `username`, `email`, `password`, `role`, `userid`, `employerid`, `adminid`, `status`) VALUES
 (1, 'user', 'user@gmail.com', '$2y$10$ELdxtgw4BD/KYvo1zYIRbONWKAIof5kAu1Y7Wb0zNjF/rFDWNVN0y', 'user', 1, NULL, NULL, '1'),
 (2, 'emp', 'employer@gmail.com', '$2y$10$WRm0yPFVtnWR.8bpVBlYxOrCCtZK4kY5mPGKfOYoVG7OInn9s/TiG', 'employer', NULL, 1, NULL, '1'),
-(3, 'admin', 'duydao@gbst.com', '$2y$10$OWR0Q/HgrLDBRyJaUtWT3.PnX6K2ScAWlW2EgZRa.3fFSnAo1AgnG', 'employer', NULL, 1, NULL, '1'),
+(3, 'admin', 'duydao@gbst.com', '$2y$10$OWR0Q/HgrLDBRyJaUtWT3.PnX6K2ScAWlW2EgZRa.3fFSnAo1AgnG', 'admin', NULL, 1, NULL, '1'),
 (5, 'duyd', 'user2@gmail.com', '$2y$10$l/B3XT0niwFJs/GcVF9M6OyCdGo5ITbObGBHathtfY5fF9aPIGOue', 'user', 2, NULL, NULL, '1'),
-(6, 'nab', 'nab@gmail.com', '$2y$10$2UyKVxh4bme6etxMDxg5ru2YgUztlFFPWYShzM5cxRPIBHtc9oajK', 'employer', NULL, 2, NULL, '1');
+(6, 'nab', 'nab@gmail.com', '$2y$10$2UyKVxh4bme6etxMDxg5ru2YgUztlFFPWYShzM5cxRPIBHtc9oajK', 'employer', NULL, 2, NULL, '1'),
+(7, 'tyme', 'a.a@a.a', '$2y$10$mAI38u0U3GZUcpo6HdS4SOj3nxFQXbZWZNoELiZqbRP6aIiYl6ykK', 'employer', NULL, 3, NULL, '1');
 
 -- --------------------------------------------------------
 
@@ -90,6 +91,7 @@ CREATE TABLE `applies` (
 
 INSERT INTO `applies` (`jid`, `uid`, `time`, `cv`, `letter`, `status`) VALUES
 (1, 1, '2023-12-12 00:38:08', '', 'fdsgsdgd', '3'),
+(1, 2, '2023-12-16 15:20:10', 'assets/img/resume/20231216152010Duy.webp', 'ứng tuyển', '1'),
 (7, 2, '2023-12-13 01:12:10', 'assets/img/resume/20231212175009Duy.png', 'Xin hãy tuyển tôi', '3');
 
 -- --------------------------------------------------------
@@ -119,7 +121,8 @@ CREATE TABLE `employers` (
 
 INSERT INTO `employers` (`id`, `name`, `location`, `workingtime`, `quality`, `ownproject`, `prize`, `phone`, `introduce`, `logo`, `status`, `email`) VALUES
 (1, 'FPT', 'Ho Chi Minh', 'Full-time', '50', 'Duy', '1', '099455256', 'Fpt software', 'assets/img/avatar/20231212025557FPT.webp', '1', 'employer@gmail.com'),
-(2, 'NAB Innovation Centre Vietnam', 'Ho Chi Minh', NULL, NULL, NULL, NULL, '9099999555', 'The NAB Innovation Centre Vietnam is owned by NAB - Australia’s largest business bank.', 'assets/img/avatar/20231212163842NAB Innovation Centre Vietnam.webp', '1', NULL);
+(2, 'NAB Innovation Centre Vietnam', 'Ho Chi Minh', NULL, NULL, NULL, NULL, '9099999555', 'The NAB Innovation Centre Vietnam is owned by NAB - Australia’s largest business bank.', 'assets/img/avatar/20231212163842NAB Innovation Centre Vietnam.webp', '1', NULL),
+(3, 'tyme', 'HCM', NULL, NULL, NULL, NULL, '0901 880 200', NULL, NULL, '3', 'a.a@a.a');
 
 -- --------------------------------------------------------
 
@@ -150,7 +153,7 @@ CREATE TABLE `jobs` (
 --
 
 INSERT INTO `jobs` (`id`, `name`, `salary`, `salarymin`, `salarymax`, `reasons`, `descriptions`, `requirements`, `location`, `worktype`, `eid`, `createon`, `strength`, `status`, `worktime`) VALUES
-(1, 'Java Backend Developer (MySQL, Spring)', '1000', 1000.00, 2000.00, 'reason', 'descriptions', 'requirements', 'Ho Chi Minh', 'Company', 1, '2023-12-08 23:58:08', '', '1', 'Full-time'),
+(1, 'Java Backend Developer (MySQL, Spring)', '1000', 1001.00, 2000.00, '<p>reason</p>', '<p>descriptions</p>', '<p>requirements</p>', 'HCM', 'Remote', 1, '2023-12-08 23:58:08', '<p>The strength field cannot empty.</p>', '1', 'Full-time'),
 (2, 'Full stack Developer', '1000', 2000.00, 3000.00, 'reason', 'descriptions', 'requirements', 'Ho Chi Minh', 'Company', 1, '2023-12-08 23:58:08', '', '1', 'Full-time'),
 (3, 'Mobile Developer', '1000', 5000.00, 8000.00, 'reason', 'descriptions', 'requirements', 'Ho Chi Minh', 'Company', 1, '2023-12-08 23:58:08', '', '1', 'Full-time'),
 (4, 'Senior BA Fintech', '1000', 200.00, 300.00, 'reason', 'descriptions', 'requirements', 'Ho Chi Minh', 'Company', 1, '2023-12-08 23:58:08', '', '1', 'Full-time'),
@@ -187,7 +190,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `introduce`, `education`, `experience`, `skill`, `ownproject`, `certificate`, `prize`, `status`, `location`, `avatar`, `phone`, `email`) VALUES
 (1, 'Dat', 'introduce', 'education', 'experience', 'skill', NULL, 'certificate', 'prize', '1', NULL, 'assets/img/avatar/20231212020531Dat.webp', '', 'user@gmail.com'),
-(2, 'Duy', 'Senior Full-stack Developer\r\n12 years of developing software', 'Master', '12', 'Full stack', '11', 'AWS', NULL, '1', 'HCM', 'assets/img/avatar/20231212155759.jpg', '0945869855', 'user2@gmail.com');
+(2, 'Duy', 'Senior Full-stack Developer\r\n12 years of developing software', 'Master', '12', 'Full stack', '11', 'AWS', NULL, '1', 'HCM', 'assets/img/avatar/20231217145250Duy.jpg', '0945869855', 'user2@gmail.com');
 
 --
 -- Indexes for dumped tables
@@ -245,7 +248,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `accounts`
 --
 ALTER TABLE `accounts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `admins`
@@ -257,7 +260,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `employers`
 --
 ALTER TABLE `employers`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `jobs`
