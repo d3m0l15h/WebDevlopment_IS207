@@ -84,11 +84,6 @@ class AccountController extends Controller
             'role' => 'employer',
             'employerid' => $employer->id,
         ]);
-
-        auth()->login($account);
-
-        session()->flash('success', 'Registration successful!');
-
         return redirect()->back();
     }
     public function login(Request $request)
@@ -99,13 +94,18 @@ class AccountController extends Controller
         ]);
         $email = $request->email;
         if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $user = Account::where('email', $request->email)->first();
+            $account = Account::where('email', $request->email)->first();
         } else {
-            $user = Account::where('username', $request->email)->first();
+            $account = Account::where('username', $request->email)->first();
         }
 
-        if ($user && Hash::check($request->password, $user->password)) {
-            Auth::login($user);
+        if ($account && Hash::check($request->password, $account->password)) {
+            if ($account->role == 'employer' && $account->employer->status == '3') {
+                // Employer chua dc accept boi admin
+                session()->flash('fail', 'Employer haven"t actived yet. Please contact admin for more details');
+                return redirect()->back();
+            }
+            Auth::login($account);
             session()->flash('success', 'Login Success');
             return redirect()->back();
         }

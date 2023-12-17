@@ -52,13 +52,27 @@
                           <option selected>Chọn địa điểm</option>
                           <option value="HCM" {{ $job->location == 'HCM' ? 'selected' : '' }}>Hồ Chí Minh</option>
                           <option value="HN" {{ $job->location == 'HN' ? 'selected' : '' }}>Hà Nội</option>
-                          <option value="DN" {{ $job->location == 'DN' ? 'selected' : '' }}>Đà nẵng </option>
+                          <option value="DN" {{ $job->location == 'DN' ? 'selected' : '' }}>Đà nẵng</option>
                           <option value="CT" {{ $job->location == 'CT' ? 'selected' : '' }}>Cần Thơ</option>
                           <option value="Hue" {{ $job->location == 'Hue' ? 'selected' : '' }}>Huế</option>
                             <!-- Add more options as needed -->
                         </select>
                         <label for="floatingSelect">Địa điểm</label>
                         @error('location')
+                            <div class="alert alert-danger mt-2">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-floating mb-4">
+                        <select class="form-control" id="floatingSelect1" name="level">
+                          <option selected>Chọn cấp bậc</option>
+                          <option value="fresher" {{ $job->level == 'fresher' ? 'selected' : '' }}>Fresher</option>
+                          <option value="junior" {{ $job->level == 'junior' ? 'selected' : '' }}>Junior</option>
+                          <option value="senior" {{ $job->level == 'senior' ? 'selected' : '' }}>Senior</option>
+                          <option value="manager" {{ $job->level == 'manager' ? 'selected' : '' }}>Manager</option>
+                          <option value="clevel" {{ $job->level == 'clevel' ? 'selected' : '' }}>C-level</option>
+                        </select>
+                        <label for="floatingSelect1">Cấp bậc ứng viên</label>
+                        @error('level')
                             <div class="alert alert-danger mt-2">{{ $message }}</div>
                         @enderror
                     </div>
@@ -76,20 +90,20 @@
                     <div class="mb-3">
                         <p class="fw-bold">Hình thức làm việc</p>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="worktype" value="Remote" id="remote" {{ $job->worktype == 'remote' ? 'checked' : '' }}>
+                            <input class="form-check-input" type="radio" name="worktype" value="remote" id="remote" {{ $job->worktype == 'remote' ? 'checked' : '' }}>
                             <label class="form-check-label" for="remote">
                                 Remote
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="worktype" value="Company" id="company"
+                            <input class="form-check-input" type="radio" name="worktype" value="company" id="company"
                             {{ $job->worktype == 'company' ? 'checked' : '' }}>
                             <label class="form-check-label" for="company">
                                 Company
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="worktype" value="Hybrid"
+                            <input class="form-check-input" type="radio" name="worktype" value="hybrid"
                                 id="hybrid" {{ $job->worktype == 'hybrid' ? 'checked' : '' }}>
                             <label class="form-check-label" for="hybrid">
                                 Hybrid

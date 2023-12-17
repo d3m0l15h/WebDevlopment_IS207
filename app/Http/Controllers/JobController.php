@@ -85,6 +85,7 @@ class JobController extends Controller
         $job->location = $request->location;
         $job->worktype = $request->worktype;
         $job->worktime = $request->worktime;
+        $job->level = $request->level;
         $job->eid = auth()->user()->employer->id;
         $job->save();
         session()->flash('success', 'Job created successfully');
@@ -122,6 +123,7 @@ class JobController extends Controller
         $job->location = $request->location;
         $job->worktype = $request->worktype;
         $job->worktime = $request->worktime;
+        $job->level = $request->level;
         $job->save();
         session()->flash('success', 'Job updated successfully');
         return redirect()->back();

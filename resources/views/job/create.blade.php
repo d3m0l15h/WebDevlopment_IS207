@@ -62,6 +62,21 @@
                             <div class="alert alert-danger mt-2">{{ $message }}</div>
                         @enderror
                     </div>
+                    <div class="form-floating mb-4">
+                        <select class="form-control" id="floatingSelect1" name="level">
+                          <option selected>Chọn cấp bậc</option>
+                          <option value="fresher" {{ old('level') == 'Fresher' ? 'selected' : '' }}>Fresher</option>
+                          <option value="junior" {{ old('level') == 'Junior' ? 'selected' : '' }}>Junior</option>
+                          <option value="senior" {{ old('level') == 'Senior' ? 'selected' : '' }}>Senior</option>
+                          <option value="manager" {{ old('level') == 'Manager' ? 'selected' : '' }}>Manager</option>
+                          <option value="clevel" {{ old('level') == 'clevel' ? 'selected' : '' }}>C-level</option>
+                            <!-- Add more options as needed -->
+                        </select>
+                        <label for="floatingSelect1">Cấp bậc ứng viên</label>
+                        @error('level')
+                            <div class="alert alert-danger mt-2">{{ $message }}</div>
+                        @enderror
+                    </div>
                     <div class="mb-3">
                         <input type="number" class="form-control" id="luong" name="salary" placeholder="Nhập lương" required>
                     </div>

@@ -48,8 +48,7 @@
                         for="btn-check-flex">Linh hoạt</label>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary bg-color border-0 " data-bs-dismiss="modal">Áp
-                        dụng</button>
+                    <button type="button" class="btn btn-primary bg-color border-0 " data-bs-dismiss="modal">Áp dụng</button>
                 </div>
             </div>
         </div>
@@ -75,8 +74,7 @@
                                 <input class="w-50 p-3 rounded-2 " type="search" placeholder="Nhập từ khóa" name="search"
                                     value="{{ request('search') }}">
                                 <button
-                                    class="w-auto p-3 rounded-2 bg-color d-flex justify-content-center align-content-center border-0"
-                                    action="submit">
+                                    class="w-auto p-3 rounded-2 bg-color d-flex justify-content-center align-content-center border-0" action="submit">
                                     <img src="{{ asset('assets/img/search.png') }}" width="32px" height="32px;"
                                         alt="">
                                     <p class="m-0 fw-bold text-light ">Tìm kiếm</p>
