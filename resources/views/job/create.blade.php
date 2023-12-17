@@ -147,10 +147,6 @@
                             items: ['Image', 'Table', 'HorizontalRule', 'SpecialChar']
                         },
                         {
-                            name: 'tools',
-                            items: ['Maximize']
-                        },
-                        {
                             name: 'document',
                             items: ['Source']
                         },

@@ -12,7 +12,7 @@
             </div>
             <div class="col-lg-8  box-content">
                 <div class="box">
-                    <h3>Employee</h3>
+                    <h3>Employeer</h3>
                     <div class="view-content p-4">
                         <form class="input-group flex-nowrap mb-4 " action="/Admin/EmpManage" method="get">
                             <span class="input-group-text" id="addon-wrapping"></span>
@@ -22,10 +22,10 @@
                               @foreach($emps as $emp)
                                 <div class="row w-100">
                                     <div class="col a-box rounded-4 p-4 item-user w-50 position-relative" style="border-radius: 12px;">
-                                        <div class="position-absolute top-0 end-0 mt-1 me-4">
-                                            <a class="btn btn-secondary bg-color" href="/admin/view-employer/{{$emp->id}}">Chi tiết</a>
+                                        <div class="position-absolute end-0 mt-1 me-4">
+                                            <a class="btn btn-secondary bg-color" href="{{route('profile.company',['slug' => $emp->id])}}">Chi tiết</a>
                                         </div>
-                                        <img class="avt-user" src="~/images/@Model.ElementAt(i).Logo" alt="" />
+                                        <img class="avt-user" src="{{asset($emp->logo)}}" alt="" />
                                         <div class="col pt-2 ">
                                             <p class="row fw-bold p-0 m-0">{{$emp->name}}</p>
                                             <p class="row  p-0 m-0">{{$emp->email}}</p>
@@ -40,7 +40,6 @@
                                                 <p class="row fw-bold p-0 m-0">Giờ làm việc </p>
                                                 <p class="pt-2 p-0 m-0">{{$emp->working_time}}</p>
                                             </div>
-
                                         </div>
                                         <div class="row">
                                             <div class="col pt-2 ">

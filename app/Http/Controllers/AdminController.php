@@ -43,7 +43,7 @@ class AdminController extends Controller
 
     public function manage_employer(){
         $emps =Employer::all();
-        return view('admin.employ_manage')->with([
+        return view('admin.employer_manage')->with([
             'emps' => $emps
         ]);
     }

@@ -37,8 +37,6 @@ class Apply extends Model
 	];
 
 	protected $fillable = [
-		'jid',
-		'uid',
 		'time',
 		'cv',
 		'letter',

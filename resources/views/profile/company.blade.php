@@ -50,8 +50,6 @@
                             </a>
                         </li>
                     </ul>
-                    <button  class="w-100 bg-color border-0 button rounded-2 p-2 text-white mt-4">
-                    </button>
                 </div>
                 <!-- End Sidebar -->
             </div>
@@ -82,7 +80,7 @@
                             Giới thiệu công ty
                         </h3>
                         <div class="form-floating ps-2">
-                          <p>{{ $employer->introduce}}</p>
+                          <p>{!! $employer->introduce !!}</p>
                         </div>
                     </div>
                 </div>
@@ -92,7 +90,7 @@
                             Địa chỉ
                         </h3>
                         <div class="form-floating ps-2">
-                            <p>{{ $employer->location }}</p>
+                            <p>{!! $employer->location !!}</p>
                         </div>
                     </div>
                 </div>
@@ -102,7 +100,7 @@
                             Thời gian làm việc
                         </h3>
                         <div class="form-floating ps-2" id="project-section">
-                            <p>{{ $employer->workingtime }}</p>
+                            <p>{!! $employer->workingtime !!}</p>
                         </div>
                     </div>
                 </div>
@@ -112,7 +110,7 @@
                             Dự án đã thực hiện
                         </h3>
                         <div class="form-floating ps-2">
-                            <p>{{ $employer->ownproject}}</p>
+                            <p>{!! $employer->ownproject !!}</p>
                         </div>
                     </div>
                 </div>
@@ -122,7 +120,7 @@
                             Giải thưởng
                         </h3>
                         <div class="form-floating ps-2">
-                            <p>{{ $employer->prize}}</p>
+                            <p>{!! $employer->prize !!}</p>
                         
                         </div>
                     </div>

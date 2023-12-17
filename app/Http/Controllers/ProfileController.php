@@ -26,7 +26,23 @@ class ProfileController extends Controller
         return view('profile.user', ['userProfile' => $userProfile, 'email' => $email]);
     }
     public function employer(Request $request)
-    {
+    {   
+        $request->validate([
+            'name' => 'required',
+            'location' => 'required',
+            'workingTime' => 'required',
+            'introduce' => 'required',
+            'ownProject' => 'required',
+            'prize' => 'required',
+        ],[
+            'name.required' => 'Tên công ty không được để trống',
+            'location.required' => 'Địa chỉ không được để trống',
+            'workingTime.required' => 'Thời gian làm việc không được để trống',
+            'introduce.required' => 'Giới thiệu công ty không được để trống',
+            'ownProject.required' => 'Dự án sở hữu không được để trống',
+            'prize.required' => 'Giải thưởng không được để trống',
+        ]);
+
         $employerID = auth()->user()->employer->id;
         $employer = Employer::find($employerID);
 
