@@ -13,67 +13,44 @@
                 </div>
                 <div class="col-lg-8  box-content">
                     <div class="box">
-                        <h3>Employee</h3>
+                        <h3>Yêu Cầu Làm Nhà Tuyển Dụng</h3>
                         <div class="view-content p-4">
                             <form class="input-group flex-nowrap mb-4 " action="/Admin/EmpManage" method="get">
                                 <span class="input-group-text" id="addon-wrapping"></span>
                                 <input name="name" type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
                             </form>
                             <div class="w-100 user-container d-flex flex-wrap">
+                                @if ($employers == null || sizeof($employers) == 0 )
+                                <div class="row w-100"> Không có nhà tuyển dụng mới </div>
+                                @else
+                                @foreach($employers as $employer)
                                 <div class="row w-100">
                                     <div class="col a-box rounded-4 p-4 item-user w-50 position-relative" style="border-radius: 12px;">
-                                        <form class="position-absolute top-0 end-0 mt-1 me-4" action="/Admin/Accept/@Model.ElementAt(i).Id">
+                                        <form class="position-absolute top-0 end-0 mt-1 me-4" action="{{ route('admin.request_become_employer') }}" method="POST">
+                                            @csrf
                                             <div class="dropdown">
-                                                <button class="btn btn-secondary bg-color" type="submit" >
-                                                    Xác nhận
-                                                </button>
+                                                <button class="btn btn-secondary bg-color" type="submit" >Xác nhận</button>
                                             </div>
+                                            <input id="eid" name="eid" value="{{$employer->id}}" style="display: none;"/>
                                         </form>
                                         <div class="col pt-2 ">
-                                            <p class="row fw-bold p-0 m-0">Belimo</p>
-                                            <p class="row  p-0 m-0">Belimo@gmail.com</p>
-
+                                            <p class="row fw-bold p-0 m-0">{{$employer->name}}</p>
+                                            <p class="row  p-0 m-0">{{$employer->email}}</p>
                                         </div>
                                         <div class="row">
                                             <div class="col pt-2 ">
                                                 <p class="row fw-bold p-0 m-0">Địa chỉ</p>
-                                                <p class="pt-2  p-0 m-0">HN</p>
+                                                <p class="pt-2  p-0 m-0">{{$employer->location}}</p>
                                             </div>
                                             <div class="col pt-2 ">
-                                                <p class="row fw-bold p-0 m-0">SĐT </p>
-                                                <p class="pt-2 p-0 m-0">12312323</p>
+                                                <p class="row fw-bold p-0 m-0">Điện Thoại</p>
+                                                <p class="pt-2 p-0 m-0">{{$employer->phone}}</p>
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row w-100">
-                                    <div class="col a-box rounded-4 p-4 item-user w-50 position-relative" style="border-radius: 12px;">
-                                        <form class="position-absolute top-0 end-0 mt-1 me-4" action="/Admin/Accept/@Model.ElementAt(i).Id">
-                                            <div class="dropdown">
-                                                <button class="btn btn-secondary bg-color" type="submit" >
-                                                    Xác nhận
-                                                </button>
-                                            </div>
-                                        </form>
-                                        <div class="col pt-2 ">
-                                            <p class="row fw-bold p-0 m-0">Belimo</p>
-                                            <p class="row  p-0 m-0">Belimo@gmail.com</p>
-
-                                        </div>
-                                        <div class="row">
-                                            <div class="col pt-2 ">
-                                                <p class="row fw-bold p-0 m-0">Địa chỉ</p>
-                                                <p class="pt-2  p-0 m-0">HN</p>
-                                            </div>
-                                            <div class="col pt-2 ">
-                                                <p class="row fw-bold p-0 m-0">SĐT </p>
-                                                <p class="pt-2 p-0 m-0">12312323</p>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
+                                @endforeach
+                                @endif
                             </div>
                         </div>
                     </div>
