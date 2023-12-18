@@ -25,13 +25,18 @@ class JobController extends Controller
     if ($search_job && $location) {
         $jobs = Job::where('name', 'like', '%' . $search_job . '%')
                     ->where('location', 'like', '%' . $location . '%')
+                    ->where('status', '=', '1')
                     ->get();
     } elseif ($search_job) {
-        $jobs = Job::where('name', 'like', '%' . $search_job . '%')->get();
+        $jobs = Job::where('name', 'like', '%' . $search_job . '%')
+                    ->where('status', '=', '1')
+                    ->get();
     } elseif ($location) {
-        $jobs = Job::where('location', 'like', '%' . $location . '%')->get();
+        $jobs = Job::where('location', 'like', '%' . $location . '%')
+                    ->where('status', '=', '1')
+                    ->get();
     } else {
-        $jobs = Job::paginate(20);
+        $jobs = Job::where('status', '=', '1')->paginate(20);
     }
 
     return view('job.index', compact('jobs'));
@@ -57,10 +62,6 @@ class JobController extends Controller
     }
     public function create()
     {
-        if (!Auth::check())
-            return abort(404);
-        if (auth()->user()->role != 'employer')
-            return abort(404);
         return view('job.create');
     }
     public function store(Request $request)
@@ -105,11 +106,11 @@ class JobController extends Controller
             'required' => 'required',
             'location' => 'required|in:HCM,HN,DN,CT,Hue',
         ],[
-            'title.required' => 'The title field cannot empty.',
-            'description.required' => 'The description field cannot empty.',
-            'strength.required' => 'The strength field cannot empty.',
-            'reason.required' => 'The reason field cannot empty.',
-            'required.required' => 'The required field cannot empty.',
+            'title.required' => 'Tên công việc không được để trống.',
+            'description.required' => 'Mô tả công việc không được để trống.',
+            'strength.required' => 'Điểm mạnh không được để trống.',
+            'reason.required' => 'Lí do không được để trống.',
+            'required.required' => 'Yêu cầu không được để trống.',
         ]);
         $job = Job::find($request->id);
         $job->name = $request->title;

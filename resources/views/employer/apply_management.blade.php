@@ -24,7 +24,7 @@
                                 @foreach($applies as $apply)
                                 <div class="row w-100">
                                     <div class="col a-box rounded-4 p-4 item-user w-50 position-relative" style="border-radius: 12px;">
-                                        <form class="position-absolute top-0 end-0 mt-1 me-4" action="{{ route('profile.jobaccept') }}" method="POST">
+                                        <form class="position-absolute end-0 mt-1 me-4" action="{{ route('profile.jobaccept') }}" method="POST">
                                             @csrf
                                             @if($apply->status == '2')
                                             <div class="dropdown">
@@ -42,15 +42,15 @@
                                                     <option value="2">Chấp Nhận</option>
                                                     <option value="3">Từ Chối</option>
                                                   </select>
-                                                <button class="btn btn-secondary bg-color" type="submit" >Xác nhận</button>
-                                            </div>
+                                                </div>
+                                                <button class="btn btn-secondary bg-color mt-1" type="submit" style="width:-webkit-fill-available" >Xác nhận</button>
                                             @endif
                                             <input id="jid" name="jid" value="{{$apply->jid}}" style="display: none;"/>
                                             <input id="uid" name="uid" value="{{$apply->uid}}" style="display: none;"/>
                                         </form>
                                         <div class="col pt-2 ">
                                             <p class="row fw-bold p-0 m-0">{{$apply->user->name}}</p>
-                                            <p class="row  p-0 m-0">{{$apply->user->mail}}</p>
+                                            <p class="row  p-0 m-0">{{$apply->user->email}}</p>
                                         </div>
                                         <div class="row">
                                             <div class="col pt-2 ">

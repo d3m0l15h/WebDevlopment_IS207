@@ -45,11 +45,6 @@ Route::get('/account/employer', function () {
     abort(404);
 });
 
-Route::get('/job/apply', [
-    EmployerController::class,
-    'manage_applies'
-])->name('employer.manage_applies');
-
 //Account Login
 Route::post('/account/login', [
     AccountController::class,
@@ -96,21 +91,7 @@ Route::get('/employer/{slug}', [
     'company'
 ])->name('profile.company');
 
-////////////////////////////EMPLOYER
-//GET job list
-Route::get('/job/list', [
-    EmployerController::class,
-    'manage_jobs'
-])->name('employer.manage_jobs');
 
-
-/////////////////////////////USER
-//profil user job
-//GET user job apply
-Route::get('/applied', [
-    UserController::class,
-    'applied'
-])->name('user.applied');
 
 //POST
 Route::post('/profile/job-accept', [
@@ -132,33 +113,61 @@ Route::get('/jobs', [
     JobController::class,
     'index'
 ])->name('jobs');
-//GET job create form
-Route::get('/job/create', [
-    JobController::class,
-    'create'
-])->name('job.create');
-//POST job create
-Route::post('/job/create', [
-    JobController::class,
-    'store'
-])->name('job.store');
 //GET job detail
 Route::get('/job/{slug}', [
     JobController::class,
     'show'
 ])->name('job.detail');
-//GET job edit
-Route::get('/job/{id}/edit', [
-    JobController::class,
-    'edit'
-])->name('job.edit');
-//POST job edit
-Route::post('/job/{id}/edit', [
-    JobController::class,
-    'update'
-])->name('job.update');
 
-//Admin
+////////////////////////////EMPLOYER
+Route::group(['middleware' => ['employer']], function () {
+    //GET job create form
+    Route::get('/job/create', [
+        JobController::class,
+        'create'
+    ])->name('job.create');
+    //POST job create
+    Route::post('/job/create', [
+        JobController::class,
+        'store'
+    ])->name('job.store');
+    //GET job edit
+    Route::get('/job/{id}/edit', [
+        JobController::class,
+        'edit'
+    ])->name('job.edit');
+    //POST job edit
+    Route::post('/job/{id}/edit', [
+        JobController::class,
+        'update'
+    ])->name('job.update');
+    //GET job list
+    Route::get('/job/list', [
+        EmployerController::class,
+        'manage_jobs'
+    ])->name('employer.manage_jobs');
+    Route::get('/job/{id}/status_toggle', [
+        EmployerController::class,
+        'manage_status_toggle'
+    ])->name('employer.manage_status_toggle');
+
+    Route::get('/job/apply', [
+        EmployerController::class,
+        'manage_applies'
+    ])->name('employer.manage_applies');
+});
+
+/////////////////////////////USER
+Route::group(['middleware' => ['user']], function () {
+    //profil user job
+//GET user job apply
+    Route::get('/applied', [
+        UserController::class,
+        'applied'
+    ])->name('user.applied');
+});
+
+/////////////////////////ADMIN
 Route::group(['middleware' => ['admin']], function () {
     Route::get('/admin/employer', [
         AdminController::class,

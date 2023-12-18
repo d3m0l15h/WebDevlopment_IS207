@@ -51,7 +51,7 @@
                             <button type="button" class="edit-btn rounded-2  m-2" onclick="location.href='{{ route('job.update', ['id' => $job->id]) }}'"><p>Edit</p></button>
                         </li>
                         <li>
-                            <button type="button" class="unac-btn rounded-2  m-2">
+                            <button type="button" class="unac-btn rounded-2  m-2" onclick="location.href='{{ route('employer.manage_status_toggle', ['id' => $job->id]) }}'">
                               @if($job->status == '0')
                                 Active
                               @else

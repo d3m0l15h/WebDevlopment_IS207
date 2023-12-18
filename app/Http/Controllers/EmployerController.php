@@ -14,12 +14,6 @@ class EmployerController extends Controller
 {
     //
     public function manage_jobs(Request $request) {
-        if(!Auth::check()) {
-            return abort(404);
-        }
-        if(auth()->user()->role != 'employer') {
-            return abort(404);
-        }
 
         $employer_id = auth()->user()->employer->id;
         $jobs = Job::where('eid', '=', $employer_id)->get() ;
@@ -34,6 +28,12 @@ class EmployerController extends Controller
         }
     
         return view('employer.job_management', ['jobs' => $jobs]);
+    }
+    public function manage_status_toggle($id){
+        $job = Job::find($id);
+        $job->status = $job->status == '0' ? '1' : '0';
+        $job->save();
+        return redirect()->back();
     }
 
     public function manage_applies() {
