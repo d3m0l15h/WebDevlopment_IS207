@@ -17,9 +17,10 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property string $email
  * @property string $password
  * @property string $role
- * @property int|null $userID
- * @property int|null $employerID
- * @property int|null $adminID
+ * @property int|null $userid
+ * @property int|null $employerid
+ * @property int|null $adminid
+ * @property string $status
  * 
  * @property Admin|null $admin
  * @property Employer|null $employer
@@ -29,13 +30,13 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  */
 class Account extends Authenticatable
 {
-	protected $table = 'account';
+	protected $table = 'accounts';
 	public $timestamps = false;
 
 	protected $casts = [
-		'userID' => 'int',
-		'employerID' => 'int',
-		'adminID' => 'int'
+		'userid' => 'int',
+		'employerid' => 'int',
+		'adminid' => 'int'
 	];
 
 	protected $hidden = [
@@ -47,23 +48,24 @@ class Account extends Authenticatable
 		'email',
 		'password',
 		'role',
-		'userID',
-		'employerID',
-		'adminID'
+		'userid',
+		'employerid',
+		'adminid',
+		'status'
 	];
 
 	public function admin()
 	{
-		return $this->belongsTo(Admin::class, 'adminID');
+		return $this->belongsTo(Admin::class, 'adminid');
 	}
 
 	public function employer()
 	{
-		return $this->belongsTo(Employer::class, 'employerID');
+		return $this->belongsTo(Employer::class, 'employerid');
 	}
 
 	public function user()
 	{
-		return $this->belongsTo(User::class, 'userID');
+		return $this->belongsTo(User::class, 'userid');
 	}
 }

@@ -16,8 +16,8 @@ class AccountController extends Controller
     {
         // Validate the request data
         $request->validate([
-            'username' => 'required|unique:account',
-            'email' => 'required|email|unique:account',
+            'username' => 'required|unique:accounts',
+            'email' => 'required|email|unique:accounts',
             'password' => 'required|confirmed',
             'terms' => 'accepted',
         ], [
@@ -31,19 +31,19 @@ class AccountController extends Controller
         ]);
 
         // Create a new user and save it to the database
-        $user = User::create();
+        $user = User::create([
+                'email' => $request->email
+        ]);
         $account = Account::create([
             'username' => $request->username,
             'email' => $request->email,
             'password' => bcrypt($request->password),
-            'userID' => $user->id,
+            'userid' => $user->id,
         ]);
 
         // Log the user in
         auth()->login($account);
-
         session()->flash('success', 'Registration successful!');
-
         return redirect()->back();
     }
     public function employer(Request $request)
@@ -53,9 +53,9 @@ class AccountController extends Controller
         $request->validate([
             'name' => 'required',
             'phone' => 'required',
-            'email' => 'required|unique:account',
+            'email' => 'required|unique:accounts',
             'location' => 'required',
-            'username' => 'required|unique:account',
+            'username' => 'required|unique:accounts',
             'password' => 'required',
 
         ], [
@@ -70,8 +70,11 @@ class AccountController extends Controller
         ]);
 
         $employer = Employer::create([
+            'phone' => $request->phone,
             'name' => $request->name,
+            'email' => $request->email,
             'location' => $request->location,
+            'status' => '3' // status la 3 (Cho Admin Accept)
         ]);
 
         $account = Account::create([
@@ -79,26 +82,30 @@ class AccountController extends Controller
             'email' => $request->email,
             'password' => bcrypt($request->password),
             'role' => 'employer',
-            'employerID' => $employer->id,
+            'employerid' => $employer->id,
         ]);
-
-        auth()->login($account);
-
-        session()->flash('success', 'Registration successful!');
-
         return redirect()->back();
     }
     public function login(Request $request)
     {
         $request->validate([
-            'email' => 'required|email',
+            'email' => 'required',
             'password' => 'required'
         ]);
+        $email = $request->email;
+        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $account = Account::where('email', $request->email)->first();
+        } else {
+            $account = Account::where('username', $request->email)->first();
+        }
 
-        $user = Account::where('email', $request->email)->first();
-
-        if ($user && Hash::check($request->password, $user->password)) {
-            Auth::login($user);
+        if ($account && Hash::check($request->password, $account->password)) {
+            if ($account->role == 'employer' && $account->employer->status == '3') {
+                // Employer chua dc accept boi admin
+                session()->flash('fail', 'Employer haven"t actived yet. Please contact admin for more details');
+                return redirect()->back();
+            }
+            Auth::login($account);
             session()->flash('success', 'Login Success');
             return redirect()->back();
         }

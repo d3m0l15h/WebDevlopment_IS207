@@ -15,10 +15,15 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id
  * @property string|null $name
  * @property string|null $location
- * @property string|null $working_time
- * @property string|null $introduce
- * @property string|null $own_project
+ * @property string|null $workingtime
+ * @property string|null $quality
+ * @property string|null $ownproject
  * @property string|null $prize
+ * @property string $phone
+ * @property string|null $introduce
+ * @property string|null $logo
+ * @property string $status
+ * @property string|null $email
  * 
  * @property Collection|Account[] $accounts
  * @property Collection|Job[] $jobs
@@ -27,21 +32,26 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Employer extends Model
 {
-	protected $table = 'employer';
+	protected $table = 'employers';
 	public $timestamps = false;
 
 	protected $fillable = [
 		'name',
 		'location',
-		'working_time',
+		'workingtime',
+		'quality',
+		'ownproject',
+		'prize',
+		'phone',
 		'introduce',
-		'own_project',
-		'prize'
+		'logo',
+		'status',
+		'email'
 	];
 
 	public function accounts()
 	{
-		return $this->hasMany(Account::class, 'employerID');
+		return $this->hasMany(Account::class, 'employerid');
 	}
 
 	public function jobs()

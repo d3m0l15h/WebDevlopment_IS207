@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
-    <title>FindJob</title>
+    <title>FindingJob.</title>
     <meta content="" name="description" />
     <meta content="" name="keywords" />
 
@@ -26,6 +26,9 @@
     <link href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/vendor/aos/aos.css') }}" rel="stylesheet" />
+    
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <!-- Template Main CSS File -->
     <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet" />
@@ -59,19 +62,19 @@
 <body class="index-page" data-bs-spy="scroll" data-bs-target="#navmenu">
     <header id="header" class="header fixed-top d-flex align-items-center ">
         <div class="container-fluid d-flex align-items-center justify-content-between">
-            <a href="index.php" class="logo d-flex align-items-center me-auto me-xl-0">
+            <a href="{{route('home')}}" class="logo d-flex align-items-center me-auto me-xl-0">
                 <!-- Uncomment the line below if you also wish to use an image logo -->
                 <!-- <img src="assets/img/logo.png" alt=""> -->
-                <h1>Find Your Job</h1>
+                <h1>Finding Job</h1>
                 <span>.</span>
             </a>
 
             <!-- Nav Menu -->
             <nav id="navmenu" class="navmenu">
                 <ul>
-                    <li><a href="index.php#hero" class="active">Trang chủ</a></li>
-                    <li><a href="{{ route('search') }}">Tìm việc làm</a></li>
-                    <li class="dropdown has-dropdown">
+                    <li><a href="/" class="active">Trang chủ</a></li>
+                    <li><a href="{{ route('jobs') }}">Tìm việc làm</a></li>
+                    <li class="dropdown has-dropdown" >
                         <a href="#"><span>Công việc</span> <i class="bi bi-chevron-down"></i></a>
                         <ul class="dd-box-shadow">
                             <li><a href="#"></a></li>
@@ -87,11 +90,9 @@
                                 </ul>
                             </li>
                             <li><a href="#">Theo kinh nghiệm</a></li>
-                            <li><a href="#">Dropdown 3</a></li>
-                            <li><a href="#">Dropdown 4</a></li>
                         </ul>
                     </li>
-                    <li><a href="index.php#contact">Contact</a></li>
+                    <li><a href="/contact">Contact</a></li>
                 </ul>
 
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
@@ -121,7 +122,7 @@
                         @csrf
                         <input type="hidden" name="form_type" value="login">
                         <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">Email</label>
+                            <label for="recipient-name" class="col-form-label">Email or User Name</label>
                             <input type="text" class="form-control" id="account" name="email">
                             @if (old('form_type') == 'login')
                                 @error('email')
@@ -299,9 +300,11 @@
                             <div class="w-50 p-2 ">
                                 <label for="recipient-name" class="col-form-label">Email</label>
                                 <input type="email" class="form-control" id="email" name="email">
+                                @if (old('form_type') == 'employer')
                                 @error('email')
-                                    <div class="alert alert-sm alert-danger mt-2">{{ $message }}</div>
+                                    <div class="alert alert-danger mt-2">{{ $message }}</div>
                                 @enderror
+                            @endif
                             </div>
                             <div class="w-50 p-2 ">
                                 <label for="message-text" class="col-form-label">Nơi làm việc</label>
@@ -315,16 +318,20 @@
                             <div class="w-50 p-2 ">
                                 <label for="recipient-name" class="col-form-label">Tài khoản</label>
                                 <input type="text" class="form-control" id="username" name="username">
+                                @if (old('form_type') == 'employer')
                                 @error('username')
-                                    <div class="alert alert-sm alert-danger mt-2">{{ $message }}</div>
+                                    <div class="alert alert-danger mt-2">{{ $message }}</div>
                                 @enderror
+                            @endif
                             </div>
                             <div class="w-50 p-2 ">
                                 <label for="message-text" class="col-form-label">Mật Khẩu</label>
                                 <input type="password" class="form-control" id="password" name="password">
+                                @if (old('form_type') == 'employer')
                                 @error('password')
-                                    <div class="alert alert-sm alert-danger mt-2">{{ $message }}</div>
+                                    <div class="alert alert-danger mt-2">{{ $message }}</div>
                                 @enderror
+                            @endif
                             </div>
                         </div>
                     </div>

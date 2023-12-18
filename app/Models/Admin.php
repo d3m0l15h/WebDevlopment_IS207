@@ -13,7 +13,8 @@ use Illuminate\Database\Eloquent\Model;
  * Class Admin
  * 
  * @property int $id
- * @property string|null $name
+ * @property string|null $username
+ * @property string $status
  * 
  * @property Collection|Account[] $accounts
  *
@@ -21,15 +22,16 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Admin extends Model
 {
-	protected $table = 'admin';
+	protected $table = 'admins';
 	public $timestamps = false;
 
 	protected $fillable = [
-		'name'
+		'username',
+		'status'
 	];
 
 	public function accounts()
 	{
-		return $this->hasMany(Account::class, 'adminID');
+		return $this->hasMany(Account::class, 'adminid');
 	}
 }

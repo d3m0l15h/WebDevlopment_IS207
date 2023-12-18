@@ -18,9 +18,14 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $education
  * @property string|null $experience
  * @property string|null $skill
- * @property string|null $own_project
+ * @property string|null $ownproject
  * @property string|null $certificate
  * @property string|null $prize
+ * @property string $status
+ * @property string|null $location
+ * @property string|null $avatar
+ * @property string|null $phone
+ * @property string|null $email
  * 
  * @property Collection|Account[] $accounts
  * @property Collection|Apply[] $applies
@@ -29,7 +34,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class User extends Model
 {
-	protected $table = 'user';
+	protected $table = 'users';
 	public $timestamps = false;
 
 	protected $fillable = [
@@ -38,14 +43,19 @@ class User extends Model
 		'education',
 		'experience',
 		'skill',
-		'own_project',
+		'ownproject',
 		'certificate',
-		'prize'
+		'prize',
+		'status',
+		'location',
+		'avatar',
+		'phone',
+		'email'
 	];
 
 	public function accounts()
 	{
-		return $this->hasMany(Account::class, 'userID');
+		return $this->hasMany(Account::class, 'userid');
 	}
 
 	public function applies()

@@ -12,11 +12,11 @@
   <!-- End Page Title -->
   <!-- Blog-details Section - Blog Details Page -->
   <div class="container profile-nav d-flex flex-row justify-content-start ">
-      <a href="cv.php" class="fs-5 active">
+      <a href="{{route('profile')}}" class="fs-5 active">
           Thông tin
       </a>
-      <a href="employ-management.php" class="fs-5">
-          Quản lý tuyển dụng
+      <a href="#" class="fs-5">
+          Quản lý ứng viên
       </a>
   </div>
   <section id="blog-details" class="blog-details">
@@ -59,8 +59,6 @@
                               </a>
                           </li>
                       </ul>
-                      <button  class="w-100 bg-color border-0 button rounded-2 p-2 text-white mt-4">
-                      </button>
                   </div>
                   <!-- End Sidebar -->
               </div>
@@ -69,12 +67,19 @@
                 <div class="box" id="introduce-section">
                       <div class="content d-flex flex-row">
                           <div class="avatar-containter position-relative ">
-                              <img src="{{ asset('assets/img/blog/blog-author-2.jpg')}}" alt="" class="w-100 ">
-                              <input type="file" name="" id="" class="w-100 h-100 opacity-0 top-0 bottom-0 position-absolute left-0 start-0 end-0  ">
+                            <div class="avatar-containter">
+                                @if($userProfile->logo != null && strlen($userProfile->logo) > 4)
+                                <img src="{{asset($userProfile->logo)}}" alt="" class="w-100 ">
+                                <input type="file" name="avatar" class="avatar">
+                                @else
+                                <img src="{{ asset('assets/img/blog/blog-author-2.jpg')}}" alt="" class="w-100 ">
+                                <input type="file" name="avatar" class="avatar">
+                                @endif
+                            </div>
                           </div>
                          
                           <div class="info-container ms-4 ">
-                              <h3>{{ $userProfile->name }}</h3>
+                            <input type="text" name="name" value="{{$userProfile->name}}" required>
                               <p>{{ $email }}</p>
                           </div>
                       </div>
@@ -85,8 +90,11 @@
                               Giới thiệu công ty
                           </h3>
                           <div class="form-floating">
-                            <textarea name="introduce" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px">{{ $userProfile->introduce}}</textarea>
+                            <textarea class="editor" name="introduce" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px">{{ $userProfile->introduce}}</textarea>
                           </div>
+                          @error('introduce')
+                            <div class="alert alert-danger mt-2">{{ $message }}</div>
+                        @enderror
                       </div>
                   </div>
                   <div class="box">
@@ -97,6 +105,9 @@
                           <div class="form-floating">
                               <textarea name="location" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px">{{ $userProfile->location }}</textarea>
                           </div>
+                          @error('location')
+                            <div class="alert alert-danger mt-2">{{ $message }}</div>
+                        @enderror
                       </div>
                   </div>
                   <div class="box">
@@ -105,8 +116,11 @@
                               Thời gian làm việc
                           </h3>
                           <div class="form-floating" id="project-section">
-                              <textarea name="workingTime" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px">{{ $userProfile->working_time }}</textarea>
+                              <textarea name="workingTime" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px">{{ $userProfile->workingtime }}</textarea>
                           </div>
+                            @error('workingTime')
+                                <div class="alert alert-danger mt-2">{{ $message }}</div>
+                            @enderror
                       </div>
                   </div>
                   <div class="box" id="prize-section">
@@ -115,8 +129,11 @@
                               Dự án đã thực hiện
                           </h3>
                           <div class="form-floating">
-                              <textarea name="ownProject" class="form-control" id="floatingTextarea2" style="height: 100px">{{ $userProfile->own_project}}</textarea>
+                              <textarea class="editor" name="ownProject" class="form-control" id="floatingTextarea2" style="height: 100px">{{ $userProfile->ownproject}}</textarea>
                           </div>
+                          @error('ownProject')
+                            <div class="alert alert-danger mt-2">{{ $message }}</div>
+                        @enderror
                       </div>
                   </div>
                   <div class="box">
@@ -125,9 +142,11 @@
                               Giải thưởng
                           </h3>
                           <div class="form-floating">
-                              <textarea name="prize" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px">{{ $userProfile->prize}}</textarea>
-                          
+                              <textarea class="editor" name="prize" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px">{{ $userProfile->prize}}</textarea>
                           </div>
+                          @error('prize')
+                            <div class="alert alert-danger mt-2">{{ $message }}</div>
+                        @enderror
                       </div>
                   </div>
                   <button type="submit" class="w-100 bg-color border-0 button rounded-2 p-2 text-white mt-4">
@@ -142,6 +161,56 @@
           </div>
       </div>
   </section>
+  <script>
+    var elements = document.getElementsByClassName('editor');
+    for (var i = 0; i < elements.length; i++) {
+        CKEDITOR.replace(elements[i], {
+            toolbar: [{
+                    name: 'clipboard',
+                    items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo']
+                },
+                {
+                    name: 'editing',
+                    items: ['Scayt']
+                },
+                {
+                    name: 'links',
+                    items: ['Link', 'Unlink', 'Anchor']
+                },
+                {
+                    name: 'insert',
+                    items: ['Image', 'Table', 'HorizontalRule', 'SpecialChar']
+                },
+                {
+                    name: 'document',
+                    items: ['Source']
+                },
+                {
+                    name: 'basicstyles',
+                    items: ['Bold', 'Italic', 'Underline', 'Strike', 'RemoveFormat', 'Subscript',
+                        'Superscript'
+                    ]
+                },
+                {
+                    name: 'paragraph',
+                    items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote']
+                },
+                {
+                    name: 'styles',
+                    items: ['Styles', 'Format']
+                },
+                {
+                    name: 'about',
+                    items: ['About']
+                }
+            ]
+        });
 
+        CKEDITOR.instances[elements[i].id].on('change', function() {
+            var data = CKEDITOR.instances[elements[i].id].getData();
+            document.getElementsByName(elements[i].id)[0].value = data;
+        });
+    }
+</script>
 </main>
 @endsection

@@ -6,3 +6,11 @@
 .profile-nav a.active {
   border-bottom: 3px solid #eda01b;
 }
+
+.avatar {
+  left: 1.5rem;
+  position: absolute;
+  width: 10.1rem;
+  height: 10.1rem;
+  opacity: 0;
+}
