@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Apply;
 use Illuminate\Http\Request;
 use App\Models\Job;
 use App\Models\Employer;
@@ -14,16 +15,16 @@ class AdminController extends Controller
 {
     public function manage_request(Request $request)
     {
-        if($request->has('search')){
+        if ($request->has('search')) {
             $search = urldecode($request->get('search'));
-            
+
             $employers = Employer::join('accounts', 'accounts.employerid', '=', 'employers.id')
-            ->where('accounts.username', 'like', '%'.$search.'%')
-            ->orWhere('accounts.email', 'like', '%'.$search.'%')
-            ->where('employers.status', '=', '3')
-            ->select('employers.*')
-            ->get();
-        }else{
+                ->where('accounts.username', 'like', '%' . $search . '%')
+                ->orWhere('accounts.email', 'like', '%' . $search . '%')
+                ->where('employers.status', '=', '3')
+                ->select('employers.*')
+                ->get();
+        } else {
             $employers = Employer::where('status', '=', '3')->get();
         }
         return view('admin.request_manage', compact('employers'));
@@ -40,12 +41,14 @@ class AdminController extends Controller
         $userCount = User::count();
         $empCount = Employer::where('status', '!=', '3')->count();
         $jobCount = Job::count();
+        $appliedCount = Apply::count();
 
 
         return view('admin.index')->with([
             'userCount' => $userCount,
             'empCount' => $empCount,
-            'jobCount' => $jobCount
+            'jobCount' => $jobCount,
+            'appliedCount' => $appliedCount
         ]);
     }
 
@@ -102,6 +105,20 @@ class AdminController extends Controller
     public function user_show($id)
     {
         $user = User::find($id);
+
+        if (Auth::user()->role == 'employer') {
+            $eid = Auth::user()->employer->id;
+            $has_applied = Apply::join('jobs', 'jobs.id', '=', 'applies.jid')
+                ->join('users', 'users.id', '=', 'applies.uid')
+                ->where('jobs.eid', $eid)
+                ->where('applies.uid', $id)
+                ->where('applies.status', '=', '1')
+                ->exists();
+    
+            if(!$has_applied)
+                return abort(404);
+        }
+
         $email = $user->accounts->first()->email;
         return view('admin.user_show')->with([
             'user' => $user,

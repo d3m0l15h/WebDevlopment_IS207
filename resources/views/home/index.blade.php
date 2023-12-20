@@ -22,7 +22,7 @@
                     <form action="search.php" class="sign-up-form d-flex" data-aos="fade-up" data-aos-delay="300">
                         <input type="text" name="e" class="form-control"
                             placeholder="Nhập key word bạn muốn tìm" />
-                        <input type="submit" class="btn btn-primary" value="Tìm kiếms" name="key" />
+                        <input type="submit" class="btn btn-primary" value="Tìm kiếm" name="key" />
                     </form>
                 </div>
             </div>
@@ -86,10 +86,9 @@
                         <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
                             <div class="icon-box">
                                 <i class="bi bi-buildings"></i>
-                                <h3>Eius provident</h3>
+                                <h3>Uy tín</h3>
                                 <p>
-                                    Magni repellendus vel ullam hic officia accusantium ipsa
-                                    dolor omnis dolor voluptatem
+                                    Cung cấp thông tin tuyển dụng chính xác, đầy đủ. Các thông tin tuyển dụng được kiểm duyệt kỹ lưỡng trước khi đăng tải.
                                 </p>
                             </div>
                         </div>
@@ -97,10 +96,9 @@
                         <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
                             <div class="icon-box">
                                 <i class="bi bi-clipboard-pulse"></i>
-                                <h3>Rerum aperiam</h3>
+                                <h3>Chất lượng</h3>
                                 <p>
-                                    Autem saepe animi et aut aspernatur culpa facere. Rerum
-                                    saepe rerum voluptates quia
+                                    Cung cấp các dịch vụ chất lượng, đáp ứng nhu cầu của cả nhà tuyển dụng và ứng viên.
                                 </p>
                             </div>
                         </div>
@@ -109,10 +107,9 @@
                         <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
                             <div class="icon-box">
                                 <i class="bi bi-command"></i>
-                                <h3>Veniam omnis</h3>
+                                <h3>Hiệu quả</h3>
                                 <p>
-                                    Omnis perferendis molestias culpa sed. Recusandae quas
-                                    possimus. Quod consequatur corrupti
+                                    Tìm được công việc, ứng viên phù hợp với nhu cầu và năng lực của mình.
                                 </p>
                             </div>
                         </div>
@@ -132,7 +129,7 @@
             <div class="row gy-4">
                 <div class="col-lg-3 col-md-6">
                     <div class="stats-item text-center w-100 h-100">
-                        <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1"
+                        <span data-purecounter-start="0" data-purecounter-end="{{$users + $emps}}" data-purecounter-duration="1"
                             class="purecounter"></span>
                         <p>Khách hàng</p>
                     </div>
@@ -141,7 +138,7 @@
 
                 <div class="col-lg-3 col-md-6">
                     <div class="stats-item text-center w-100 h-100">
-                        <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1"
+                        <span data-purecounter-start="0" data-purecounter-end="{{$jobs}}" data-purecounter-duration="1"
                             class="purecounter"></span>
                         <p>Cơ hội</p>
                     </div>
@@ -150,7 +147,7 @@
 
                 <div class="col-lg-3 col-md-6">
                     <div class="stats-item text-center w-100 h-100">
-                        <span data-purecounter-start="0" data-purecounter-end="1453" data-purecounter-duration="1"
+                        <span data-purecounter-start="0" data-purecounter-end="{{$emps}}" data-purecounter-duration="1"
                             class="purecounter"></span>
                         <p>Doanh Nghiệp</p>
                     </div>
@@ -159,9 +156,9 @@
 
                 <div class="col-lg-3 col-md-6">
                     <div class="stats-item text-center w-100 h-100">
-                        <span data-purecounter-start="0" data-purecounter-end="32" data-purecounter-duration="1"
+                        <span data-purecounter-start="0" data-purecounter-end="{{$users}}" data-purecounter-duration="1"
                             class="purecounter"></span>
-                        <p>Đang làm việc</p>
+                        <p>Ứng viên</p>
                     </div>
                 </div>
                 <!-- End Stats Item -->
@@ -229,10 +226,9 @@
                                     </div>
                                     <p>
                                         <i class="bi bi-quote quote-icon-left"></i>
-                                        <span>Proin iaculis purus consequat sem cure digni ssim
-                                            donec porttitora entum suscipit rhoncus. Accusantium
-                                            quam, ultricies eget id, aliquam eget nibh et. Maecen
-                                            aliquam, risus at semper.</span>
+                                        <span>
+                                            Giao diện trang web Finding Job được thiết kế đơn giản, dễ nhìn, dễ sử dụng. Các tính năng được bố trí khoa học, giúp người dùng dễ dàng tìm thấy thông tin mình cần.
+                                        </span>
                                         <i class="bi bi-quote quote-icon-right"></i>
                                     </p>
                                 </div>
@@ -256,10 +252,9 @@
                                     </div>
                                     <p>
                                         <i class="bi bi-quote quote-icon-left"></i>
-                                        <span>Export tempor illum tamen malis malis eram quae irure
-                                            esse labore quem cillum quid cillum eram malis quorum
-                                            velit fore eram velit sunt aliqua noster fugiat irure
-                                            amet legam anim culpa.</span>
+                                        <span>
+                                            Đội ngũ hỗ trợ của Finding Job luôn sẵn sàng giải đáp thắc mắc của người dùng một cách nhiệt tình và chuyên nghiệp. Điều này giúp người dùng có thể sử dụng trang web một cách hiệu quả nhất.
+                                        </span>
                                         <i class="bi bi-quote quote-icon-right"></i>
                                     </p>
                                 </div>
@@ -283,68 +278,17 @@
                                     </div>
                                     <p>
                                         <i class="bi bi-quote quote-icon-left"></i>
-                                        <span>Enim nisi quem export duis labore cillum quae magna
-                                            enim sint quorum nulla quem veniam duis minim tempor
-                                            labore quem eram duis noster aute amet eram fore quis
-                                            sint minim.</span>
+                                        <span>Trang web Finding Job được trang bị hệ thống bảo mật hiện đại, đảm bảo an toàn thông tin cho người dùng. Điều này giúp người dùng có thể yên tâm khi sử dụng trang web.</span>
                                         <i class="bi bi-quote quote-icon-right"></i>
                                     </p>
                                 </div>
                             </div>
                             <!-- End testimonial item -->
 
-                            <div class="swiper-slide">
-                                <div class="testimonial-item">
-                                    <div class="d-flex">
-                                        <img src="{{ asset('assets/img/testimonials/testimonials-4.jpg')}}"
-                                            class="testimonial-img flex-shrink-0" alt="" />
-                                        <div>
-                                            <h3>Matt Brandon</h3>
-                                            <h4>Freelancer</h4>
-                                            <div class="stars">
-                                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                                    class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                                    class="bi bi-star-fill"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <p>
-                                        <i class="bi bi-quote quote-icon-left"></i>
-                                        <span>Fugiat enim eram quae cillum dolore dolor amet nulla
-                                            culpa multos export minim fugiat minim velit minim
-                                            dolor enim duis veniam ipsum anim magna sunt elit fore
-                                            quem dolore labore illum veniam.</span>
-                                        <i class="bi bi-quote quote-icon-right"></i>
-                                    </p>
-                                </div>
-                            </div>
+                            
                             <!-- End testimonial item -->
 
-                            <div class="swiper-slide">
-                                <div class="testimonial-item">
-                                    <div class="d-flex">
-                                        <img src="{{ asset('assets/img/testimonials/testimonials-5.jpg')}}"
-                                            class="testimonial-img flex-shrink-0" alt="" />
-                                        <div>
-                                            <h3>John Larson</h3>
-                                            <h4>Entrepreneur</h4>
-                                            <div class="stars">
-                                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                                    class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                                    class="bi bi-star-fill"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <p>
-                                        <i class="bi bi-quote quote-icon-left"></i>
-                                        <span>Quis quorum aliqua sint quem legam fore sunt eram
-                                            irure aliqua veniam tempor noster veniam enim culpa
-                                            labore duis sunt culpa nulla illum cillum fugiat legam
-                                            esse veniam culpa fore nisi cillum quid.</span>
-                                        <i class="bi bi-quote quote-icon-right"></i>
-                                    </p>
-                                </div>
-                            </div>
+                          
                             <!-- End testimonial item -->
                         </div>
                         <div class="swiper-pagination"></div>
@@ -359,7 +303,7 @@
 
     <!-- End Recent-posts Section -->
     <div class="section-top-client section-title container">
-        <h2>Top Employment</h2>
+        <h2>Top Nhà tuyển dụng</h2>
         <div class="swiper mySwiper section-intro">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
@@ -386,8 +330,7 @@
         <div class="container section-title" data-aos="fade-up">
             <h2>Contact</h2>
             <p>
-                Necessitatibus eius consequatur ex aliquid fuga eum quidem sint
-                consectetur velit
+                Liên hệ với chúng tôi để được hỗ trợ tận tâm , nhiệt tình
             </p>
         </div>
         <!-- End Section Title -->
@@ -399,9 +342,9 @@
                         <div class="col-md-6">
                             <div class="info-item" data-aos="fade" data-aos-delay="200">
                                 <i class="bi bi-geo-alt"></i>
-                                <h3>Address</h3>
-                                <p>A108 Adam Street</p>
-                                <p>New York, NY 535022</p>
+                                <h3>Địa chỉ</h3>
+                                <p>93/3 Hoàng Diệu</p>
+                                <p>Thủ Đức, Hồ Chí Minh</p>
                             </div>
                         </div>
                         <!-- End Info Item -->
@@ -409,9 +352,9 @@
                         <div class="col-md-6">
                             <div class="info-item" data-aos="fade" data-aos-delay="300">
                                 <i class="bi bi-telephone"></i>
-                                <h3>Call Us</h3>
-                                <p>+1 5589 55488 55</p>
-                                <p>+1 6678 254445 41</p>
+                                <h3>Liên hệ</h3>
+                                <p>+84 865 904 101</p>
+                                <p>+84 829 250 703</p>
                             </div>
                         </div>
                         <!-- End Info Item -->
@@ -419,9 +362,9 @@
                         <div class="col-md-6">
                             <div class="info-item" data-aos="fade" data-aos-delay="400">
                                 <i class="bi bi-envelope"></i>
-                                <h3>Email Us</h3>
-                                <p>info@example.com</p>
-                                <p>contact@example.com</p>
+                                <h3>Email</h3>
+                                <p>findingjob@gmail.com</p>
+                                <p>fjcontact@example.com</p>
                             </div>
                         </div>
                         <!-- End Info Item -->
@@ -429,7 +372,7 @@
                         <div class="col-md-6">
                             <div class="info-item" data-aos="fade" data-aos-delay="500">
                                 <i class="bi bi-clock"></i>
-                                <h3>Open Hours</h3>
+                                <h3>Mở cửa</h3>
                                 <p>Monday - Friday</p>
                                 <p>9:00AM - 05:00PM</p>
                             </div>
@@ -443,22 +386,22 @@
                         data-aos-delay="200">
                         <div class="row gy-4">
                             <div class="col-md-6">
-                                <input type="text"` name="name" class="form-control" placeholder="Your Name"
+                                <input type="text"` name="name" class="form-control" placeholder="Tên của bạn"
                                     required />
                             </div>
 
                             <div class="col-md-6">
-                                <input type="email" class="form-control" name="email" placeholder="Your Email"
+                                <input type="email" class="form-control" name="email" placeholder="Email"
                                     required />
                             </div>
 
                             <div class="col-md-12">
-                                <input type="text" class="form-control" name="subject" placeholder="Subject"
+                                <input type="text" class="form-control" name="subject" placeholder="Tiều đề"
                                     required />
                             </div>
 
                             <div class="col-md-12">
-                                <textarea class="form-control" name="message" rows="6" placeholder="Message" required></textarea>
+                                <textarea class="form-control" name="message" rows="6" placeholder="Nội dung" required></textarea>
                             </div>
 
                             <div class="col-md-12 text-center">
@@ -468,7 +411,7 @@
                                     Your message has been sent. Thank you!
                                 </div>
 
-                                <button type="submit">Send Message</button>
+                                <button type="submit">Gửi</button>
                             </div>
                         </div>
                     </form>

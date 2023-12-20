@@ -20,7 +20,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property int|null $userid
  * @property int|null $employerid
  * @property int|null $adminid
- * @property string $status
  * 
  * @property Admin|null $admin
  * @property Employer|null $employer
@@ -50,8 +49,7 @@ class Account extends Authenticatable
 		'role',
 		'userid',
 		'employerid',
-		'adminid',
-		'status'
+		'adminid'
 	];
 
 	public function admin()

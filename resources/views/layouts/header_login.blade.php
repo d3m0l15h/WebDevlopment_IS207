@@ -26,6 +26,7 @@
     <link href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/vendor/aos/aos.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/css/header.css') }}" rel="stylesheet">
 
     <!-- Template Main CSS File -->
     <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet" />
@@ -41,9 +42,9 @@
         toastr.options = {
             "closeButton": true,
             "preventDuplicates": true,
-            "showDuration": "100",
-            "hideDuration": "1000",
-            "timeOut": "1000",
+            "showDuration": "200",
+            "hideDuration": "1500",
+            "timeOut": "1500",
             "extendedTimeOut": "1000",
         }
     </script>
@@ -59,11 +60,11 @@
 <body class="index-page" data-bs-spy="scroll" data-bs-target="#navmenu">
     <header id="header" class="header fixed-top d-flex align-items-center ">
         <div class="container-fluid d-flex align-items-center justify-content-between">
-            <a href="/" class="logo d-flex align-items-center me-auto me-xl-0">
+            <a href="{{ route('home')}}" class="logo d-flex align-items-center me-auto me-xl-0">
                 <!-- Uncomment the line below if you also wish to use an image logo -->
                 <!-- <img src="assets/img/logo.png" alt=""> -->
                 <h1>Finding Job</h1>
-                <span>.</span>
+                <span class="special-dot">.</span>
             </a>
 
             <!-- Nav Menu -->
@@ -71,7 +72,7 @@
                 <ul>
                     <li><a href="{{ route('home') }}" class="active">Trang chủ</a></li>
                     <li><a href="{{ route('jobs') }}">Tìm việc làm</a></li>
-                    <li class="dropdown has-dropdown">
+                    <li class="dropdown has-dropdown extend-1">
                         <a href="javascript:void(0);"><span>Công Việc</span> <i class="bi bi-chevron-down"></i></a>
                         <ul class="dd-box-shadow">
                             <li class="dropdown has-dropdown">
@@ -98,8 +99,8 @@
                 <div class="user-info">
                     <nav id="navmenu" class="navmenu">
                         <ul>
-                            <li class="dropdown has-dropdown">
-                                <div class="d-flex flex-row justify-align-content-around align-items-center ">
+                            <li class="dropdown has-dropdown extend-1">
+                                <div class="d-flex flex-row justify-align-content-around align-items-center extend-2">
                                     @if (auth()->user()->role == 'user')
                                         <img src="{{ asset(auth()->user()->user->avatar) }}" alt=""
                                             class="">
@@ -111,11 +112,11 @@
                                             class="">
                                     @endif
                                     <a href=""
-                                        class="text-light fw-bold m-0 gap-2 ">{{ auth()->user()->username }}</a>
+                                        class="text-light fw-bold m-0 pe-3 ">{{ auth()->user()->username }}</a>
                                 </div>
 
 
-                                <ul class="dd-box-shadow text-end">
+                                <ul class="dropdown-menu menu-bar-1">
                                     @if (auth()->user()->role == 'user')
                                         <li><a href="{{ route('profile') }}">Hồ sơ của tôi</a></li>
                                         <li><a href="{{ route('user.applied') }}">Công việc của tôi</a></li>
@@ -139,16 +140,6 @@
 
                         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
                     </nav>
-                </div>
-                <div
-                    class="user-info d-flex flex-row justify-content-center align-items-center text-light fw-bold gap-2">
-                    <a href="#">
-                        VI
-                    </a>
-                    <span> / </span>
-                    <a href="#">
-                        EN
-                    </a>
                 </div>
             </div>
         </div>

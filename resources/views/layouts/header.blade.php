@@ -26,7 +26,7 @@
     <link href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/vendor/aos/aos.css') }}" rel="stylesheet" />
-    
+
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
@@ -44,10 +44,10 @@
         toastr.options = {
             "closeButton": true,
             "preventDuplicates": true,
-            "showDuration": "100",
-            "hideDuration": "1000",
-            "timeOut": "1000",
-            "extendedTimeOut": "1000",
+            "showDuration": "200",
+            "hideDuration": "2500",
+            "timeOut": "2500",
+            "extendedTimeOut": "2000",
         }
     </script>
     <!-- =======================================================
@@ -62,7 +62,7 @@
 <body class="index-page" data-bs-spy="scroll" data-bs-target="#navmenu">
     <header id="header" class="header fixed-top d-flex align-items-center ">
         <div class="container-fluid d-flex align-items-center justify-content-between">
-            <a href="{{route('home')}}" class="logo d-flex align-items-center me-auto me-xl-0">
+            <a href="{{ route('home') }}" class="logo d-flex align-items-center me-auto me-xl-0">
                 <!-- Uncomment the line below if you also wish to use an image logo -->
                 <!-- <img src="assets/img/logo.png" alt=""> -->
                 <h1>Finding Job</h1>
@@ -74,7 +74,7 @@
                 <ul>
                     <li><a href="/" class="active">Trang chủ</a></li>
                     <li><a href="{{ route('jobs') }}">Tìm việc làm</a></li>
-                    <li class="dropdown has-dropdown" >
+                    <li class="dropdown has-dropdown">
                         <a href="#"><span>Công việc</span> <i class="bi bi-chevron-down"></i></a>
                         <ul class="dd-box-shadow">
                             <li><a href="#"></a></li>
@@ -123,7 +123,7 @@
                         <input type="hidden" name="form_type" value="login">
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">Email or User Name</label>
-                            <input type="text" class="form-control" id="account" name="email">
+                            <input type="text" class="form-control" id="account" name="email" required>
                             @if (old('form_type') == 'login')
                                 @error('email')
                                     <div class="alert alert-danger mt-2">{{ $message }}</div>
@@ -132,7 +132,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="message-text" class="col-form-label">Mật Khẩu</label>
-                            <input type="password" class="form-control" id="password" name="password">
+                            <input type="password" class="form-control" id="password" name="password" required>
                             @if (old('form_type') == 'login')
                                 @error('password')
                                     <div class="alert alert-danger mt-2">{{ $message }}</div>
@@ -144,7 +144,7 @@
                     <button type="button" class="btn btn-primary bg-color border-0 " data-bs-target="#register"
                         data-bs-toggle="modal">Đăng kí</button>
                     <button type="button" class="btn btn-primary bg-color border-0 "
-                        data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Quên mật khẩu</button>
+                        data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Đổi mật khẩu</button>
                     <button type="submit" class="btn btn-primary bg-color border-0">Đăng nhập</button>
                 </div>
                 </form>
@@ -166,29 +166,61 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Quên mật khẩu</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Đổi mật khẩu</h1>
                     <button type="button" class="btn-close" data-bs-target="#exampleModal"
                         data-bs-toggle="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form action="{{ route('change_pwd') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="form_type" value="change_pwd">
                         <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">Tài khoản</label>
-                            <input type="text" class="form-control" id="account">
+                            <label for="recipient-name" class="col-form-label">Email</label>
+                            <input type="text" class="form-control" id="account" name="email" required>
+                            @if (old('form_type') == 'change_pwd')
+                                @error('email')
+                                    <div class="alert alert-danger mt-2">{{ $message }}</div>
+                                @enderror
+                            @endif
                         </div>
                         <div class="mb-3">
                             <label for="message-text" class="col-form-label">Mật Khẩu</label>
-                            <input type="password" class="form-control" id="password">
+                            <input type="password" class="form-control" id="password" name="pwd" required>
+                            @if (old('form_type') == 'change_pwd')
+                                @error('pwd')
+                                    <div class="alert alert-danger mt-2">{{ $message }}</div>
+                                @enderror
+                            @endif
+                        </div>
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label">Mật Khẩu mới</label>
+                            <input type="password" class="form-control" id="confirm-password" name="password"
+                                required>
+                            @if (old('form_type') == 'change_pwd')
+                                @error('password')
+                                    <div class="alert alert-danger mt-2">{{ $message }}</div>
+                                @enderror
+                            @endif
                         </div>
                         <div class="mb-3">
                             <label for="message-text" class="col-form-label">Nhập lại mật Khẩu</label>
-                            <input type="password" class="form-control" id="confirm-password">
+                            <input type="password" class="form-control" id="confirm-password"
+                                name="password_confirmation" required>
                         </div>
-                    </form>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary">Xác nhận</button>
+                    <button type="submit" class="btn btn-primary">Xác nhận</button>
                 </div>
+                </form>
+                @if (Session::has('success'))
+                    <script>
+                        toastr.success("{{ Session::get('success') }}");
+                    </script>
+                    @elseif(Session::has('fail'))
+                    <script>
+                        toastr.error("{{ Session::get('fail') }}");
+                    </script>
+                @endif
             </div>
         </div>
     </div>
@@ -207,7 +239,7 @@
                         <input type="hidden" name="form_type" value="register">
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">Email</label>
-                            <input type="text" class="form-control" id="account" name="email">
+                            <input type="text" class="form-control" id="account" name="email" required>
                             @if (old('form_type') == 'register')
                                 @error('email')
                                     <div class="alert alert-danger mt-2">{{ $message }}</div>
@@ -216,7 +248,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">Tài khoản</label>
-                            <input type="text" class="form-control" id="account" name="username">
+                            <input type="text" class="form-control" id="account" name="username" required>
                             @if (old('form_type') == 'register')
                                 @error('username')
                                     <div class="alert alert-danger mt-2">{{ $message }}</div>
@@ -225,7 +257,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="message-text" class="col-form-label">Mật Khẩu</label>
-                            <input type="password" class="form-control" id="password" name="password">
+                            <input type="password" class="form-control" id="password" name="password" required>
                             @if (old('form_type') == 'register')
                                 @error('password')
                                     <div class="alert alert-danger mt-2">{{ $message }}</div>
@@ -235,7 +267,12 @@
                         <div class="mb-3">
                             <label for="message-text" class="col-form-label">Nhập lại mật Khẩu</label>
                             <input type="password" class="form-control" id="confirm-password"
-                                name="password_confirmation">
+                                name="password_confirmation" required>
+                            @if (old('form_type') == 'register')
+                                @error('password')
+                                    <div class="alert alert-danger mt-2">{{ $message }}</div>
+                                @enderror
+                            @endif
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault"
@@ -283,14 +320,14 @@
                         <div class="mb-3 d-flex flex-row ">
                             <div class="w-50 p-2 ">
                                 <label for="recipient-name" class="col-form-label">Họ tên</label>
-                                <input type="text" class="form-control" id="name" name="name">
+                                <input type="text" class="form-control" id="name" name="name" required>
                                 @error('name')
                                     <div class="alert alert-sm alert-danger mt-2">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="w-50 p-2 ">
                                 <label for="message-text" class="col-form-label">Số điện thoại</label>
-                                <input type="text" class="form-control" id="phone" name="phone">
+                                <input type="text" class="form-control" id="phone" name="phone" required>
                                 @error('phone')
                                     <div class="alert alert-sm alert-danger mt-2">{{ $message }}</div>
                                 @enderror
@@ -299,16 +336,16 @@
                         <div class="mb-3 d-flex flex-row ">
                             <div class="w-50 p-2 ">
                                 <label for="recipient-name" class="col-form-label">Email</label>
-                                <input type="email" class="form-control" id="email" name="email">
+                                <input type="email" class="form-control" id="email" name="email" required>
                                 @if (old('form_type') == 'employer')
-                                @error('email')
-                                    <div class="alert alert-danger mt-2">{{ $message }}</div>
-                                @enderror
-                            @endif
+                                    @error('email')
+                                        <div class="alert alert-danger mt-2">{{ $message }}</div>
+                                    @enderror
+                                @endif
                             </div>
                             <div class="w-50 p-2 ">
                                 <label for="message-text" class="col-form-label">Nơi làm việc</label>
-                                <input type="text" class="form-control" id="location" name="location">
+                                <input type="text" class="form-control" id="location" name="location" required>
                                 @error('location')
                                     <div class="alert alert-sm alert-danger mt-2">{{ $message }}</div>
                                 @enderror
@@ -317,21 +354,21 @@
                         <div class="mb-3 d-flex flex-row ">
                             <div class="w-50 p-2 ">
                                 <label for="recipient-name" class="col-form-label">Tài khoản</label>
-                                <input type="text" class="form-control" id="username" name="username">
+                                <input type="text" class="form-control" id="username" name="username" required>
                                 @if (old('form_type') == 'employer')
-                                @error('username')
-                                    <div class="alert alert-danger mt-2">{{ $message }}</div>
-                                @enderror
-                            @endif
+                                    @error('username')
+                                        <div class="alert alert-danger mt-2">{{ $message }}</div>
+                                    @enderror
+                                @endif
                             </div>
                             <div class="w-50 p-2 ">
                                 <label for="message-text" class="col-form-label">Mật Khẩu</label>
-                                <input type="password" class="form-control" id="password" name="password">
+                                <input type="password" class="form-control" id="password" name="password" required>
                                 @if (old('form_type') == 'employer')
-                                @error('password')
-                                    <div class="alert alert-danger mt-2">{{ $message }}</div>
-                                @enderror
-                            @endif
+                                    @error('password')
+                                        <div class="alert alert-danger mt-2">{{ $message }}</div>
+                                    @enderror
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -340,9 +377,9 @@
                     </div>
                 </form>
                 @if (Session::has('success'))
-                        <script>
-                            toastr.success("{{ Session::get('success') }}");
-                        </script>
+                    <script>
+                        toastr.success("{{ Session::get('success') }}");
+                    </script>
                 @endif
             </div>
         </div>

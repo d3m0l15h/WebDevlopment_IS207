@@ -54,6 +54,15 @@ Route::get('/account/login', function () {
     abort(404);
 });
 
+//Account reset password
+Route::post('/account/change-pwd', [
+    AccountController::class,
+    'change_pwd'
+])->name('change_pwd');
+Route::get('/account/reset', function () {
+    abort(404);
+});
+
 //Account Logout
 Route::get('/account/logout', [
     AccountController::class,
@@ -92,13 +101,6 @@ Route::get('/employer/{slug}', [
 ])->name('profile.company');
 
 
-
-//POST
-Route::post('/profile/job-accept', [
-    JobController::class,
-    'job_accept'
-])->name('profile.jobaccept');
-
 //POST
 Route::post('/profile/uploadcv', [
     JobController::class,
@@ -108,16 +110,7 @@ Route::get('/profile/uploadcv', function () {
     abort(404);
 });
 
-//////////////////////////JOB
-Route::get('/jobs', [
-    JobController::class,
-    'index'
-])->name('jobs');
-//GET job detail
-Route::get('/job/{slug}', [
-    JobController::class,
-    'show'
-])->name('job.detail');
+
 
 ////////////////////////////EMPLOYER
 Route::group(['middleware' => ['employer']], function () {
@@ -155,7 +148,24 @@ Route::group(['middleware' => ['employer']], function () {
         EmployerController::class,
         'manage_applies'
     ])->name('employer.manage_applies');
+    //POST
+    Route::post('/job/apply/', [
+        EmployerController::class,
+        'job_accept'
+    ])->name('profile.jobaccept');
 });
+
+//////////////////////////JOB
+Route::get('/jobs', [
+    JobController::class,
+    'index'
+])->name('jobs');
+//GET job detail
+Route::get('/job/{slug}', [
+    JobController::class,
+    'show'
+])->name('job.detail');
+
 
 /////////////////////////////USER
 Route::group(['middleware' => ['user']], function () {
@@ -196,12 +206,13 @@ Route::group(['middleware' => ['admin']], function () {
         AdminController::class,
         'manage_request'
     ])->name('admin.request');
-    Route::get('/admin/user/{id}', [
-        AdminController::class,
-        'user_show'
-    ])->name('admin.user_show');
     Route::post('/admin/request', [
         AdminController::class,
         'request_become_employer'
     ])->name('admin.request_become_employer');
 });
+
+Route::get('/user/{id}', [
+    AdminController::class,
+    'user_show'
+])->name('admin.user_show')->middleware('user_show');

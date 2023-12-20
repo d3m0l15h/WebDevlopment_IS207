@@ -34,8 +34,8 @@
              </div>
              <div class="row">
                <div class="col a-box rounded-4 p-4">
-                 <h3 class="fw-bold main-color">Total emloyer</h3>
-                 <p>400</p>
+                 <h3 class="fw-bold main-color">Total applies</h3>
+                 <p>{{$appliedCount}}</p>
                </div>
              </div>
            </div>

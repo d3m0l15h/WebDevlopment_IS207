@@ -35,7 +35,7 @@
                     </div>
                     <div class="form-floating mb-4">
                         <h4>Yêu cầu công việc</h4>
-                        <textarea class="editor2" id="required" name="required" contenteditable="true" >{{ $job->requirements }}</textarea>
+                        <textarea class="editor2" id="required" name="required" contenteditable="true">{{ $job->requirements }}</textarea>
                         @error('required')
                             <div class="alert alert-danger mt-2">{{ $message }}</div>
                         @enderror
@@ -49,12 +49,12 @@
                     </div>
                     <div class="form-floating mb-4">
                         <select class="form-control" id="floatingSelect" name="location">
-                          <option selected>Chọn địa điểm</option>
-                          <option value="HCM" {{ $job->location == 'HCM' ? 'selected' : '' }}>Hồ Chí Minh</option>
-                          <option value="HN" {{ $job->location == 'HN' ? 'selected' : '' }}>Hà Nội</option>
-                          <option value="DN" {{ $job->location == 'DN' ? 'selected' : '' }}>Đà nẵng</option>
-                          <option value="CT" {{ $job->location == 'CT' ? 'selected' : '' }}>Cần Thơ</option>
-                          <option value="Hue" {{ $job->location == 'Hue' ? 'selected' : '' }}>Huế</option>
+                            <option selected>Chọn địa điểm</option>
+                            <option value="HCM" {{ $job->location == 'HCM' ? 'selected' : '' }}>Hồ Chí Minh</option>
+                            <option value="HN" {{ $job->location == 'HN' ? 'selected' : '' }}>Hà Nội</option>
+                            <option value="DN" {{ $job->location == 'DN' ? 'selected' : '' }}>Đà nẵng</option>
+                            <option value="CT" {{ $job->location == 'CT' ? 'selected' : '' }}>Cần Thơ</option>
+                            <option value="Hue" {{ $job->location == 'Hue' ? 'selected' : '' }}>Huế</option>
                             <!-- Add more options as needed -->
                         </select>
                         <label for="floatingSelect">Địa điểm</label>
@@ -64,12 +64,12 @@
                     </div>
                     <div class="form-floating mb-4">
                         <select class="form-control" id="floatingSelect1" name="level">
-                          <option selected>Chọn cấp bậc</option>
-                          <option value="fresher" {{ $job->level == 'fresher' ? 'selected' : '' }}>Fresher</option>
-                          <option value="junior" {{ $job->level == 'junior' ? 'selected' : '' }}>Junior</option>
-                          <option value="senior" {{ $job->level == 'senior' ? 'selected' : '' }}>Senior</option>
-                          <option value="manager" {{ $job->level == 'manager' ? 'selected' : '' }}>Manager</option>
-                          <option value="clevel" {{ $job->level == 'clevel' ? 'selected' : '' }}>C-level</option>
+                            <option selected>Chọn cấp bậc</option>
+                            <option value="fresher" {{ $job->level == 'fresher' ? 'selected' : '' }}>Fresher</option>
+                            <option value="junior" {{ $job->level == 'junior' ? 'selected' : '' }}>Junior</option>
+                            <option value="senior" {{ $job->level == 'senior' ? 'selected' : '' }}>Senior</option>
+                            <option value="manager" {{ $job->level == 'manager' ? 'selected' : '' }}>Manager</option>
+                            <option value="clevel" {{ $job->level == 'clevel' ? 'selected' : '' }}>C-level</option>
                         </select>
                         <label for="floatingSelect1">Cấp bậc ứng viên</label>
                         @error('level')
@@ -77,27 +77,32 @@
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <input type="number" class="form-control" id="luong" name="salary" placeholder="Nhập lương" value={{$job->salary}} required>
+                        <input type="number" class="form-control" id="luong" name="salary" placeholder="Nhập lương"
+                            value={{ $job->salary }} required>
                     </div>
                     <div class="mb-3">
                         <input type="number" class="form-control" id="minSalary" name="salarymin"
-                            placeholder="Lương tối thiểu" value={{ $job->salarymin}} required>
+                            placeholder="Lương tối thiểu" value={{ $job->salarymin }} required>
                     </div>
                     <div class="mb-3">
                         <input type="number" class="form-control" id="maxSalary" name="salarymax"
-                            placeholder="Lương tối đa" value={{ $job->salarymax}} required>
+                            placeholder="Lương tối đa" value={{ $job->salarymax }} required>
                     </div>
+                    @error('salarymax')
+                        <div class="alert alert-danger mt-2">Lương tối đa phải lớn hơn lương tối thiểu</div>
+                    @enderror
                     <div class="mb-3">
                         <p class="fw-bold">Hình thức làm việc</p>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="worktype" value="remote" id="remote" {{ $job->worktype == 'remote' ? 'checked' : '' }}>
+                            <input class="form-check-input" type="radio" name="worktype" value="remote" id="remote"
+                                {{ $job->worktype == 'remote' ? 'checked' : '' }}>
                             <label class="form-check-label" for="remote">
                                 Remote
                             </label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="worktype" value="company" id="company"
-                            {{ $job->worktype == 'company' ? 'checked' : '' }}>
+                                {{ $job->worktype == 'company' ? 'checked' : '' }}>
                             <label class="form-check-label" for="company">
                                 Company
                             </label>
@@ -113,7 +118,7 @@
                     <div class="mb-3">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="worktime" value="Full-time"
-                                id="flexRadioDefault3" {{ $job->worktime == 'Full-time' ? 'checked' : '' }} >
+                                id="flexRadioDefault3" {{ $job->worktime == 'Full-time' ? 'checked' : '' }}>
                             <label class="form-check-label" for="flexRadioDefault3">
                                 Full-time
                             </label>
@@ -127,16 +132,16 @@
                         </div>
                         <div class="mb-3">
                             <input type="submit" class="btn btn-primary" value="Cập nhật">
-                    </div>
+                        </div>
                 </form>
                 @if (Session::has('success'))
-                        <script>
-                            toastr.success("{{ Session::get('success') }}");
-                        </script>
+                    <script>
+                        toastr.success("{{ Session::get('success') }}");
+                    </script>
                 @elseif (Session::has('error'))
-                        <script>
-                            toastr.error("{{ Session::get('error') }}");
-                        </script>
+                    <script>
+                        toastr.error("{{ Session::get('error') }}");
+                    </script>
                 @endif
             </div>
         </section>

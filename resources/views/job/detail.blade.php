@@ -67,18 +67,45 @@
                         <div class="sidebar box">
                             <div class="sidebar-item categories">
                                 <h3 class="sidebar-title mb-1">{{ $job->name }}</h3>
-                                <a href="{{route('profile.company',['slug' => Str::slug($job->employer->name).'-'.$job->eid])}}" class="ms-0">Xem công ty</a>
+                                <a href="{{ route('profile.company', ['slug' => Str::slug($job->employer->name) . '-' . $job->eid]) }}"
+                                    class="ms-0">Xem công ty</a>
                                 <div class="salary-wrapper d-flex flex-row justify-content-start gap-2 mt-1">
                                     <img src="{{ asset('assets/img/circle-money.png') }}" width="20" height="20"
                                         alt="">
-                                    <p class="money-num fw-bold ">${{ $job->salarymin }} - ${{ $job->salarymax }}</p>
+                                    <p class="money-num fw-bold ">
+                                        @if (Auth::check())
+                                            @if ($job->salary != 0 || ($job->salarymin == $job->salarymax && $job->salary == 0))
+                                                ${{ $job->salary }}
+                                            @elseif($job->salarymin != 0 && $job->salarymax != 0 && $job->salary == 0)
+                                                ${{ $job->salarymin }} - ${{ $job->salarymax }}
+                                            @elseif($job->salarymin == 0 && $job->salarymax == 0 && $job->salary == 0)
+                                                Thương lượng
+                                            @endif
+                                        @else
+                                            Đăng nhập để xem mức lương
+                                        @endif
+                                    </p>
                                 </div>
                                 <div class="d-flex flex-row justify-content-start gap-2">
-                                    <p class="fw-bold">Working type: </p>
-                                    <p>{{ $job->worktype }}</p>
+                                    <p class="fw-bold">Loại hình làm việc: </p>
+                                    <p>
+                                        @switch($job->worktype)
+                                            @case('remote')
+                                                Từ xa
+                                            @break
+
+                                            @case('company')
+                                                Tại văn phòng
+                                            @break
+
+                                            @case('hybrid')
+                                                Linh hoạt
+                                            @break
+                                        @endswitch
+                                    </p>
                                 </div>
                                 <div class="d-flex flex-row justify-content-start gap-2">
-                                    <p class="fw-bold">Working time: </p>
+                                    <p class="fw-bold">Loại thời gian làm việc: </p>
                                     <p>{{ $job->worktime }}</p>
                                 </div>
                                 <div>
@@ -88,17 +115,23 @@
                                 @if (Auth::check() && auth()->user()->role == 'user')
                                     @if ($applied == null)
                                         <button data-bs-toggle="modal" data-bs-target="#send-cv" type="button"
-                                            class="w-100 bg-color rounded-2 p-2 text-light fw-2 emp-btn border-0">ỨNG TUYỂN</button>
+                                            class="w-100 bg-color rounded-2 p-2 text-light fw-2 emp-btn border-0">ỨNG
+                                            TUYỂN</button>
                                     @else
                                         <button data-bs-toggle="modal" data-bs-target="#send-cv" disabled type="button"
-                                            class="w-100 bg-color rounded-2 p-2 text-light fw-2 emp-btn border-0 ">ĐÃ ỨNG TUYỂN</button>
+                                            class="w-100 bg-color rounded-2 p-2 text-light fw-2 emp-btn border-0 ">ĐÃ ỨNG
+                                            TUYỂN</button>
                                     @endif
-                                @else
+                                @elseif(Auth::check() && auth()->user()->role != 'user')
                                     <button data-bs-toggle="modal" data-bs-target="#send-cv" type="button"
                                         class="w-100 bg-color rounded-2 p-2 text-light fw-2 emp-btn border-0 "
                                         style="background-color: gray" disabled>ỨNG TUYỂN</button>
+                                @else
+                                    <button data-bs-toggle="modal" data-bs-target="#exampleModal" type="button"
+                                        class="w-100 bg-color rounded-2 p-2 text-light fw-2 emp-btn border-0">ỨNG
+                                        TUYỂN</button>
                                 @endif
-    
+
 
                             </div>
                             <div class="sidebar-item tags">
