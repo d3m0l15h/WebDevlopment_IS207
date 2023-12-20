@@ -11,46 +11,48 @@
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Bộ lọc</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <h3 class="text-black fw-700">Cấp bậc</h3>
-                    <input type="checkbox" class="btn-check" id="btn-check" autocomplete="off">
-                    <label class="btn btn-primary bg-transparent text-black border-1 border-color-primary"
-                        for="btn-check">Fresher</label>
-                    <input type="checkbox" class="btn-check" id="btn-check-2" autocomplete="off">
-                    <label class="btn btn-primary bg-transparent text-black border-1 border-color-primary"
-                        for="btn-check-2">Junior</label>
-                    <input type="checkbox" class="btn-check" id="btn-check-3" autocomplete="off">
-                    <label class="btn btn-primary bg-transparent text-black border-1 border-color-primary"
-                        for="btn-check-3">Senior</label>
-                    <input type="checkbox" class="btn-check" id="btn-check-4" autocomplete="off">
-                    <label class="btn btn-primary bg-transparent text-black border-1 border-color-primary"
-                        for="btn-check-4">Manager</label>
-                </div>
-                <div class="modal-body">
-                    <h3 class="text-black fw-700">Loại công ty</h3>
-                    <input type="checkbox" class="btn-check" id="btn-check-product" autocomplete="off">
-                    <label class="btn btn-primary bg-transparent text-black border-1 border-color-primary"
-                        for="btn-check-product">Fresher</label>
-                    <input type="checkbox" class="btn-check" id="btn-check-outsrc" autocomplete="off">
-                    <label class="btn btn-primary bg-transparent text-black border-1 border-color-primary "
-                        for="btn-check-outsrc">Junior</label>
-                </div>
-                <div class="modal-body">
-                    <h3 class="text-black fw-700">Loại công ty</h3>
-                    <input type="checkbox" class="btn-check" id="btn-check-remote" autocomplete="off">
-                    <label class="btn btn-primary bg-transparent text-black border-1 border-color-primary"
-                        for="btn-check-remote">Từ xa</label>
-                    <input type="checkbox" class="btn-check" id="btn-check-office" autocomplete="off">
-                    <label class="btn btn-primary bg-transparent text-black border-1 border-color-primary "
-                        for="btn-check-office">Tại văn phòng</label>
-                    <input type="checkbox" class="btn-check" id="btn-check-flex" autocomplete="off">
-                    <label class="btn btn-primary bg-transparent text-black border-1 border-color-primary "
-                        for="btn-check-flex">Linh hoạt</label>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary bg-color border-0 " data-bs-dismiss="modal">Áp
-                        dụng</button>
-                </div>
+                <form action="{{ route('jobs') }}" method="GET">
+                    <div class="modal-body">
+                        <h3 class="text-black fw-700">Cấp bậc</h3>
+                        <input type="checkbox" class="btn-check" id="btn-check" name="btn-check" autocomplete="off">
+                        <label class="btn btn-primary bg-transparent text-black border-1 border-color-primary"
+                            for="btn-check">Fresher</label>
+                        <input type="checkbox" class="btn-check" id="btn-check-2" name="btn-check-2" autocomplete="off">
+                        <label class="btn btn-primary bg-transparent text-black border-1 border-color-primary"
+                            for="btn-check-2">Junior</label>
+                        <input type="checkbox" class="btn-check" id="btn-check-3" name="btn-check-3" autocomplete="off">
+                        <label class="btn btn-primary bg-transparent text-black border-1 border-color-primary"
+                            for="btn-check-3">Senior</label>
+                        <input type="checkbox" class="btn-check" id="btn-check-4" name="btn-check-4" autocomplete="off">
+                        <label class="btn btn-primary bg-transparent text-black border-1 border-color-primary"
+                            for="btn-check-4">Manager</label>
+                    </div>
+                    <div class="modal-body">
+                        <h3 class="text-black fw-700">Loại thời gian</h3>
+                        <input type="checkbox" class="btn-check" id="btn-check-fulltime" name="btn-check-fulltime" autocomplete="off">
+                        <label class="btn btn-primary bg-transparent text-black border-1 border-color-primary"
+                            for="btn-check-fulltime">Full-time</label>
+                        <input type="checkbox" class="btn-check" id="btn-check-parttime" name="btn-check-parttime" autocomplete="off">
+                        <label class="btn btn-primary bg-transparent text-black border-1 border-color-primary "
+                            for="btn-check-parttime">Part-time</label>
+                    </div>
+                    <div class="modal-body">
+                        <h3 class="text-black fw-700">Hình thức làm việc</h3>
+                        <input type="checkbox" class="btn-check" id="btn-check-remote" name="btn-check-remote" autocomplete="off">
+                        <label class="btn btn-primary bg-transparent text-black border-1 border-color-primary"
+                            for="btn-check-remote">Từ xa</label>
+                        <input type="checkbox" class="btn-check" id="btn-check-office" name="btn-check-office" autocomplete="off">
+                        <label class="btn btn-primary bg-transparent text-black border-1 border-color-primary "
+                            for="btn-check-office">Tại văn phòng</label>
+                        <input type="checkbox" class="btn-check" id="btn-check-flex" name="btn-check-flex" autocomplete="off">
+                        <label class="btn btn-primary bg-transparent text-black border-1 border-color-primary "
+                            for="btn-check-flex">Linh hoạt</label>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary bg-color border-0 " data-bs-dismiss="modal">Áp
+                            dụng</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -72,8 +74,8 @@
                                     <option value="CT">Cần Thơ</option>
                                     <option value="Hue">Huế</option>
                                 </select>
-                                <input class="w-50 p-3 rounded-2 " type="search" placeholder="Nhập từ khóa" name="search"
-                                    value="{{ request('search') }}">
+                                <input class="w-50 p-3 rounded-2 " type="search" placeholder="Nhập từ khóa"
+                                    name="search" value="{{ request('search') }}">
                                 <button
                                     class="w-auto p-3 rounded-2 bg-color d-flex justify-content-center align-content-center border-0"
                                     action="submit">
@@ -138,7 +140,10 @@
                                             class="avt-com rounded-4 ">
                                     @endif
                                     <div class="post-meta">
-                                        <a href="{{ route('profile.company', ['slug' => Str::slug($job->employer->name) . '-' . $job->eid]) }}"><p class="post-author fw-bold ">{{ $job->employer->name }}</p></a>
+                                        <a
+                                            href="{{ route('profile.company', ['slug' => Str::slug($job->employer->name) . '-' . $job->eid]) }}">
+                                            <p class="post-author fw-bold ">{{ $job->employer->name }}</p>
+                                        </a>
                                         <p class="money-num fw-bold ">
                                             <span><img src="{{ asset('assets/img/circle-money.png') }}" alt=""
                                                     width="20" height="20"></span>
@@ -210,7 +215,6 @@
             </div>
 
         </section><!-- End Blog Section -->
-
     </main>
 
     <!-- ======= Footer ======= -->

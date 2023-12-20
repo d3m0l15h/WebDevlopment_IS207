@@ -1,12 +1,6 @@
 <div class="sidebar box">
     <a href="{{route('admin.dashboard')}}"><h4 class="text-center fw-bold ">DASHBOARD</h4></a>
     <ul class="list-group list-group-flush mt-4 ">
-      {{-- <li class="list-group-item">
-         <a href="{{route('admin.user')}}" class="tab d-flex flex-row align-items-center ">
-            <img src="{{ asset('assets/img/user.png')}}" alt="" width="30" height="30" class="me-4">
-            <p>Admin</p>
-         </a>
-      </li> --}}
        <li class="list-group-item">
           <a href="{{route('admin.user')}}" class="tab d-flex flex-row align-items-center ">
              <img src="{{ asset('assets/img/user.png')}}" alt="" width="30" height="30" class="me-4">

@@ -13,7 +13,6 @@ use Illuminate\Database\Eloquent\Model;
  * Class Admin
  * 
  * @property int $id
- * @property string|null $username
  * @property string $status
  * 
  * @property Collection|Account[] $accounts
@@ -26,7 +25,6 @@ class Admin extends Model
 	public $timestamps = false;
 
 	protected $fillable = [
-		'username',
 		'status'
 	];
 

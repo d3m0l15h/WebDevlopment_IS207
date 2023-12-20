@@ -17,8 +17,51 @@ use Log;
 
 class JobController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        //FILTER
+        $queryParams = $request->all();
+
+        // Dump query parameters for debugging
+       // dd($queryParams);
+
+        // Start a query builder
+        $query = Job::query();
+
+        // Filter by job level
+        if (isset($queryParams['btn-check'])) {
+            $query->where('level', 'fresher');
+        }
+        if (isset($queryParams['btn-check-2'])) {
+            $query->where('level', 'junior');
+        }
+        if (isset($queryParams['btn-check-3'])) {
+            $query->where('level', 'senior');
+        }
+        if (isset($queryParams['btn-check-4'])) {
+            $query->where('level', 'manager');
+        }
+
+        // Filter by job type
+        if (isset($queryParams['btn-check-fulltime'])) {
+            $query->where('worktime', 'Full-time');
+        }
+        if (isset($queryParams['btn-check-parttime'])) {
+            $query->where('worktime', 'Part-time');
+        }
+
+        // Filter by job location
+        if (isset($queryParams['btn-check-remote'])) {
+            $query->where('worktype', 'remote');
+        }
+        if (isset($queryParams['btn-check-office'])) {
+            $query->where('worktype', 'company');
+        }
+        if (isset($queryParams['btn-check-flex'])) {
+            $query->where('worktype', 'hybrid');
+        }
+
+        //SEARCH
         $search = request('search');
         $location = request('location');
 
@@ -26,10 +69,10 @@ class JobController extends Controller
             $jobs = Job::whereHas('employer', function ($query) use ($search) {
                 $query->where('name', 'like', '%' . $search . '%');
             })
-            ->where('location', 'like', '%' . $location . '%')
-            ->where('status', '=', '1')
-            ->paginate(20);
-    
+                ->where('location', 'like', '%' . $location . '%')
+                ->where('status', '=', '1')
+                ->paginate(20);
+
             if ($jobs->isEmpty()) {
                 $jobs = Job::where('name', 'like', '%' . $search . '%')
                     ->where('location', 'like', '%' . $location . '%')
@@ -40,9 +83,9 @@ class JobController extends Controller
             $jobs = Job::whereHas('employer', function ($query) use ($search) {
                 $query->where('name', 'like', '%' . $search . '%');
             })
-            ->where('status', '=', '1')
-            ->paginate(20);
-    
+                ->where('status', '=', '1')
+                ->paginate(20);
+
             if ($jobs->isEmpty()) {
                 $jobs = Job::where('name', 'like', '%' . $search . '%')
                     ->where('status', '=', '1')
@@ -53,9 +96,9 @@ class JobController extends Controller
                 ->where('status', '=', '1')
                 ->paginate(20);
         } else {
-            $jobs = Job::where('status', '=', '1')->paginate(20);
+            $jobs = $query->where('status', '=', '1')->paginate(20);
         }
-    
+
         return view('job.index', compact('jobs'));
     }
     public function show($slug) //job details
@@ -91,7 +134,7 @@ class JobController extends Controller
             'required' => 'required',
             'location' => 'required|in:HCM,HN,DN,CT,Hue',
             'salarymax' => 'required|numeric|gt:salarymin',
-        ],[
+        ], [
             'title.required' => 'Tên công việc không được để trống.',
             'description.required' => 'Mô tả công việc không được để trống.',
             'strength.required' => 'Điểm mạnh không được để trống.',

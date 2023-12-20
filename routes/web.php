@@ -166,6 +166,7 @@ Route::get('/job/{slug}', [
     'show'
 ])->name('job.detail');
 
+
 /////////////////////////////USER
 Route::group(['middleware' => ['user']], function () {
     //profil user job
