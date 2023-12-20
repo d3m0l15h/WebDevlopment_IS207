@@ -22,24 +22,24 @@ class JobController extends Controller
         $search_job = request('search');
         $location = request('location');
 
-    if ($search_job && $location) {
-        $jobs = Job::where('name', 'like', '%' . $search_job . '%')
-                    ->where('location', 'like', '%' . $location . '%')
-                    ->where('status', '=', '1')
-                    ->get();
-    } elseif ($search_job) {
-        $jobs = Job::where('name', 'like', '%' . $search_job . '%')
-                    ->where('status', '=', '1')
-                    ->get();
-    } elseif ($location) {
-        $jobs = Job::where('location', 'like', '%' . $location . '%')
-                    ->where('status', '=', '1')
-                    ->get();
-    } else {
-        $jobs = Job::where('status', '=', '1')->paginate(20);
-    }
+        if ($search_job && $location) {
+            $jobs = Job::where('name', 'like', '%' . $search_job . '%')
+                ->where('location', 'like', '%' . $location . '%')
+                ->where('status', '=', '1')
+                ->get();
+        } elseif ($search_job) {
+            $jobs = Job::where('name', 'like', '%' . $search_job . '%')
+                ->where('status', '=', '1')
+                ->get();
+        } elseif ($location) {
+            $jobs = Job::where('location', 'like', '%' . $location . '%')
+                ->where('status', '=', '1')
+                ->get();
+        } else {
+            $jobs = Job::where('status', '=', '1')->paginate(20);
+        }
 
-    return view('job.index', compact('jobs'));
+        return view('job.index', compact('jobs'));
     }
     public function show($slug) //job details
     {
@@ -54,9 +54,9 @@ class JobController extends Controller
                 $applied = $result[0];
             }
         }
-       
+
         if (!$job) {
-        // Handle the case where no job with the given slug exists.
+            // Handle the case where no job with the given slug exists.
         }
         return view('job.detail', compact('job', 'applied'));
     }
@@ -73,6 +73,14 @@ class JobController extends Controller
             'reason' => 'required',
             'required' => 'required',
             'location' => 'required|in:HCM,HN,DN,CT,Hue',
+            'salarymax' => 'required|numeric|gt:salarymin',
+        ],[
+            'title.required' => 'Tên công việc không được để trống.',
+            'description.required' => 'Mô tả công việc không được để trống.',
+            'strength.required' => 'Điểm mạnh không được để trống.',
+            'reason.required' => 'Lí do không được để trống.',
+            'required.required' => 'Yêu cầu không được để trống.',
+            'location.required' => 'Địa điểm không được để trống.',
         ]);
         $job = new Job();
         $job->name = $request->title;
@@ -81,8 +89,8 @@ class JobController extends Controller
         $job->reasons = $request->reason;
         $job->requirements = $request->required;
         $job->salary = $request->salary;
-        $job->salarymin = (float)$request->salarymin;
-        $job->salarymax = (float)$request->salarymax;
+        $job->salarymin = (float) $request->salarymin;
+        $job->salarymax = (float) $request->salarymax;
         $job->location = $request->location;
         $job->worktype = $request->worktype;
         $job->worktime = $request->worktime;
@@ -97,7 +105,8 @@ class JobController extends Controller
         $job = Job::where('id', '=', $id)->get()[0];
         return view('job.edit', compact('job'));
     }
-    public function update(Request $request){
+    public function update(Request $request)
+    {
         $request->validate([
             'title' => 'required',
             'description' => 'required',
@@ -105,12 +114,14 @@ class JobController extends Controller
             'reason' => 'required',
             'required' => 'required',
             'location' => 'required|in:HCM,HN,DN,CT,Hue',
-        ],[
+            'salarymax' => 'gt:salarymin',
+        ], [
             'title.required' => 'Tên công việc không được để trống.',
             'description.required' => 'Mô tả công việc không được để trống.',
             'strength.required' => 'Điểm mạnh không được để trống.',
             'reason.required' => 'Lí do không được để trống.',
             'required.required' => 'Yêu cầu không được để trống.',
+            'location.required' => 'Địa điểm không được để trống.',
         ]);
         $job = Job::find($request->id);
         $job->name = $request->title;
@@ -119,8 +130,8 @@ class JobController extends Controller
         $job->reasons = $request->reason;
         $job->requirements = $request->required;
         $job->salary = $request->salary;
-        $job->salarymin = (float)$request->salarymin;
-        $job->salarymax = (float)$request->salarymax;
+        $job->salarymin = (float) $request->salarymin;
+        $job->salarymax = (float) $request->salarymax;
         $job->location = $request->location;
         $job->worktype = $request->worktype;
         $job->worktime = $request->worktime;
@@ -130,38 +141,22 @@ class JobController extends Controller
         return redirect()->back();
     }
 
-    public function job_accept(Request $request) {
-        $user = User::find($request->uid);
-        Apply::where([['jid', '=', $request->jid], ['uid', '=', $request->uid]])->update(['status' => $request->status]);
-        // Send mail
-        // Mail::to($user->mail)->send(new SendAcceptResume($user->name));
-        $filePath = public_path($request->cv);
-        $job = Job::find($request->jid);
-        $employer = $job->employer;
-        if ($request->status == '2') {
-            Mail::to("daokhanhduycm@gmail.com")->send(new EmployerAcceptResume($user->name, $employer->name, $job->name, $filePath));
-        } else {
-            Mail::to("daokhanhduycm@gmail.com")->send(new EmployerDeninedResume($user->name, $employer->name, $job->name, $filePath));
-        }
-         
-        return redirect()->back();
-    }
-
-    public function upload_cv(Request $request) {
+    public function upload_cv(Request $request)
+    {
         $user = auth()->user()->user;
         $cv = '';
 
         if ($request->cvfile != null) {
             $cvfile = $request->file('cvfile');
             $ext = $cvfile->extension();
-            $final_name = date("YmdHis").$user->name.".".$ext;
-            $cvfile->storeAs('/assets/img/resume/', $final_name,['disk' => 'public_uploads']);
-            $cv = "assets/img/resume/".$final_name;
+            $final_name = date("YmdHis") . $user->name . "." . $ext;
+            $cvfile->storeAs('/assets/img/resume/', $final_name, ['disk' => 'public_uploads']);
+            $cv = "assets/img/resume/" . $final_name;
         }
 
         $apply = Apply::create([
-            'jid' => (int)$request->jid,
-            'uid' => (int)$user->id,
+            'jid' => (int) $request->jid,
+            'uid' => (int) $user->id,
             'cv' => $cv,
             'letter' => $request->letter
         ]);
@@ -171,7 +166,7 @@ class JobController extends Controller
         // $apply->user()->create(auth()->user()->user);
 
         //$employer->mail
-        Mail::to("daokhanhduycm@gmail.com")->send(new UserApplyResume($user->name, $employer->name, $job->name, $cv));
+        Mail::to("davicmax123@gmail.com")->send(new UserApplyResume($user->name, $employer->name, $job->name, $cv));
         $apply->save();
         return redirect()->back();
     }

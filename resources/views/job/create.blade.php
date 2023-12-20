@@ -88,6 +88,9 @@
                         <input type="number" class="form-control" id="maxSalary" name="salarymax"
                             placeholder="Lương tối đa" value="0" required>
                     </div>
+                    @error('salarymax')
+                        <div class="alert alert-danger mt-2">Lương tối đa phải lớn hơn lương tối thiểu</div>
+                    @enderror
                     <div class="mb-3">
                         <p class="fw-bold">Hình thức làm việc</p>
                         <div class="form-check">

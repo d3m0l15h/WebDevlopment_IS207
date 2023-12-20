@@ -39,7 +39,7 @@
                                                     <a class="btn btn-secondary bg-color"
                                                         href="{{route('admin.user_show', ['id'=>$user->id])}}">Chi tiết</a>
                                                 </div>
-                                                <img class="avt-user" src="{{ asset('assets/img/blog/blog-author-2.jpg') }}"
+                                                <img class="avt-user" src="{{ asset($user->avatar) }}"
                                                     alt="" />
                                                 <div class="row">
                                                     <div class="col pt-2 ">

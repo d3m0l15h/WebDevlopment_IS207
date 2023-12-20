@@ -105,6 +105,16 @@ class AccountController extends Controller
                 session()->flash('fail', 'Employer haven"t actived yet. Please contact admin for more details');
                 return redirect()->back();
             }
+            if($account->role == 'employer' && $account->employer->status == '0') {
+                // Employer bi khoa
+                session()->flash('fail', 'You have been locked. Please contact admin for more details');
+                return redirect()->back();
+            }
+            if($account->role == 'user' && $account->user->status == '0') {
+                // User bi khoa
+                session()->flash('fail', 'You have been locked. Please contact admin for more details');
+                return redirect()->back();
+            }
             Auth::login($account);
             session()->flash('success', 'Login Success');
             return redirect()->back();

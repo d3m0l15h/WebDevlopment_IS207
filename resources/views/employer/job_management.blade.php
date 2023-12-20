@@ -37,12 +37,12 @@
                     <img src="{{ asset('assets/img/blog/blog-author-2.jpg')}}" alt="" class="w-100 ">
                 </div>
                 <div class="info-container ms-4 ">
-                    <h3>{{$job->name}}</h3>
+                    <a href="{{ route('job.detail', ['slug' => Str::slug($job->name) . '-' . $job->id]) }}"><h3>{{$job->name}}</h3></a>
                     <div class="salary-wrapper d-flex flex-row justify-content-start gap-2">
                       <img src="{{ asset('assets/img/circle-money.png') }}" width="20" height="20" alt="">
                       <p class="money-num fw-bold ">${{$job->salarymin}} - ${{$job->salarymax}}</p>
                     </div>
-                    <p class="main-color fw-bold ">Số lượng đã ứng tuyển: 223</p>
+                    <p class="main-color fw-bold ">Số lượng đã ứng tuyển: {{$job->applies->count()}}</p>
                 </div>
                 <!-- Edit Button -->
                 <div class="edit-container h-100 flex-grow-1 ">

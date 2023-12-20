@@ -41,9 +41,9 @@
         toastr.options = {
             "closeButton": true,
             "preventDuplicates": true,
-            "showDuration": "100",
-            "hideDuration": "1000",
-            "timeOut": "1000",
+            "showDuration": "200",
+            "hideDuration": "1500",
+            "timeOut": "1500",
             "extendedTimeOut": "1000",
         }
     </script>

@@ -40,17 +40,23 @@
                             <div class="box">
                                 <div class="content d-flex flex-row">
                                     <div class="avatar-containter d-flex ">
-                                        <img src="{{ asset('assets/img/blog/blog-author-2.jpg') }}" alt=""
+                                        <img src="{{ asset($apply->job->employer->logo) }}" alt=""
                                             class="w-100 ">
                                     </div>
-                                    <div class="info-container ms-4 ">
-                                        <h3>{{$apply->job->name}}</h3>
-                                        <p>{{$apply->job->employer->name}}</p>
-                                    </div>  
+                                    <div class="info-container ms-4 " style="overflow: hidden; max-width: 500px;">
+                                        <a href="{{ route('job.detail', ['slug' => Str::slug($apply->job->name) . '-' . $apply->job->id]) }}">
+                                            <h3 style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden;">{{ $apply->job->name }}</h3>
+                                        </a>
+                                        <a href="{{ route('profile.company', ['slug' => Str::slug($apply->job->employer->name) . '-' . $apply->job->eid]) }}"><p>{{ $apply->job->employer->name }}</p></a>
+                                    </div>
 
-                                    {{-- <div class="info-container ms-4 text-end flex-grow-1 ">
-                                        <h3>2020 - 2022</h3>
-                                    </div> --}}
+                                    <div class="info-container ms-4 text-end flex-grow-1 d-flex justify-content-center align-items-center">
+                                        @if ($apply->status == '2')
+                                            <span class="badge bg-success p-3">Đã Chấp Nhận</span>
+                                        @elseif($apply->status == '3')
+                                            <span class="badge bg-danger">Đã Từ Chối</span>
+                                        @endif
+                                    </div>
                                 </div>
                             </div>
                         @endforeach
