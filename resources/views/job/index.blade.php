@@ -138,12 +138,12 @@
                                             class="avt-com rounded-4 ">
                                     @endif
                                     <div class="post-meta">
-                                        <p class="post-author fw-bold ">{{ $job->employer->name }}</p>
+                                        <a href="{{ route('profile.company', ['slug' => Str::slug($job->employer->name) . '-' . $job->eid]) }}"><p class="post-author fw-bold ">{{ $job->employer->name }}</p></a>
                                         <p class="money-num fw-bold ">
                                             <span><img src="{{ asset('assets/img/circle-money.png') }}" alt=""
                                                     width="20" height="20"></span>
                                             @if (Auth::check())
-                                                @if ($job->salary != 0 || $job->salarymin == $job->salarymax && $job->salary == 0)
+                                                @if ($job->salary != 0 || ($job->salarymin == $job->salarymax && $job->salary == 0))
                                                     ${{ $job->salary }}
                                                 @elseif($job->salarymin != 0 && $job->salarymax != 0 && $job->salary == 0)
                                                     ${{ $job->salarymin }} - ${{ $job->salarymax }}
@@ -154,7 +154,21 @@
                                                 Đăng nhập để xem mức lương
                                             @endif
                                         </p>
-                                        <p>at {{ $job->worktype }}</p>
+                                        <p>
+                                            @switch($job->worktype)
+                                                @case('remote')
+                                                    Từ xa
+                                                @break
+
+                                                @case('company')
+                                                    Tại văn phòng
+                                                @break
+
+                                                @case('hybrid')
+                                                    Linh hoạt
+                                                @break
+                                            @endswitch
+                                        </p>
                                         <p>
                                             @switch($job->location)
                                                 @case('HCM')

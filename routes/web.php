@@ -54,6 +54,15 @@ Route::get('/account/login', function () {
     abort(404);
 });
 
+//Account reset password
+Route::post('/account/change-pwd', [
+    AccountController::class,
+    'change_pwd'
+])->name('change_pwd');
+Route::get('/account/reset', function () {
+    abort(404);
+});
+
 //Account Logout
 Route::get('/account/logout', [
     AccountController::class,

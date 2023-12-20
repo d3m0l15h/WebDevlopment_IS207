@@ -41,12 +41,14 @@ class AdminController extends Controller
         $userCount = User::count();
         $empCount = Employer::where('status', '!=', '3')->count();
         $jobCount = Job::count();
+        $appliedCount = Apply::count();
 
 
         return view('admin.index')->with([
             'userCount' => $userCount,
             'empCount' => $empCount,
-            'jobCount' => $jobCount
+            'jobCount' => $jobCount,
+            'appliedCount' => $appliedCount
         ]);
     }
 

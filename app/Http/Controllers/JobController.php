@@ -19,26 +19,43 @@ class JobController extends Controller
 {
     public function index()
     {
-        $search_job = request('search');
+        $search = request('search');
         $location = request('location');
 
-        if ($search_job && $location) {
-            $jobs = Job::where('name', 'like', '%' . $search_job . '%')
-                ->where('location', 'like', '%' . $location . '%')
-                ->where('status', '=', '1')
-                ->get();
-        } elseif ($search_job) {
-            $jobs = Job::where('name', 'like', '%' . $search_job . '%')
-                ->where('status', '=', '1')
-                ->get();
+        if ($search && $location) {
+            $jobs = Job::whereHas('employer', function ($query) use ($search) {
+                $query->where('name', 'like', '%' . $search . '%');
+            })
+            ->where('location', 'like', '%' . $location . '%')
+            ->where('status', '=', '1')
+            ->paginate(20);
+    
+            if ($jobs->isEmpty()) {
+                $jobs = Job::where('name', 'like', '%' . $search . '%')
+                    ->where('location', 'like', '%' . $location . '%')
+                    ->where('status', '=', '1')
+                    ->paginate(20);
+            }
+        } elseif ($search) {
+            $jobs = Job::whereHas('employer', function ($query) use ($search) {
+                $query->where('name', 'like', '%' . $search . '%');
+            })
+            ->where('status', '=', '1')
+            ->paginate(20);
+    
+            if ($jobs->isEmpty()) {
+                $jobs = Job::where('name', 'like', '%' . $search . '%')
+                    ->where('status', '=', '1')
+                    ->paginate(20);
+            }
         } elseif ($location) {
             $jobs = Job::where('location', 'like', '%' . $location . '%')
                 ->where('status', '=', '1')
-                ->get();
+                ->paginate(20);
         } else {
             $jobs = Job::where('status', '=', '1')->paginate(20);
         }
-
+    
         return view('job.index', compact('jobs'));
     }
     public function show($slug) //job details

@@ -27,6 +27,10 @@ document.querySelector('#exampleModal').addEventListener('submit', function() {
   localStorage.setItem('reopenModal', 1); 
 });
 
+document.querySelector('#exampleModalToggle2').addEventListener('submit', function() {
+  localStorage.setItem('reopenModal', 3); 
+});
+
 // After the page reloads, check if the flag exists in the storage
 window.onload = function() {
   if (localStorage.getItem('reopenModal')==0) {
@@ -36,6 +40,9 @@ window.onload = function() {
       localStorage.removeItem('reopenModal');
   } else if (localStorage.getItem('reopenModal')==1) {
       $('#exampleModal').modal('show');
+      localStorage.removeItem('reopenModal');
+  } else if (localStorage.getItem('reopenModal')==3) {
+      $('#exampleModalToggle2').modal('show');
       localStorage.removeItem('reopenModal');
   }
 };

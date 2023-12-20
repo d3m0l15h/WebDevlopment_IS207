@@ -88,7 +88,21 @@
                                 </div>
                                 <div class="d-flex flex-row justify-content-start gap-2">
                                     <p class="fw-bold">Loại hình làm việc: </p>
-                                    <p>{{ $job->worktype }}</p>
+                                    <p>
+                                        @switch($job->worktype)
+                                            @case('remote')
+                                                Từ xa
+                                            @break
+
+                                            @case('company')
+                                                Tại văn phòng
+                                            @break
+
+                                            @case('hybrid')
+                                                Linh hoạt
+                                            @break
+                                        @endswitch
+                                    </p>
                                 </div>
                                 <div class="d-flex flex-row justify-content-start gap-2">
                                     <p class="fw-bold">Loại thời gian làm việc: </p>
