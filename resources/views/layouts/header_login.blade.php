@@ -59,11 +59,11 @@
 <body class="index-page" data-bs-spy="scroll" data-bs-target="#navmenu">
     <header id="header" class="header fixed-top d-flex align-items-center ">
         <div class="container-fluid d-flex align-items-center justify-content-between">
-            <a href="/" class="logo d-flex align-items-center me-auto me-xl-0">
+            <a href="{{ route('home')}}" class="logo d-flex align-items-center me-auto me-xl-0">
                 <!-- Uncomment the line below if you also wish to use an image logo -->
                 <!-- <img src="assets/img/logo.png" alt=""> -->
                 <h1>Finding Job</h1>
-                <span>.</span>
+                <span class="special-dot">.</span>
             </a>
 
             <!-- Nav Menu -->
