@@ -36,8 +36,8 @@
                 <div class="avatar-containter">
                     <img src="{{ asset('assets/img/blog/blog-author-2.jpg')}}" alt="" class="w-100 ">
                 </div>
-                <div class="info-container ms-4 ">
-                    <a href="{{ route('job.detail', ['slug' => Str::slug($job->name) . '-' . $job->id]) }}"><h3>{{$job->name}}</h3></a>
+                <div class="info-container ms-4 " style="overflow: hidden; width: 100%">
+                    <a href="{{ route('job.detail', ['slug' => Str::slug($job->name) . '-' . $job->id]) }}"><h3 style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden;">{{$job->name}}</h3></a>
                     <div class="salary-wrapper d-flex flex-row justify-content-start gap-2">
                       <img src="{{ asset('assets/img/circle-money.png') }}" width="20" height="20" alt="">
                       <p class="money-num fw-bold ">${{$job->salarymin}} - ${{$job->salarymax}}</p>
