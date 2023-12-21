@@ -118,6 +118,12 @@ class JobController extends Controller
         $parts = explode('-', $slug);
         $jobid = end($parts);
         $job = Job::where('id', $jobid)->first();
+        if($job->status == '0'){
+            abort(404);
+        } else if($job->employer->status == '0'){
+            abort(404);
+        }
+
         $applied = null;
 
         if (Auth::check() && auth()->user()->role == 'user') {
@@ -128,7 +134,7 @@ class JobController extends Controller
         }
 
         if (!$job) {
-            // Handle the case where no job with the given slug exists.
+            abort(404);
         }
         return view('job.detail', compact('job', 'applied'));
     }

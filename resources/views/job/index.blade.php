@@ -125,6 +125,7 @@
                 <div class="row gy-4 posts-list">
 
                     @foreach ($jobs as $job)
+                        @if($job->employer->status == '1')
                         <div class="col-xl-6 col-lg-6">
                             <article>
                                 <h2 class="title">
@@ -201,6 +202,7 @@
                                 </div>
                             </article>
                         </div>
+                        @endif
                     @endforeach
                     <!-- End post list item -->
 

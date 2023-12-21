@@ -85,10 +85,10 @@
                             <li class="dropdown has-dropdown extend-1">
                                 <div class="d-flex flex-row justify-align-content-around align-items-center extend-2">
                                     @if (auth()->user()->role == 'user')
-                                        <img src="{{ asset(auth()->user()->user->avatar) }}" alt=""
+                                        <img src="{{ asset(auth()->user()->user->avatar == null ? 'assets/img/blog/blog-author-2.jpg' : auth()->user()->user->avatar) }}" alt=""
                                             class="">
                                     @elseif (auth()->user()->role == 'employer')
-                                        <img src="{{ asset(auth()->user()->employer->logo) }}" alt=""
+                                        <img src="{{ asset(auth()->user()->employer->logo == null ? 'assets/img/blog/blog-author-2.jpg' : auth()->user()->employer->logo) }}" alt=""
                                             class="">
                                     @else
                                         <img src="{{ asset('assets/img/blog/blog-author-2.jpg') }}" alt=""
