@@ -89,7 +89,7 @@
                                     Giới thiệu bản thân
                                 </h3>
                                 <div class="form-floating ps-2">
-                                    <p>{{ $user->introduce }}</p>
+                                    <p>{!! $user->introduce !!}</p>
                                 </div>
                             </div>
                         </div>
@@ -99,7 +99,7 @@
                                     Học vấn
                                 </h3>
                                 <div class="form-floating ps-2">
-                                    <p>{{ $user->education }}</p>
+                                    <p>{!! $user->education !!}</p>
                                 </div>
                             </div>
                         </div>
@@ -109,7 +109,7 @@
                                     Kinh nghiệm
                                 </h3>
                                 <div class="form-floating ps-2" id="project-section">
-                                    <p>{{ $user->experience }}</p>
+                                    <p>{!! $user->experience !!}</p>
                                 </div>
                             </div>
                         </div>
@@ -119,7 +119,7 @@
                                     Kĩ năng
                                 </h3>
                                 <div class="form-floating ps-2">
-                                    <p>{{ $user->skill }}</p>
+                                    <p>{!! $user->skill !!}</p>
                                 </div>
                             </div>
                         </div>
@@ -129,7 +129,7 @@
                                     Dự án đã thực hiện
                                 </h3>
                                 <div class="form-floating ps-2">
-                                    <p>{{ $user->ownproject }}</p>
+                                    <p>{!! $user->ownproject !!}</p>
                                 </div>
                             </div>
                         </div>
@@ -140,7 +140,7 @@
                                     Chứng chỉ
                                 </h3>
                                 <div class="form-floating ps-2">
-                                    <p>{{ $user->certificate }}</p>
+                                    <p>{!! $user->certificate !!}</p>
                                 </div>
                             </div>
                         </div>
@@ -161,7 +161,7 @@
                                     Giải thưởng
                                 </h3>
                                 <div class="form-floating ps-2">
-                                    <p>{{ $user->prize }}</p>
+                                    <p>{!! $user->prize !!}</p>
 
                                 </div>
                             </div>

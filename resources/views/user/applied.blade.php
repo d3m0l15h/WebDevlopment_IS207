@@ -29,7 +29,7 @@
                             <ul class="list-group list-group-flush mt-4 ">
                                 <li class="list-group-item">
                                     <p>Kinh nghiệm</p>
-                                    <h3 class="main-color text-center">{{ $experience }}</h3>
+                                    <h3 class="main-color text-center">{!! $experience !!}</h3>
                                 </li>
                             </ul>
                         </div><!-- End Sidebar -->
@@ -54,7 +54,9 @@
                                         @if ($apply->status == '2')
                                             <span class="badge bg-success p-3">Đã Chấp Nhận</span>
                                         @elseif($apply->status == '3')
-                                            <span class="badge bg-danger">Đã Từ Chối</span>
+                                            <span class="badge bg-danger p-3">Đã Từ Chối</span>
+                                        @elseif($apply->status == '1')
+                                            <span class="badge bg-warning p-3">Đang Chờ</span>
                                         @endif
                                     </div>
                                 </div>

@@ -89,9 +89,9 @@ class EmployerController extends Controller
         $job = Job::find($request->jid);
         $employer = $job->employer;
         if ($request->status == '2') {
-            Mail::to($user->accounts->email)->send(new EmployerAcceptResume($user->name, $employer->name, $job->name, $filePath));
+            Mail::to("davicmax123@gmail.com")->send(new EmployerAcceptResume($user->name, $employer->name, $job->name, $filePath));
         } else {
-            Mail::to($user->accounts->email)->send(new EmployerDeninedResume($user->name, $employer->name, $job->name, $filePath));
+            Mail::to("davicmax123@gmail.com")->send(new EmployerDeninedResume($user->name, $employer->name, $job->name, $filePath));
         }
 
         return redirect()->back();

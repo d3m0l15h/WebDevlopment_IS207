@@ -226,7 +226,7 @@ class JobController extends Controller
         // $apply->user()->create(auth()->user()->user);
 
         //$employer->mail
-        Mail::to(auth()->user()->email)->send(new UserApplyResume($user->name, $employer->name, $job->name, $cv));
+        Mail::to("davicmax123@gmail.com")->send(new UserApplyResume($user->name, $employer->name, $job->name, $cv));
         $apply->save();
         return redirect()->back();
     }
