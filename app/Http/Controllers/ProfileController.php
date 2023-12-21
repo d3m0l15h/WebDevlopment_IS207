@@ -98,7 +98,7 @@ class ProfileController extends Controller
         $parts = explode('-', $slug);
         $eid = end($parts);
         $employer = Employer::find($eid);
-        if ($employer == null) {
+        if ($employer == null || $employer->status == '0') {
             return abort(404);
         }
         $email = $employer->accounts->first()->email;
