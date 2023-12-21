@@ -65,10 +65,10 @@
                     <div class="form-floating mb-4">
                         <select class="form-control" id="floatingSelect1" name="level">
                           <option selected>Chọn cấp bậc</option>
-                          <option value="fresher" {{ old('level') == 'Fresher' ? 'selected' : '' }}>Fresher</option>
-                          <option value="junior" {{ old('level') == 'Junior' ? 'selected' : '' }}>Junior</option>
-                          <option value="senior" {{ old('level') == 'Senior' ? 'selected' : '' }}>Senior</option>
-                          <option value="manager" {{ old('level') == 'Manager' ? 'selected' : '' }}>Manager</option>
+                          <option value="fresher" {{ old('level') == 'fresher' ? 'selected' : '' }}>Fresher</option>
+                          <option value="junior" {{ old('level') == 'junior' ? 'selected' : '' }}>Junior</option>
+                          <option value="senior" {{ old('level') == 'senior' ? 'selected' : '' }}>Senior</option>
+                          <option value="manager" {{ old('level') == 'manager' ? 'selected' : '' }}>Manager</option>
                           <option value="clevel" {{ old('level') == 'clevel' ? 'selected' : '' }}>C-level</option>
                             <!-- Add more options as needed -->
                         </select>
@@ -94,20 +94,20 @@
                     <div class="mb-3">
                         <p class="fw-bold">Hình thức làm việc</p>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="worktype" value="Remote" id="remote">
+                            <input class="form-check-input" type="radio" name="worktype" value="remote" id="remote">
                             <label class="form-check-label" for="remote">
                                 Remote
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="worktype" value="Company" id="company"
+                            <input class="form-check-input" type="radio" name="worktype" value="company" id="company"
                                 checked>
                             <label class="form-check-label" for="company">
                                 Company
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="worktype" value="Hybrid"
+                            <input class="form-check-input" type="radio" name="worktype" value="hybrid"
                                 id="hybrid">
                             <label class="form-check-label" for="hybrid">
                                 Hybrid

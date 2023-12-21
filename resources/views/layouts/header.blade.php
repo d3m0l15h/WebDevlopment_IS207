@@ -74,25 +74,7 @@
                 <ul>
                     <li><a href="/" class="active">Trang chủ</a></li>
                     <li><a href="{{ route('jobs') }}">Tìm việc làm</a></li>
-                    <li class="dropdown has-dropdown">
-                        <a href="#"><span>Công việc</span> <i class="bi bi-chevron-down"></i></a>
-                        <ul class="dd-box-shadow">
-                            <li><a href="#"></a></li>
-                            <li class="dropdown has-dropdown">
-                                <a href="#"><span>Theo kĩ năng</span>
-                                    <i class="bi bi-chevron-down"></i></a>
-                                <ul class="dd-box-shadow">
-                                    <li><a href="#">Theo kĩ năng</a></li>
-                                    <li><a href="#">Java </a></li>
-                                    <li><a href="#">.NET </a></li>
-                                    <li><a href="#">Python</a></li>
-                                    <li><a href="#">React</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Theo kinh nghiệm</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="{{ route('home') }}#contact">Contact</a></li>
                 </ul>
 
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>

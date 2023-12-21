@@ -23,42 +23,54 @@ class JobController extends Controller
         $queryParams = $request->all();
 
         // Dump query parameters for debugging
-       // dd($queryParams);
+        // dd($queryParams);
 
         // Start a query builder
         $query = Job::query();
 
         // Filter by job level
+        $levels = [];
         if (isset($queryParams['btn-check'])) {
-            $query->where('level', 'fresher');
+            $levels[] = 'fresher';
         }
         if (isset($queryParams['btn-check-2'])) {
-            $query->where('level', 'junior');
+            $levels[] = 'junior';
         }
         if (isset($queryParams['btn-check-3'])) {
-            $query->where('level', 'senior');
+            $levels[] = 'senior';
         }
         if (isset($queryParams['btn-check-4'])) {
-            $query->where('level', 'manager');
+            $levels[] = 'manager';
+        }
+        if (!empty($levels)) {
+            $query->whereIn('level', $levels);
         }
 
         // Filter by job type
+        $worktimes = [];
         if (isset($queryParams['btn-check-fulltime'])) {
-            $query->where('worktime', 'Full-time');
+            $worktimes[] = 'Full-time';
         }
         if (isset($queryParams['btn-check-parttime'])) {
-            $query->where('worktime', 'Part-time');
+            $worktimes[] = 'Part-time';
+        }
+        if (!empty($worktimes)) {
+            $query->whereIn('worktime', $worktimes);
         }
 
         // Filter by job location
+        $worktypes = [];
         if (isset($queryParams['btn-check-remote'])) {
-            $query->where('worktype', 'remote');
+            $worktypes[] = 'remote';
         }
         if (isset($queryParams['btn-check-office'])) {
-            $query->where('worktype', 'company');
+            $worktypes[] = 'company';
         }
         if (isset($queryParams['btn-check-flex'])) {
-            $query->where('worktype', 'hybrid');
+            $worktypes[] = 'hybrid';
+        }
+        if (!empty($worktypes)) {
+            $query->whereIn('worktype', $worktypes);
         }
 
         //SEARCH
