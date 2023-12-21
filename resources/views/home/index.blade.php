@@ -382,8 +382,9 @@
                 </div>
 
                 <div class="col-lg-6">
-                    <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up"
+                    <form action="{{route('contact')}}" method="post" class="php-email-form" data-aos="fade-up"
                         data-aos-delay="200">
+                        @csrf
                         <div class="row gy-4">
                             <div class="col-md-6">
                                 <input type="text"` name="name" class="form-control" placeholder="Tên của bạn"
@@ -401,7 +402,7 @@
                             </div>
 
                             <div class="col-md-12">
-                                <textarea class="form-control" name="message" rows="6" placeholder="Nội dung" required></textarea>
+                                <textarea class="form-control" name="content" rows="6" placeholder="Nội dung" required></textarea>
                             </div>
 
                             <div class="col-md-12 text-center">

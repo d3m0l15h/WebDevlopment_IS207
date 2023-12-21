@@ -110,6 +110,10 @@ Route::get('/profile/uploadcv', function () {
     abort(404);
 });
 
+Route::post('/contact', [
+    HomeController::class,
+    'contact'
+])->name('contact');
 
 
 ////////////////////////////EMPLOYER
